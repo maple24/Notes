@@ -1,8 +1,14 @@
+# Understanding
+假如不使用kafka就是直接分发任务到代理端，那么假设代理端目前有任务没执行完，这时任务分发就要等待了。
+有kafka的话任务就可以等代理端自己去取，前端/后端只负责把任务布置下去存在kafka内，也就是producer，等代理端自行consumer。
+
 # Reference
 
 [Kafka Python client](https://github.com/dpkp/kafka-python)
 
 [Apache Kafka](https://www.startdataengineering.com/post/what-why-and-how-apache-kafka/)
+
+[Confluent REST APIs](https://docs.confluent.io/platform/current/kafka-rest/index.html#confluent-rest-apis)
 
 ## Introduction
 
@@ -10,7 +16,7 @@
 
 ## What is Apache Kafka
 
-![Apache Kafka Cluster](/assets/simple_kafka.png "Apache Kafka Cluster")
+![Apache Kafka Cluster](../assets/simple_kafka.png "Apache Kafka Cluster")
 
 > According to the official definition, it is a distributed streaming platform. This means that you have a cluster of connected machines (Kafka Cluster) which can.
 
