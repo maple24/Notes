@@ -21,7 +21,7 @@
 ## alias&proxy
 ---
 ```javascript
-# in vite.config.js file
+// in vite.config.js file
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -63,12 +63,12 @@ They **don’t accept arguments** and they are very handy for composing new data
 ---
 understanding: transfer functions to upper level components
 ```javascript
-# on subcomponent:
+// on subcomponent:
 @submit="onSubmit"
 onsubmit:() {
     this.$emit('eventname', value)
 }
-# on rootcomponent
+// on rootcomponent
 eventname:(value){
     this.data.push(value)
 }
@@ -104,6 +104,7 @@ understanding: if props is an object or array, data binding is required; if prop
 
 ## prevent
 ---
-```
-
+```javascript
+// prevent default function of click 
+@click.prevent="submit"
 ```
