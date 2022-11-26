@@ -16,7 +16,7 @@
 
 Transfer database complex data into python json type data.
 Originally, database data need be transfered manually.
-```sh
+```python
 def book_list(requet):
     books = books.objects.all()
     books_python = list(books(value()))
@@ -32,7 +32,7 @@ def book_list(request):
 ```
 
 2. action decorator
-```sh
+```python
 class FooViewset(viewsets.ModelViewSet):
 	queryset = Foo.objects.all()
 	serializer_class = FooSerializer

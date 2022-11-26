@@ -1,5 +1,5 @@
 ## Tutorial
-```sh
+```javascript
 // static coding
 // mapout what your variable, function should look like, make your code more robost
 /*

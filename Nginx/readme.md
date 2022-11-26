@@ -1,7 +1,7 @@
 # Nginx
 
 ## Configuration explaination
-```sh
+```conf
 # 运行用户
 user www-data;    
 # 启动进程,通常设置成和cpu的数量相等
@@ -13,7 +13,7 @@ pid        /var/run/nginx.pid;
 
 # 工作模式及连接数上限
 events {
-    use epoll; #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
+    use epoll;   #epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能
     worker_connections 1024; #单个后台worker process进程的最大并发链接数
     # multi_accept on; 
 }

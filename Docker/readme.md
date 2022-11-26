@@ -34,7 +34,7 @@ https://groupe-sii.github.io/cheat-sheets/docker/index.html
 
 #### Basic structure of a Docker Compose YAML file
 
-```sh
+```yaml
 version: '3' # version of docker compose, will provide appropriate features
 services:
   web:

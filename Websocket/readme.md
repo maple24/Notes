@@ -3,7 +3,7 @@
 - websocket server on python backend
 
 ## Python server example
-```sh
+```python
 import asyncio
 import websockets
 
@@ -35,7 +35,7 @@ client.onmessage = (event) => {
 ```
 
 ## VueJs example
-```sh
+```javascript
 <script setup>
   import client from './api/websocket';
 
