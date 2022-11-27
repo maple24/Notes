@@ -1,0 +1,35 @@
+node() {
+    // Define properties
+    properties(
+        [
+            parameters(
+                [
+                    choice(choices: ['built-in', 'WX-C-000RY', 'SGHZ001036218'], description: 'Select a node to run.', name: 'NODE'),
+                    string(defaultValue: 'jin.zhu5@bosch.com', description: '', name: 'MailRecipient')
+                    ]
+                )
+            ]
+        )
+    // properties([parameters([[$class: 'NodeParameterDefinition', allowedSlaves: [], defaultSlaves: [], name: 'NODE', nodeEligibility: [$class: 'AllNodeEligibility'], triggerIfResult: 'multiSelectionDisallowed']])])
+    stage("Define node") {
+        NODE = params.NODE
+        echo "Node selected is $NODE"
+    }
+
+}
+
+pipeline {
+
+    agent { node "$NODE" }
+    // agent { node { label "$NODE"}}
+    parameters {
+        string defaultValue: 'jin.zhu5@bosch.com', description: '', name: 'MailRecipient'
+    }
+    stages {
+        stage('Hello') {
+            steps {
+                echo "${params.NODE}"
+            }
+        }
+    }
+}

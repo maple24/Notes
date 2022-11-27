@@ -1,0 +1,172 @@
+def props
+
+node() {
+    stage("INIT") {
+        // cleanWs()
+        git credentialsId: 'bitbucket', url: 'https://github.boschdevcloud.com/ZIU7WX/Jenkinsfile.git'
+        props = readJSON file: 'config.json'
+
+        // Define properties
+        properties(
+            [
+                parameters(
+                    [
+                        choice(choices: ['WX-C-001TF', 'WX-C-000RY', 'WX-C-001R5'], description: 'Select a labelled node to run.', name: 'NODE'),
+                        choice(choices: ['Slot1', 'Slot2', 'Slot3'], description: 'Specify a machine slot.', name: 'SLOT'),
+                        choice(choices: ['22', '24'], description: 'Specify a cube type.', name: 'CUBE'),
+                        booleanParam(defaultValue: false, description: '', name: 'Git'),
+                        booleanParam(defaultValue: false, description: '', name: 'Download'),
+                        booleanParam(defaultValue: false, description: '', name: 'Move2USB'),
+                        booleanParam(defaultValue: false, description: '', name: 'Swup'),
+                        choice(choices: ['Artifactory', 'NetworkDrive'], description: 'Select a method to download.', name: 'DownloadMethod'),
+                        string(defaultValue: 'gac-avnt-repos/daily/rb-gac-avnt_generic-1.0_maindev/rb-gac-avnt_generic-1.0_maindev_2022.08.8/rb-gac-avnt_generic-1.0_maindev_2022.08.8.userdebug.tgz', description: 'Paste Artifactory path of the software.', name: 'ArtifactoryPath'),
+                        string(defaultValue: '\\\\SZHVM00556.APAC.BOSCH.COM\\01_Project\\BinaryExchange\\GAC\\SystemTest\\SoftwareBuild\\AVNT\\CustomerVersion_A58', description: 'Source path of the file.(Do not include the file.)', name: 'SourcePath'),
+                        string(defaultValue: '*.zip', description: 'Name of the file.(Leave it empty if DownloadMethod is Artifactory.)', name: 'FileName'),
+                        string(defaultValue: 'jin.zhu5@bosch.com', description: '', name: 'MailRecipient'),
+                        ]
+                    )
+                ]
+            )
+    }
+    // properties([parameters([[$class: 'NodeParameterDefinition', allowedSlaves: [], defaultSlaves: [], name: 'NODE', nodeEligibility: [$class: 'AllNodeEligibility'], triggerIfResult: 'multiSelectionDisallowed']])])
+    stage("Define node&slot") {
+        NODE = params.NODE
+        SLOT = params.SLOT
+        echo "The selected node is $NODE"
+        echo "The specified slot is $SLOT"
+    }
+}
+
+pipeline {
+    // agent { node "$NODE"}
+    agent { node { label "$NODE" }}
+    options {
+        // This is required if you want to clean before build
+        skipDefaultCheckout(true)
+    }
+    
+    environment {
+        ProjectName = "_prj_${JOB_NAME}_JENKINS"
+        PythonEnv = "${props[NODE]['PythonInterpreter']}"
+        MailRecipient = "${params.MailRecipient}"
+        PackageName = "A58_A88_AVNT_Update"
+        DownloadPath = "${Workspace}\\tools\\zhujin\\Download"
+        SwitchComport = "${props[NODE][SLOT]['SwitchboxComport']}"
+        PuttyComport = "${props[NODE][SLOT]['PuttyComport']}"
+        TestcasePath = "${props[NODE]['bat_rf']}"
+        
+        Network_SourcePath = "${params.SourcePath}"
+        Network_FileName = "${params.FileName}"
+        Downloader = "tools\\zhujin\\artifactory_download.py"
+        Switcher = "tools\\zhujin\\mcube_switch${params.CUBE}.py"
+        Tool = "tools\\zhujin\\tools.py"
+        ArtiPath = "${params.ArtifactoryPath}"
+        Putty = "tools\\zhujin\\puttyHelper.py"
+    }
+    
+    stages {
+        stage('Git Update') {
+            when {
+                expression { params.Git == true } 
+            }    
+            steps {
+                cleanWs()
+                echo '========Pull From Github========'
+                git branch: 'zhujin', credentialsId: 'bitbucket', url: 'https://github.boschdevcloud.com/LOZ1WX/Base_helper.git'
+            }
+        }
+        stage('Check Environment') {
+            steps {
+                echo '========Check Running Environment========'
+                bat '''
+                    if exist requirements.txt (
+                        %PythonEnv% -m pip install -r requirements.txt --proxy=http://rb-proxy-apac.bosch.com:8080
+                    )
+                '''
+            }
+        }
+        stage('Download') {
+            when {
+                expression { params.Download == true } 
+            }
+            steps {
+                script {
+                    if ( "${params.DownloadMethod}" == 'NetworkDrive' ) {
+                        echo '========Copy From Network========'
+                        bat '''
+                            IF not exist %DownloadPath% (
+                                mkdir %DownloadPath%
+                            )
+                            robocopy %Network_SourcePath% %DownloadPath% %Network_FileName%
+                            IF %ERRORLEVEL% EQU 1 (exit /B 0)
+                        '''
+                        bat '''
+                            cd %DownloadPath%
+                            tar -xzvf %Network_FileName%
+                        '''
+                        bat '''
+                            IF exist %DownloadPath%\\A88_AVNT_Update (rename %DownloadPath%\\A88_AVNT_Update %PackageName%)
+                            IF exist %DownloadPath%\\A58_AVNT_Update (rename %DownloadPath%\\A58_AVNT_Update %PackageName%)                       
+                            IF exist %DownloadPath%\\A13Y_AVNT_Update (rename %DownloadPath%\\A13Y_AVNT_Update %PackageName%)                       
+                        '''
+                        // sleep(time:2,unit:"SECONDS")
+                    } else if ( "${params.DownloadMethod}" == 'Artifactory' ) {
+                        echo '========Download From Artifactory========'
+                        bat '''
+                            %PythonEnv% %Downloader% %ArtiPath%
+                        '''
+                    } else {
+                        echo '********Pls select a correct donwload method********'
+                    }
+                }
+            }
+        }
+        stage('Move to USB Flash Drive') {
+            when {
+                expression { params.Move2USB == true } 
+            }
+            steps {
+                echo '========Move File to USB Drive========'
+                bat '''
+                    if not "%SwitchComport%" equ "" (%PythonEnv% %Switcher% %SwitchComport% --switch 23)
+                '''
+                bat '''
+                    for /F "tokens=1*" %%a in ('fsutil fsinfo drives') do (
+                        for %%c in (%%b) do (
+                          for /F "tokens=3" %%d in ('fsutil fsinfo drivetype %%c') do (
+                                if %%d equ Removable (
+                                    if exist %%c\\%PackageName% (rmdir /s /q %%c\\%PackageName%)
+                                    %PythonEnv% %Tool% --cpdir %DownloadPath%\\%PackageName% %%c
+                                )
+                            )
+                        )
+                    )
+                '''
+            }
+        }
+        stage('Swup') {
+            when {
+                expression { params.Swup == true }   
+            }
+            steps {
+                echo '========Start updating========'
+                // bat '%TestcasePath%\\z_Jenkins_runner_update.bat'
+                bat '''
+                    if not "%SwitchComport%" equ "" (%PythonEnv% %Switcher% %SwitchComport% --switch 13)
+                '''
+                bat '''
+                    %PythonEnv% %Putty% %PuttyComport% --update
+                '''
+            }
+        }
+    }
+    post {
+        always {
+            echo "========Clean WorkSpace========"
+            // cleanWs()
+        }
+        failure {
+            mail bcc: '', body: "Project_${env.ProjectName}_result", cc: '', from: 'jin.zhu5@cn.bosch.com', replyTo: '', subject: 'Jenkins - Fail Notification', to: "${params.MailRecipient}"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+CRON_SETTINGS = '''H */2 * * *'''
+// CRON_SETTINGS = '''TZ=Asia/Shanghai H */2 * * *'''
+
+pipeline {
+    agent any
+    
+    triggers {
+        cron(CRON_SETTINGS)
+    }
+
+    environment {
+        PythonEnv = "C:\\Users\\ZIU7WX\\Desktop\\work\\venv_work\\Scripts\\python.exe"
+        Monitor = "C:\\Users\\ziu7wx\\Desktop\\work\\Tools\\Artimonitor.py"
+    }
+
+    stages {
+        stage('ArtiMonitor') {
+            steps {
+                echo '========Start monitor...========'
+                bat '''
+                    %PythonEnv% %Monitor%
+                '''
+            }
+        }
+    }
+}

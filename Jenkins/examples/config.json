@@ -1,0 +1,46 @@
+{
+	"WX-C-001TF": {
+		"PythonInterpreter": "C:\\Users\\ZIU7WX\\Desktop\\work\\venv_work\\Scripts\\python.exe",
+		"bat_rf": "C:\\Users\\ziu7wx\\Desktop\\work\\bat_rf",
+		"Slot1": {
+			"SwitchboxComport": "COM7",
+			"PuttyComport": "COM4"
+		}
+	},
+	"WX-C-001R5": {
+		"PythonInterpreter": "C:\\Users\\ets1szh\\Desktop\\work\\venv_rf\\Scripts\\python.exe",
+		"bat_rf": "C:\\Users\\ets1szh\\Desktop\\work\\bat_rf",
+		"Slot1": {
+			"SwitchboxComport": "COM3",
+			"PuttyComport": "COM5"
+		},
+		"Slot2": {
+			"SwitchboxComport": "COM8",
+			"PuttyComport": "COM10"
+		},
+		"Slot3": {
+			"SwitchboxComport": "COM11",
+			"PuttyComport": "COM14"
+		}		
+	},
+	"WX-C-000RY": {
+		"PythonInterpreter": "C:\\Users\\ets1szh\\Desktop\\work\\venv_work\\Scripts\\python.exe",
+		"bat_rf": "C:\\Users\\ets1szh\\Desktop\\work\\bat_rf",
+		"Slot1": {
+			"SwitchboxComport": "COM28",
+			"PuttyComport": "COM15"
+		},
+		"Slot2": {
+			"SwitchboxComport": "COM5",
+			"PuttyComport": "COM36"
+		},
+		"Slot3": {
+			"SwitchboxComport": "COM30",
+			"PuttyComport": "COM25"
+		}
+	},
+	"SGHZ001036218": {
+		"PythonInterpreter": "",
+		"SwitchboxComport": ""
+	}
+}

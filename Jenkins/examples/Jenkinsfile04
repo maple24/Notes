@@ -1,0 +1,26 @@
+CRON_SETTINGS = '''H(0-0) 9 * * *'''
+// CRON_SETTINGS = '''TZ=Asia/Shanghai H */2 * * *'''
+
+pipeline {
+    agent any
+    
+    triggers {
+        cron(CRON_SETTINGS)
+    }
+
+    environment {
+        PythonEnv = "C:\\Users\\ZIU7WX\\Desktop\\work\\venv_work\\Scripts\\python.exe"
+        Reporter = "C:\\Users\\ziu7wx\\Desktop\\work\\gwm\\autoreport\\AutoReport_main.py"
+    }
+
+    stages {
+        stage('AutoReporter') {
+            steps {
+                echo '========Start reporter...========'
+                bat '''
+                    %PythonEnv% %Reporter%
+                '''
+            }
+        }
+    }
+}

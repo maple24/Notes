@@ -1,6 +1,11 @@
-# Nginx
+# Table of contents
+- [Table of contents](#table-of-contents)
+  - [Configuration explaination](#configuration-explaination)
+  - [errors](#errors)
+    - [502 bad gateway](#502-bad-gateway)
 
 ## Configuration explaination
+---
 ```conf
 # 运行用户
 user www-data;    
@@ -142,3 +147,8 @@ http {
     }
 }
 ```
+
+## errors
+### 502 bad gateway
+![error1](assets/error1.png)
+![error2](assets/error2.png)
