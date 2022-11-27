@@ -500,6 +500,7 @@ pd.__doc__
 ---
 `New actually creates something (an object), while init just initialize.
 Because new returns an object while init does not return anything.`
+
 ![news vs list1](assets/news_init_1.png)
 ![news vs list2](assets/news_init_2.png)
 
