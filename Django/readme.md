@@ -1,5 +1,5 @@
 ## Django vs Django RestFramework
-
+---
 > You can use Django only to build a fully functional web app without using any frontend frameworks, such as React, Angular, etc. Doing so, you have used Django for both backend and frontend. Actually, doing like this, you do not have the concept of backend and frontend. Your web app is just your web app, and that is it.
 
 > However, if you want your frontend to look fancy with complex CSS decoration, you may want to consider using frontend frameworks (React, Angular). Of course, you can use Django alone to make your frontend looks fancy too, but you have to write a lot of code to do so, and Django template is not popularly used comparing to frontend frameworks.
@@ -11,7 +11,56 @@
 > Also, I think you may want to look into the difference between API vs REST API. They are using interchangeably, but they are not the same. For example, when you are using Django, you are using the Django APIs. REST(ful) API which is just one type of API is used for client-server web developments.
 
 
-## Glossary
+## general steps
+---
+1. django-admin startproject lecture3
+2. python manage.py startapp hello
+3. add hello into settings/INSTALLED_APPS
+4. create templates/tasks/index.html
+5. Add functions in views.py
+6. create urls.py in hello directory
+7. create route for hello
+8. add hello urls into urls.py
+
+## html variable/condition
+---
+1. {{ name }}
+2. {% for task in tasks %} ... {% endfor %}
+3. {% if newyear %} ... {% else %} ... {% endif %}
+4. {% block body %} {% endblock %}
+5. {% url 'tasks:add' %}
+6. {% csfr_token %}
+7. {% empty %}
+
+## html style
+---
+1. {% load static %}
+2. <link rel="stylesheet" href="{% static 'newyear/style.css' %}">
+
+## migrate
+---
+1. python manager.py makemigrations: create migrations based on models
+2. python manager.py migrate: apply changes to django database
+
+## shell
+---
+1. python manager.py shell
+2. Flights.objects.all()
+3. flights.first()
+4. Airport.objects.filter(city="New York")
+5. Airport.objects.filter(city="New York").first()
+6. Airport.objects.get(city="New York")
+7. jfk = Airport(city="New York", code="JFK")
+8. jfk.save()
+
+## Django admin
+---
+```sh
+python manager.py createsuperuser
+```
+
+## glossary
+---
 1. serializer(django rest framework module)
 
 Transfer database complex data into python json type data.
@@ -50,7 +99,7 @@ class FooViewset(viewsets.ModelViewSet):
    `id will be auto-generated`
 
 
-## Commands
+## commands
 1. python shell
 ```sh
 python manage.py shell
