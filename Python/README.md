@@ -53,13 +53,11 @@
 [complexity](https://iq.opengenus.org/why-o1-time-does-not-exist/)
 
 ## compiled vs interpreted
----
 > Compiled programming languages are more performant but are harder to port to different CPU architectures and operating systems. Interpreted programming languages are more portable, but their performance is much worse than that of compiled languages. These are the two extremes of the spectrum.
 
 > Then there are programming languages such as Python that do **a mix of both compilation and interpretation**. *Specifically, Python is first compiled into an intermediate bytecode, which is then interpreted by CPython. This makes the code perform better than code written in a purely interpreted programming language, and it maintains the portability advantage.*
 
 ## argparse
----
 ```python
 import argparse
 parser = argparse.ArgumentParser()
@@ -91,7 +89,6 @@ else:
 ```
 
 ## array vs list
----
 `Arrays` are great for **numerical operations**
 
 `lists` cannot directly handle math operations. For example, you can divide each element of an array by the same number with just one line of code. If you try the same with a list, you'll get an error.
@@ -131,7 +128,6 @@ if not condition:
 ```
 
 ## asyncrounous
----
 ```python
 import asyncio
 from time import sleep
@@ -166,7 +162,6 @@ async def main():
 ```
 
 ## call
----
 ```python
 class Product:
     def __init__(self):
@@ -194,7 +189,6 @@ a()
 ```
 
 ## cli
----
 ```sh
 python.exe -c "from <pythonscript> import <function>; function()"
 
@@ -203,7 +197,6 @@ py -3.7
 ```
 
 ## compile pyd
----
 ```python
 # Method 1:
 #!/usr/bin/env pythonfromsetuptools importsetup,Extension
@@ -232,11 +225,9 @@ Combatlink.bat logger
 ```
 
 ## complexity
----
 [complexity](#reference)
 
 ## cython
----
 > The Python language specification is used in a number of implementations such as CPython (written in C), Jython (written in Java), IronPython (written for .NET), and PyPy (written in Python).
 
 > CPython is the original implementation of Python and is by far the most popular and most maintained. When people refer to Python, they more often than not mean CPython. You’re probably using CPython right now!
@@ -244,7 +235,6 @@ Combatlink.bat logger
 > `The python.exe binary is the compilation binary of Cpython.`
 
 ## deque
----
 > Deque (Doubly Ended Queue) in Python is implemented using the module “collections“. Deque is preferred over a list in the cases where we need quicker append and pop operations from both the ends of the container, as deque provides an O(1) time complexity for append and pop operations as compared to list which provides O(n) time complexity.
 ```python
 # Python code to demonstrate working of 
@@ -290,7 +280,6 @@ print (de)
 ```
 
 ## decorator
----
 ```python
 def announce(f):
 	def wrapper():
@@ -317,19 +306,16 @@ def name():
 ```
 
 ## dlls
----
 ```sh
 # commands to check dependent dlls
 dumpbin /dependents MyLibrary.cp37-win_amd64.pyd
 ```
 
 ## exceptions
----
 ![exception1](assets/exception1.png)
 ![exception2](assets/exception2.png)
 
 ## function parameter
----
 ```python
 # 1.positional argument
 def vehicle(name, model):
@@ -391,13 +377,11 @@ print(profile)
 ```
 
 ## for loop in square brackets
----
 ```python
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```
 
 ## inserted function
----
 ```python
 # 1. dir()
 # returns all properties and methods of the specified object, without the values
@@ -415,17 +399,14 @@ Print(Name.title())
 ```
 
 ## logging
----
 ```python
 logging.basicConfig(level=logging.DEBUG, filename=os.path.join(self.dstfolder, 'multithread_dl_2.log'), format='%(asctime)s - %(message)s',datefmt='%d-%b-%y %H:%M:%S', filemode='a')
 ```
 
 ## I/O
----
 ![I/O](assets/I_O.png)
 
 ## inheritance
----
 ```python
 # Python code to demonstrate how parent constructors
 # are called.
@@ -456,7 +437,6 @@ class Employee( Person ):
 `The super().fullname() can be called as super(student, self).fullname()`
 
 ## lambda function
----
 `multiple inputs, single output`
 ```python
 # Simple function can be explained in one line, multiples input only one output
@@ -470,7 +450,6 @@ def f(a, b):
 ```
 
 ## map
----
 ```python
 def square(number):
     return number ** 2
@@ -487,7 +466,6 @@ print(square_numbers)
 ```
 
 ## module info
----
 ```python
 import pandas as pd
 
@@ -498,7 +476,6 @@ pd.__doc__
 ```
 
 ## news vs init
----
 `New actually creates something (an object), while init just initialize.
 Because new returns an object while init does not return anything.`
 
@@ -506,14 +483,12 @@ Because new returns an object while init does not return anything.`
 ![news vs list2](assets/news_init_2.png)
 
 ## python location
----
 ```sh
 where python
 where pip
 ```
 
 ## property vs instance method
----
 ```python
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -532,7 +507,6 @@ class Product(models.Model):
 ```
 
 ## version check
----
 ```sh
 python --version
 ```
@@ -542,7 +516,6 @@ sys.version
 ```
 
 ## pip
----
 ```sh
 pip list (--version)
 pip freeze > requirement.txt
@@ -551,7 +524,6 @@ pip show pandas
 ```
 
 ## path
----
 ```python
 # use pathlib or os.path to specify the file relative to the location of __file__
 import pathlib
@@ -567,11 +539,9 @@ filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test.txt')
 ```
 
 ## python flag -m
----
 > The m flag is, at its simplest, a means to execute python scripts from the command line by using modulenames rather than filenames
 
 ## process
----
 ```python
 # Shutdown the current process and its children process
 def kill(proc_pid):
@@ -587,7 +557,6 @@ except subprocess.TimeoutExpired:
 ```
 
 ## pyinstaller
----
 ```sh
 # convert python script to executable file
 pyinstaller --onefile -w 'filename.py'
@@ -597,7 +566,6 @@ python get-pip.py
 ```
 
 ## py2exe
----
 ```sh
 python setup.py py2exe
 ```
@@ -632,7 +600,6 @@ setup(
 ```
 
 ## queue
----
 > Like stack, queue is a linear data structure that stores items in First In First Out (FIFO) manner. With a queue the least recently added item is removed first. A good example of queue is any queue of consumers for a resource where the consumer that came first is served first.
 
 ![queue](assets/queue.png)
@@ -643,7 +610,6 @@ Queue in Python can be implemented by the following ways:
 - queue.Queue
 
 ## regrex
----
 ```sh
 # Pattern	Description
 ^	    Begin at the start of the line.
@@ -658,7 +624,6 @@ pattern = '(\d+) Size.*_a'
 ```
 
 ## relative import 
----
 ```python
 from pathlib import Path
 FILE=Path(__file__).resolve()
@@ -669,7 +634,6 @@ ROOT=Path(os.path.relpath(ROOT, Path.cwd()))
 ```
 
 ## serial
----
 ```sh
 python -m serial.tools.list_ports
 ```
@@ -680,7 +644,6 @@ list_ports.comports()
 ```
 
 ## singleton class
----
 > In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
 
 > The primary purpose of a Singleton class is to restrict the limit of the number of object creation to only one. 
@@ -688,7 +651,6 @@ list_ports.comports()
 > This often ensures that there is access control to resources, for example, socket or database connection.
 
 ## socket
----
 ```python
 # aim: communicate between applications/machines, not for IPC
 import socket
@@ -703,7 +665,6 @@ print(c.recv(1024).decode())
 ```
 
 ## thread
----
 ```python
 import threading 
 
@@ -753,7 +714,6 @@ If, for example, you want to concurrently download a bunch of pages to concatena
 ```
 
 ## tkinter
----
 ```python
 # Object-oriented frames:
 import tkinter as tk
@@ -819,20 +779,17 @@ if __name__ == '__main__':
 ```
 
 ## type hint
----
 ```python
 def first(l: Sequence[T]) -> T:   # Generic function
     return l[0]
 ```
 
 ## tuple vs list
----
 > A list has a variable size while a tuple has a fixed size. 
 
 > So, we use a list when we want to contain similar items, but use a tuple when we know what information goes into it.
 
 ## underscore
----
 ```python
 # 1.use in interpreter
 # Store the results of above expression
@@ -884,7 +841,6 @@ print(obj2._SecondClass__c)
 ```
 
 ## virtual environment
----
 ```sh
 python -m venv tutorial-env
 Bash:Tutorial-env/scripts/activate
@@ -895,7 +851,6 @@ Cmd:Tutorial-env/scripts/activate.bat
 ```
 
 ## yield
----
 [what does the yield keyword do?](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python?rq=1)
 > Why Use Generators?
 Usually, you can write code that doesn't use generators but implements the same logic. One option is to use the temporary list 'trick' I mentioned before. That will not work in all cases, for e.g. if you have infinite loops, or it may make inefficient use of memory when you have a really long list. The other approach is to implement a new iterable class SomethingIter that keeps the state in instance members and performs the next logical step in it's next() (or __next__() in Python 3) method. Depending on the logic, the code inside the next() method may end up looking very complex and be prone to bugs. Here generators provide a clean and easy solution.

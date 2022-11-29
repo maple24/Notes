@@ -54,11 +54,9 @@
   
 
 ## Reference
----
 [javascript](https://wesbos.com/javascript/01-the-basics/variables-and-statements/#statements-and-semi-colons-in-javascript)
 
 ## alias&proxy
----
 ```javascript
 // in vite.config.js file
 export default defineConfig({
@@ -81,7 +79,6 @@ export default defineConfig({
 ```
 
 ## computed vs methods
----
 > A cool thing of the computed properties is that they are cached, that’s mean that the function will run only once until the values don’t change again also if it’s called many times in the same template.
 
 `Methods`:
@@ -93,13 +90,11 @@ They **don’t accept arguments** and they are very handy for composing new data
 
 
 ## computed vs watcher
----
 `watcher` is usually used for **more complex logics**, **asyncronous reqeusts**.
 
 `computed properties` are **more appropriate in most cases**, there are times when a custom watcher is necessary. That’s why Vue provides a more generic way to react to data changes through the watch option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
 
 ## emit
----
 understanding: transfer functions to upper level components
 ```javascript
 // on subcomponent:
@@ -114,12 +109,10 @@ eventname:(value){
 ```
 
 ## environment variables
----
 ![env1](assets/env1.png)
 ![env2](assets/env2.png)
 
 ## errors
----
 ### Failed to mount component: template or render function not defined
 ```javascript
 {
@@ -146,27 +139,23 @@ eventname:(value){
 ### Unexpected mutation of prop vue/no-mutating-props
 `props can not be changed directly`
 ![error1](assets/error1.png)
+
 ## high order array functions
----
 - definition: functions take another function as parameter
 - example: for each
 
 ## icons
----
 [heroicons](https://heroicons.com/)
 
 
 ## object vs function
----
 ![data must be a function](assets/object.png)
 The reason for this is to ensure that for each individual instance of the reusable child component, there is a unique object containing all of the data being operated on. If, in a child component, you instead use data: { ... }, that same data object will be shared between the child components which can cause some nasty bugs.
 
 ## props
----
 understanding: if props is an object or array, data binding is required; if props is a string or number, no data binding needed.
 
 ## prevent
----
 ```javascript
 // prevent default event of click 
 @click.prevent="submit"
@@ -177,11 +166,9 @@ submit(e) {
 ```
 
 ## query
----
 ![query](assets/query.png)
 
 ## $ref(vue2)
----
 '$ref' can access value in html.
 
 > The only time I've ever used ref is when integrating with a third party component. You should never use it to get the value and should always use v-model.
@@ -198,18 +185,15 @@ submit(e) {
 ```
 
 ## ref vs reactivity(vue3 composition api)
----
 definition: both used to create reactive properties
 
 `ref()`: Takes an inner value and returns a **reactive value**, which has a single property. value that points to the inner value.
 `reactivity()`: create a **reactive object**.
 
 ## slots
----
 > Oftentimes you will need to allow your parent Vue components to **embed arbitrary content inside of child components**. Vue provides a way to accomplish this with slots.
 
 ## Store(Vuex&Pinia)
----
 ### intro
 ![store1](assets/store1.png)
 ![store2](assets/store2.png)
@@ -243,7 +227,6 @@ understanding: mutation可以直接commit触发，但是只能是同步的，通
 You never commit from any of your components / routes. It is done only from within an action, and only when you have some data to commit. Reason: commit is synchronous and may freeze your frontend till it is done.`
 
 ## unshift push pop shift
----
 The unshift() method *adds* new elements to the **beginning of an array**.
 
 The push() method *adds* new items to the **end of an array**.
@@ -253,7 +236,6 @@ The shift() method *removes* the **first item of an array**.
 The pop() method *removes* (pops) the **last element of an array**.
 
 ## Vue router
----
 ### route and router  
 ![route and router](assets/routeandrouter.png)
 ### dynamic routing with params
@@ -296,16 +278,13 @@ So, if we had <router-link to="/foo"> and <router-link to="/foo/bar">, both comp
 Using the same example, if we had <router-link to="/foo"> and <router-link to="/foo/bar">, the router-link-exact-activeclass would only be applied to <router-link to="/foo/bar"> when the path is /foo/bar.`
 
 ## vue2 vs vue3
----
 ![vue2&3_1](assets/vue2%263_1.png)
 ![vue2&3_2](assets/vue2%263_2.png)
 
 ## vuetify
----
 vue add vuetify, this is a plugin
 
 ## vue.config.js
----
 ![vueconfig](assets/vueconfig.png)
 
 ## application components

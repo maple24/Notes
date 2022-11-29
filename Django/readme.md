@@ -13,7 +13,6 @@
   - [FQA](#fqa)
 
 ## Django vs Django RestFramework
----
 > You can use Django only to build a fully functional web app without using any frontend frameworks, such as React, Angular, etc. Doing so, you have used Django for both backend and frontend. Actually, doing like this, you do not have the concept of backend and frontend. Your web app is just your web app, and that is it.
 
 > However, if you want your frontend to look fancy with complex CSS decoration, you may want to consider using frontend frameworks (React, Angular). Of course, you can use Django alone to make your frontend looks fancy too, but you have to write a lot of code to do so, and Django template is not popularly used comparing to frontend frameworks.
@@ -26,7 +25,6 @@
 
 
 ## general steps
----
 1. django-admin startproject lecture3
 2. python manage.py startapp hello
 3. add hello into settings/INSTALLED_APPS
@@ -37,7 +35,6 @@
 8. add hello urls into urls.py
 
 ## html variable/condition
----
 1. {{ name }}
 2. {% for task in tasks %} ... {% endfor %}
 3. {% if newyear %} ... {% else %} ... {% endif %}
@@ -47,17 +44,14 @@
 7. {% empty %}
 
 ## html style
----
 1. {% load static %}
 2. <link rel="stylesheet" href="{% static 'newyear/style.css' %}">
 
 ## migrate
----
 1. python manager.py makemigrations: create migrations based on models
 2. python manager.py migrate: apply changes to django database
 
 ## shell
----
 1. python manager.py shell
 2. Flights.objects.all()
 3. flights.first()
@@ -68,13 +62,11 @@
 8. jfk.save()
 
 ## Django admin
----
 ```sh
 python manager.py createsuperuser
 ```
 
 ## glossary
----
 1. serializer(django rest framework module)
 
 Transfer database complex data into python json type data.
@@ -128,7 +120,6 @@ python manage.py dbshell
 ```
 
 ## examples
----
 ```python
 from django.db import models
 # Create your models here.
@@ -164,5 +155,4 @@ class ProductSerializer(serializers.ModelSerializer):
 ```
 
 ## FQA
----
 1. [HTTP GET with request body](https://stackoverflow.com/questions/978061/http-get-with-request-body)
