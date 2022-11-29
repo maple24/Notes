@@ -1,3 +1,17 @@
+# Table of contents
+- [Table of contents](#table-of-contents)
+  - [Django vs Django RestFramework](#django-vs-django-restframework)
+  - [general steps](#general-steps)
+  - [html variable/condition](#html-variablecondition)
+  - [html style](#html-style)
+  - [migrate](#migrate)
+  - [shell](#shell)
+  - [Django admin](#django-admin)
+  - [glossary](#glossary)
+  - [commands](#commands)
+  - [examples](#examples)
+  - [FQA](#fqa)
+
 ## Django vs Django RestFramework
 ---
 > You can use Django only to build a fully functional web app without using any frontend frameworks, such as React, Angular, etc. Doing so, you have used Django for both backend and frontend. Actually, doing like this, you do not have the concept of backend and frontend. Your web app is just your web app, and that is it.
@@ -112,3 +126,43 @@ python manage.py dbshell
 # quit
 .quit
 ```
+
+## examples
+---
+```python
+from django.db import models
+# Create your models here.
+class Product(models.Model):
+    title = models.CharField(max_length=120)
+    content = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=15, decimal_places=2, default=99.99)
+    
+    @property
+    def sale_price(self):
+        return "%.2f" %(float(self.price)*0.8)
+    
+    def get_discount(self):
+        return "122"
+# ============================================
+from rest_framework import serializers
+from .models import Product
+class ProductSerializer(serializers.ModelSerializer):
+    my_discount = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Product
+        fields = [
+            "title",
+            "content",
+            "price",
+            "sale_price",
+            "get_discount",
+            "my_discount"
+        ]
+    
+    def get_my_discount(self, obj):
+        return obj.get_discount()
+```
+
+## FQA
+---
+1. [HTTP GET with request body](https://stackoverflow.com/questions/978061/http-get-with-request-body)
