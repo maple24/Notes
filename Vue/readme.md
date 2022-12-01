@@ -12,6 +12,7 @@
     - [Uncaught TypeError: route.children.forEach is not a function](#uncaught-typeerror-routechildrenforeach-is-not-a-function)
     - [Browser clients must use the native WebSocket object](#browser-clients-must-use-the-native-websocket-object)
     - [Unexpected mutation of prop vue/no-mutating-props](#unexpected-mutation-of-prop-vueno-mutating-props)
+  - [filter vs method](#filter-vs-method)
   - [high order array functions](#high-order-array-functions)
   - [icons](#icons)
   - [object vs function](#object-vs-function)
@@ -139,6 +140,21 @@ eventname:(value){
 ### Unexpected mutation of prop vue/no-mutating-props
 `props can not be changed directly`
 ![error1](assets/error1.png)
+
+## filter vs method
+```javascript
+{{ myVal | myFilter }}
+{{ myMethod(myVal) }}
+<tag  :attr="myMethod(myVal)"></tag>
+---
+filters:{
+   myFilter(val, ....){ }
+},
+methods:{
+   myMethod(val, ....){ }
+}
+```
+> Usually filters are registered globally and used for formatting template content like text, numbers, dates, etc. By using filters you can easily reuse some logic across an entire application. Methods are for local component use only.
 
 ## high order array functions
 - definition: functions take another function as parameter
