@@ -1,6 +1,7 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
+  - [filter](#filter)
   - [general steps](#general-steps)
   - [html variable/condition](#html-variablecondition)
   - [html style](#html-style)
@@ -23,7 +24,17 @@
 
 > Also, I think you may want to look into the difference between API vs REST API. They are using interchangeably, but they are not the same. For example, when you are using Django, you are using the Django APIs. REST(ful) API which is just one type of API is used for client-server web developments.
 
-
+## filter
+```python
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'in_stock']
+```
+```sh
+http://example.com/api/products?category=clothing&in_stock=True
+```
 ## general steps
 1. django-admin startproject lecture3
 2. python manage.py startapp hello
