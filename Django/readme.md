@@ -35,6 +35,7 @@ class ProductList(generics.ListAPIView):
 ```sh
 http://example.com/api/products?category=clothing&in_stock=True
 ```
+
 ## general steps
 1. django-admin startproject lecture3
 2. python manage.py startapp hello
