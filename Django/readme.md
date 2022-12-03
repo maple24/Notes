@@ -35,6 +35,29 @@ class ProductList(generics.ListAPIView):
 ```sh
 http://example.com/api/products?category=clothing&in_stock=True
 ```
+- filter fields
+```python
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('category', 'in_stock')
+```
+- filter class
+```python
+class ProductFilter(filters.FilterSet):
+    min_price = filters.NumberFilter(field_name="price", lookup_expr='gte')
+    max_price = filters.NumberFilter(field_name="price", lookup_expr='lte')
+    class Meta:
+        model = Product
+        fields = ['category', 'in_stock']
+
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = ProductFilter
+```
+
 
 ## general steps
 1. django-admin startproject lecture3
