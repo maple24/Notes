@@ -57,6 +57,21 @@ class ProductList(generics.ListAPIView):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = ProductFilter
 ```
+- customized filter
+```python
+class TaskFilter(django_filters.rest_framework.FilterSet):
+    branch = django_filters.CharFilter(field_name='branch', method='branch_filter')
+    
+    class Meta:
+        model = models.Task
+        fields = '__all__'
+    
+    def branch_filter(self, queryset, name, value):
+        query = Q()
+        for branch in value.split(","):
+            query |= Q(branch=branch)
+        return queryset.filter(query)
+```
 
 
 ## general steps
