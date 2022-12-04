@@ -21,6 +21,7 @@
   - [query](#query)
   - [$ref(vue2)](#refvue2)
   - [ref vs reactivity(vue3 composition api)](#ref-vs-reactivityvue3-composition-api)
+  - [reload after a event](#reload-after-a-event)
   - [slots](#slots)
   - [Store(Vuex\&Pinia)](#storevuexpinia)
     - [intro](#intro)
@@ -205,6 +206,11 @@ definition: both used to create reactive properties
 
 `ref()`: Takes an inner value and returns a **reactive value**, which has a single property. value that points to the inner value.
 `reactivity()`: create a **reactive object**.
+
+## reload after a event
+```javascript
+window.location.reload()
+```
 
 ## slots
 > Oftentimes you will need to allow your parent Vue components to **embed arbitrary content inside of child components**. Vue provides a way to accomplish this with slots.
