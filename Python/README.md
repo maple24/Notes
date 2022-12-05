@@ -8,6 +8,7 @@
   - [assert](#assert)
   - [asyncrounous](#asyncrounous)
   - [call](#call)
+  - [call method by name](#call-method-by-name)
   - [cli](#cli)
   - [compile pyd](#compile-pyd)
   - [complexity](#complexity)
@@ -186,6 +187,26 @@ class Test:
         
 a = Test()
 a()
+```
+
+## call method by name
+```python
+class Foo:
+    name = 'maple'
+    def bar1(self):
+        print(1)
+    def bar2(self):
+        print(2)
+
+def call_method(o, name):
+    return getattr(o, name)()
+
+def call_property(o, name):
+    return getattr(o, name)
+
+f = Foo()
+call_method(f, "bar1")  # prints 1
+print(call_property(f, 'name')) # prints maple
 ```
 
 ## cli
