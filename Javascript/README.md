@@ -1,10 +1,27 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
+  - [async and await](#async-and-await)
+  - [class](#class)
   - [colon vs equal](#colon-vs-equal)
+  - [create element](#create-element)
+  - [constructor function](#constructor-function)
+  - [filter](#filter)
+  - [for loop](#for-loop)
   - [functions vs methods](#functions-vs-methods)
+  - [high order functions](#high-order-functions)
   - [import](#import)
+  - [imutable](#imutable)
+  - [if statement in oneline](#if-statement-in-oneline)
+  - [let vs var vs const](#let-vs-var-vs-const)
+  - [map vs filter vs reduce](#map-vs-filter-vs-reduce)
+  - [map vs foreach](#map-vs-foreach)
+  - [propagation](#propagation)
+  - [promise](#promise)
+  - [setTimeout](#settimeout)
   - [spread operator](#spread-operator)
+  - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
   - [this](#this)
+  - [typeof](#typeof)
 
 
 ## async and await
@@ -99,6 +116,11 @@ import B from …
 A good way to deal with this problem is called **persistent data structure, which takes an array as a hash tree and only changes nodes on this tree**.
 JS library like *mori and immuable js* can be used to achieve this.
 
+## if statement in oneline
+```javascript
+if (error) console.log(error)
+```
+
 ## let vs var vs const
 `Var`
 ```javascript
@@ -148,6 +170,20 @@ function myFunc(total, num) {
 ![promise1](assets/promise1.png)
 ![promise2](assets/promise2.png)
 ![promise3](assets/promise3.png)
+```javascript
+let myPromise = new Promise(function(myResolve, myReject) {
+// "Producing Code" (May take some time)
+
+  myResolve(); // when successful
+  myReject();  // when error
+});
+
+// "Consuming Code" (Must wait for a fulfilled Promise)
+myPromise.then(
+  function(value) { /* code if successful */ },
+  function(error) { /* code if some error */ }
+);
+```
 
 ## setTimeout
 ```javascript
