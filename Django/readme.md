@@ -1,6 +1,11 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
+  - [websocket channel](#websocket-channel)
+    - [routing](#routing)
+    - [daphne](#daphne)
+    - [client](#client)
+    - [django consumer](#django-consumer)
   - [filter](#filter)
   - [general steps](#general-steps)
   - [html variable/condition](#html-variablecondition)
@@ -23,6 +28,101 @@
 > You can use Django alone to make REST APIs, but you have to write more code and do more design like one of the comment above showing in the example. By using Django Rest Framework, you can write less code and reuse your code better.
 
 > Also, I think you may want to look into the difference between API vs REST API. They are using interchangeably, but they are not the same. For example, when you are using Django, you are using the Django APIs. REST(ful) API which is just one type of API is used for client-server web developments.
+
+## websocket channel
+> A channel layer is a kind of communication system. It allows multiple consumer instances to talk with each other, and with other parts of Django.
+### routing 
+> A Channels routing configuration is an ASGI application that is similar to a Django URLconf, in that it tells Channels what code to run when an HTTP request is received by the Channels server.
+```python
+# mysite/asgi.py
+import os
+from channels.routing import ProtocolTypeRouter
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),
+        # Just HTTP for now. (We can add other protocols later.)
+    }
+)
+```
+### daphne
+> add the Daphne library to the list of installed apps, in order to enable an **ASGI versions of the runserver command**.
+```python
+# mysite/settings.py
+INSTALLED_APPS = [
+    'daphne',
+    'chat',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+# mysite/settings.py
+# Daphne
+ASGI_APPLICATION = "mysite.asgi.application"
+```
+### client
+```javascript
+const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/chat/'
+    + roomName
+    + '/'
+);
+
+chatSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    document.querySelector('#chat-log').value += (data.message + '\n');
+};
+
+chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+};
+
+document.querySelector('#chat-message-input').focus();
+document.querySelector('#chat-message-input').onkeyup = function(e) {
+    if (e.keyCode === 13) {  // enter, return
+        document.querySelector('#chat-message-submit').click();
+    }
+};
+
+document.querySelector('#chat-message-submit').onclick = function(e) {
+    const messageInputDom = document.querySelector('#chat-message-input');
+    const message = messageInputDom.value;
+    chatSocket.send(JSON.stringify({
+        'message': message
+    }));
+    messageInputDom.value = '';
+};
+```
+### django consumer
+```python
+# chat/consumers.py
+import json
+from channels.generic.websocket import WebsocketConsumer
+
+
+class ChatConsumer(WebsocketConsumer):
+    def connect(self):
+        self.accept()
+
+    def disconnect(self, close_code):
+        pass
+
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json["message"]
+
+        self.send(text_data=json.dumps({"message": message}))
+```
 
 ## filter
 ```python

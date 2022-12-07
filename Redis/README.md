@@ -2,6 +2,7 @@
 - [Table of contents](#table-of-contents)
   - [what is redis](#what-is-redis)
   - [redis on windows](#redis-on-windows)
+  - [redis on docker](#redis-on-docker)
   - [workflow](#workflow)
   - [commands](#commands)
   - [example](#example)
@@ -21,6 +22,12 @@ Runs in RAM, super quick, but if your system crashes, data are gone. So it is mo
 ## redis on windows
 `memurai`: Redis™* for Windows alternative, In-Memory Datastore
 ![memurai](assets/memurai.png)
+
+## redis on docker
+```sh
+docker run -d redis
+docker exec it <redis container name> redis-cli
+```
 
 ## workflow
 ![redis](assets/redis.png)
