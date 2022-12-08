@@ -39,6 +39,7 @@
   - [queue](#queue)
   - [regrex](#regrex)
   - [relative import](#relative-import)
+  - [requests](#requests)
   - [serial](#serial)
   - [singleton class](#singleton-class)
   - [socket](#socket)
@@ -653,6 +654,9 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT=Path(os.path.relpath(ROOT, Path.cwd()))  
 ```
+
+## requests
+> 阻塞：程序会等待一个结果出现（不出现就一直等待）然后才执行其他的代码, requests模块是阻塞的
 
 ## serial
 ```sh

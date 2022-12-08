@@ -12,6 +12,8 @@ It is gonna be a bit messy here.
 - [Nginx](Nginx)
 - [Nodejs](Nodejs)
 - [Python](Python)
+- [Redis](Redis)
+- [Robotframework](Robotframework)
 - [Typescript](Typescript)
 - [VScode](VScode)
 - [Vue](Vue)
