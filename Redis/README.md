@@ -85,6 +85,16 @@ HSET person name kyle
 HGET person name
 HGETALL person # get all keys and values in person
 HEXIST person name
+
+# get type of key
+TYPE <key>
+
+# if value is of type string -> GET <key>
+# if value is of type hash -> HGET or HMGET or HGETALL <key>
+# if value is of type lists -> lrange <key> <start> <end>
+# if value is of type sets -> smembers <key>
+# if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
+# if value is of type stream -> xread count <count> streams <key> <ID>.
 ```
 
 ## example
