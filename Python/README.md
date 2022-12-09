@@ -12,15 +12,19 @@
   - [cli](#cli)
   - [compile pyd](#compile-pyd)
   - [complexity](#complexity)
+  - [copy](#copy)
   - [cython](#cython)
   - [deque](#deque)
   - [decorator](#decorator)
+  - [dictionary](#dictionary)
   - [dlls](#dlls)
   - [exceptions](#exceptions)
   - [function parameter](#function-parameter)
+  - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
   - [inserted function](#inserted-function)
   - [logging](#logging)
+  - [loguru](#loguru)
   - [I/O](#io)
   - [inheritance](#inheritance)
   - [lambda function](#lambda-function)
@@ -43,6 +47,7 @@
   - [serial](#serial)
   - [singleton class](#singleton-class)
   - [socket](#socket)
+  - [subprocess](#subprocess)
   - [thread](#thread)
   - [tkinter](#tkinter)
   - [type hint](#type-hint)
@@ -249,6 +254,24 @@ Combatlink.bat logger
 ## complexity
 [complexity](#reference)
 
+## copy
+```python
+class p:
+    name = None
+
+class q:
+    name = None
+
+a = []
+p.name = a
+p.name.append("maple")
+q.name = a
+print(q.name)
+# output
+# >> ['maple']
+# in this senario, copy module is needed
+```
+
 ## cython
 > The Python language specification is used in a number of implementations such as CPython (written in C), Jython (written in Java), IronPython (written for .NET), and PyPy (written in Python).
 
@@ -327,6 +350,11 @@ def name():
     print("Alice") 
 ```
 
+## dictionary
+`setdefault()`:returns the value of a key (if the key is in dictionary). Else, it inserts a key with the default value to the dictionary.
+
+`get()`:returns the value of a key (if the key and value exist)> Else, it gets a default value. 
+
 ## dlls
 ```sh
 # commands to check dependent dlls
@@ -398,6 +426,41 @@ print(profile)
 # Output: {'Role': 'DevOps Lead', 'CTC': 'Confidential', 'name': 'Adam', 'id': '1652'} 
 ```
 
+## file locking
+> File locking is a mechanism that restricts access to a computer file, or to a region of a file, by allowing only one user or process to modify or delete it at a specific time and to prevent reading of the file while it's being modified or deleted.
+
+> Systems implement locking to prevent the classic interceding update scenario, which is a typical example of a race condition, by enforcing the serialization of update processes to any given file. The following example illustrates the interceding update problem:
+
+- Process A reads a customer record from a file containing account information, including the customer's account balance and phone number.
+- Process B now reads the same record from the same file, so it has its own copy.
+- Process A changes the account balance in its copy of the customer record and writes the record back to the file.
+- Process B, which still has the original stale value for the account balance in its copy of the customer record, updates the account balance and writes the customer record back to the file.
+- Process B has now written its stale account-balance value to the file, causing the changes made by process A to be lost.
+```python
+class Starter:
+    def __init__(self):
+        self._get_lock()
+
+    def _get_lock(self):
+        file_name = os.path.basename(__file__).split('.')[0]
+        if os.name == "posix":
+            lock_file_name = f"/var/run/{file_name}.pid"
+        else:
+            lock_file_name = f"{os.path.expanduser('~')}\\{file_name}.pid"
+        self.fd = open(lock_file_name, "w")
+        try:
+            portalocker.lock(self.fd, portalocker.LOCK_EX | portalocker.LOCK_NB)
+            self.fd.writelines(str(os.getpid()))
+            self.fd.flush()
+            logger.info(f"Single instance. lockfile: {lock_file_name}.")
+        except:
+            logger.error(f"{lock_file_name} have another instance running.")
+            exit(1)
+
+    def __del__(self):
+        portalocker.unlock(self.fd)
+```
+
 ## for loop in square brackets
 ```python
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
@@ -423,6 +486,29 @@ Print(Name.title())
 ## logging
 ```python
 logging.basicConfig(level=logging.DEBUG, filename=os.path.join(self.dstfolder, 'multithread_dl_2.log'), format='%(asctime)s - %(message)s',datefmt='%d-%b-%y %H:%M:%S', filemode='a')
+```
+
+## loguru
+```python
+from loguru import logger
+
+container = []
+def func(msg):
+    container.append(msg)
+
+
+logger.info("start test2")
+# add log message into a file
+logger.add('log.log')
+# add log message into a function
+logger.add(func)
+logger.debug("hello")
+
+print(container)
+# output
+# >> 2022-12-09 14:40:35.972 | INFO     | __main__:<module>:9 - start test2
+# >> 2022-12-09 14:40:35.976 | DEBUG    | __main__:<module>:14 - hello
+# >> ['2022-12-09 14:40:35.976 | DEBUG    | __main__:<module>:14 - hello\n']
 ```
 
 ## I/O
@@ -654,6 +740,8 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT=Path(os.path.relpath(ROOT, Path.cwd()))  
 ```
+**把main函数放在根目录，内部的函数relative import是支持的。**
+![relative import](assets/relativeimport.png)
 
 ## requests
 > 阻塞：程序会等待一个结果出现（不出现就一直等待）然后才执行其他的代码, requests模块是阻塞的
@@ -687,6 +775,22 @@ s.send(byte("hello world", "utf-8"))
 # message should be bytes
 print(c.recv(1024).decode())
 # the received message should have length limit and decode into string
+```
+
+## subprocess
+```python
+# To run a process and read all of its output, set the stdout value to PIPE and call communicate().
+import subprocess
+process = subprocess.Popen(['echo', '"Hello stdout"'], stdout=subprocess.PIPE)
+
+# wait for the process to complete and then it will display the output
+stdout = process.communicate()[0]
+
+# This will read a line from the stdout.
+output = process.stdout.readline()
+
+# The poll() method will return exit code if completed, or None if the process is still running
+process.poll()
 ```
 
 ## thread

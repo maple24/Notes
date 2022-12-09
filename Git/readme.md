@@ -34,7 +34,17 @@ git push -u origin branch
 
 ## diff
 ```sh
-git diff ..origin/master
+# lists out the changes between your current working directory and your staging area
+git diff
+
+# check diff between two branches
+git diff master my-branch  # same as 'git diff master..my-branch'
+
+# show difference for a specific file or directory
+git diff file_name
+
+# lists out the changes between the staged area and last commit
+git diff --staged
 ```
 
 ## gitignore

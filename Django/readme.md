@@ -3,8 +3,9 @@
   - [reference](#reference)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
   - [websocket channel](#websocket-channel)
+  - [why channel](#why-channel)
     - [routing](#routing)
-    - [daphne](#daphne)
+    - [ASGI](#asgi)
     - [client](#client)
     - [django consumer](#django-consumer)
   - [filter](#filter)
@@ -20,7 +21,8 @@
   - [FQA](#fqa)
 
 ## reference
-[channels](https://channels.readthedocs.io/en/stable/introduction.html#turtles-all-the-way-down)
+[django-channels-official](https://channels.readthedocs.io/en/stable/introduction.html#turtles-all-the-way-down)
+[django-channels](https://arunrocks.com/understanding-django-channels/)
 
 ## Django vs Django RestFramework
 > You can use Django only to build a fully functional web app without using any frontend frameworks, such as React, Angular, etc. Doing so, you have used Django for both backend and frontend. Actually, doing like this, you do not have the concept of backend and frontend. Your web app is just your web app, and that is it.
@@ -36,6 +38,37 @@
 ## websocket channel
 ![channel](assets/django-channels.png)
 > A channel layer is a kind of communication system. It allows multiple consumer instances to talk with each other, and with other parts of Django.
+```python
+## settings.py
+# enable the channel layer, which allows multiple consumer instances to talk with each other.
+
+# Note that you could the Redis as the backing store. To enable Redis, you could use Method 1 if you want Redis Cloud or Method 2 for local Redis. In this guide, I used Method 3 — In-memory channel layer — which is helpful for testing and for local development purposes.
+CHANNEL_LAYERS = {
+    'default': {
+        ### Method 1: Via redis lab
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [
+        #       'redis://h:<password>;@<redis Endpoint>:<port>' 
+        #     ],
+        # },
+
+        ### Method 2: Via local Redis
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #      "hosts": [('127.0.0.1', 6379)],
+        # },
+
+        ### Method 3: Via In-memory channel layer
+        ## Using this method.
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
+}
+```
+
+## why channel
+> However if you open a second browser tab to the same room page at http://127.0.0.1:8000/chat/lobby/ and type in a message, the message will not appear in the first tab. For that to work, we need to have multiple instances of the same ChatConsumer be able to talk to each other. Channels provides a channel layer abstraction that enables this kind of communication between consumers.
+
 ### routing 
 > A Channels routing configuration is an ASGI application that is similar to a Django URLconf, in that it tells Channels what code to run when an HTTP request is received by the Channels server.
 ```python
@@ -53,12 +86,12 @@ application = ProtocolTypeRouter(
     }
 )
 ```
-### daphne
-> add the Daphne library to the list of installed apps, in order to enable an **ASGI versions of the runserver command**.
+### ASGI
+> add the channels library to the list of installed apps, in order to enable an **ASGI versions of the runserver command**.
 ```python
 # mysite/settings.py
 INSTALLED_APPS = [
-    'daphne',
+    'channels',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,7 +101,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 # mysite/settings.py
-# Daphne
 ASGI_APPLICATION = "mysite.asgi.application"
 ```
 ### client
