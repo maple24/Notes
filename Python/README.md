@@ -763,6 +763,32 @@ list_ports.comports()
 
 > This often ensures that there is access control to resources, for example, socket or database connection.
 
+```python
+def Singleton(cls):
+    _instance = {}
+    def _singleton(*args, **kwagrs):
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwagrs)
+        return _instance[cls]
+    return _singleton
+
+# Classic Singleton creates an instance only if there is no instance created so far; otherwise, it will return the instance that is already created. Let’s take a look at the below code.
+@Singleton
+class person:
+    def __init__(self, name) -> None:
+        self.name = name
+        
+    
+p1 = person('maple')
+p2 = person('john')
+print(p1.name)
+print(p2.name)
+
+# output
+# >> maple
+# >> maple
+```
+
 ## socket
 ```python
 # aim: communicate between applications/machines, not for IPC
