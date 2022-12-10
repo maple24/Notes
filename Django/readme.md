@@ -2,6 +2,8 @@
 - [Table of contents](#table-of-contents)
   - [reference](#reference)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
+  - [detail](#detail)
+  - [download file](#download-file)
   - [websocket channel](#websocket-channel)
   - [why channel](#why-channel)
     - [routing](#routing)
@@ -34,6 +36,41 @@
 > You can use Django alone to make REST APIs, but you have to write more code and do more design like one of the comment above showing in the example. By using Django Rest Framework, you can write less code and reuse your code better.
 
 > Also, I think you may want to look into the difference between API vs REST API. They are using interchangeably, but they are not the same. For example, when you are using Django, you are using the Django APIs. REST(ful) API which is just one type of API is used for client-server web developments.
+
+## detail
+```python
+# if detail is set to be false, url: http://localhost:8000/api/v1/web/task/status
+@action(methods=['GET'], detail=False)
+def status(self, request, *args, **kwargs):
+    pass
+
+# if detail is set to be false, url: http://localhost:8000/api/v1/web/task/1/status
+```
+
+## download file
+> In a regular HTTP response, the **Content-Disposition** response header is a header indicating if the content is expected to be displayed inline in the browser, that is, as a Web page or as part of a Web page, or as an attachment, that is downloaded and saved locally.
+
+> The first parameter in the HTTP context is either inline (default value, indicating it can be displayed inside the Web page, or as the Web page) or attachment (indicating it should be downloaded; most browsers presenting a 'Save as' dialog, prefilled with the value of the filename parameters if present).
+```
+Content-Disposition: inline
+Content-Disposition: attachment
+Content-Disposition: attachment; filename="filename.jpg"
+```
+```python
+# in django views.py
+def func():
+    blob = util_get_task_log_file(id)
+    file = FileResponse(blob)
+    file['Content-Disposition'] = f"attachment; filename={id}.txt"
+    file['content_type'] = 'text/plain'
+    return file
+
+# download zip file to device
+full_zip_in_memory = generate_zip(images_tuple)
+response = HttpResponse(full_zip_in_memory, content_type='application/force-download')
+response['Content-Disposition'] = 'attachment; filename="{}"'.format('images.zip')
+return response
+```
 
 ## websocket channel
 ![channel](assets/django-channels.png)
