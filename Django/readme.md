@@ -382,6 +382,7 @@ class Product(models.Model):
     def sale_price(self):
         return "%.2f" %(float(self.price)*0.8)
     
+    # does not have to start with get
     def get_discount(self):
         return "122"
 # ============================================
@@ -400,6 +401,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "my_discount"
         ]
     
+    # has to start with get
     def get_my_discount(self, obj):
         return obj.get_discount()
 ```
