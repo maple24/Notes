@@ -2,6 +2,10 @@
 Collection of my notes.
 It is gonna be a bit messy here.
 
+# Reference
+[Architectural messaging patterns: an illustrated guide](https://www.redhat.com/architect/architectural-messaging-patterns)
+
+[Kafka vs Redis – What’s the Difference ? ](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
 
 # Table of Contents
 - [Django](Django)

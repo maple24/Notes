@@ -43,5 +43,20 @@ client.onmessage = (event) => {
     console.log('open websocket');
   };
 </script>
+```
 
+```vue
+<!-- deal with messages in websocket channel -->
+websocketOnMessage(e) {
+  const { method, content } = JSON.parse(e.data)
+  if (method === 'log') {
+    const task_id = content.task_id
+    const log = content.content
+    this.logContainer[task_id] = this.logContainer[task_id] == undefined ? '' : this.logContainer[task_id] + '>>' + log + '\r'
+  } else if (method === 'agent_log') {
+    const host = content.host
+    const log = content.content
+    this.agentLogContainer[host] = this.agentLogContainer[host] == undefined ? '' : this.agentLogContainer[host] + '>>' + log + '\r'
+  }
+},
 ```
