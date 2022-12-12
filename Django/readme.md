@@ -415,10 +415,13 @@ class Product(models.Model):
     content = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=15, decimal_places=2, default=99.99)
     
+    # property can be called like, Product.objects.all()[0].sale_price
     @property
     def sale_price(self):
         return "%.2f" %(float(self.price)*0.8)
     
+    # method will be called like, Product.objects.all()[0].get_discount() 
+    # does not have to start with get
     def get_discount(self):
         return "122"
 # ============================================
@@ -437,6 +440,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "my_discount"
         ]
     
+    # has to start with get
     def get_my_discount(self, obj):
         return obj.get_discount()
 ```
