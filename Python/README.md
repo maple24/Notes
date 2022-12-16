@@ -30,6 +30,7 @@
   - [lambda function](#lambda-function)
   - [map](#map)
   - [module info](#module-info)
+  - [multithreading vs multiprocess](#multithreading-vs-multiprocess)
   - [news vs init](#news-vs-init)
   - [python location](#python-location)
   - [property vs instance method](#property-vs-instance-method)
@@ -582,6 +583,11 @@ pd.__file__
 # return module documentation
 pd.__doc__
 ```
+
+## multithreading vs multiprocess
+> Threading allows parallelism of code and Python language has two ways to achieve its 1st is via multiprocessing module and 2nd is via multithreading module. Multithreading is well suited to **speed up I/O bound tasks like making a web request, or database operations, or reading/writing to a file**. 
+
+> In contrast to this **CPU intensive tasks like mathematical computational tasks** are benefited the most using multiprocessing. This happens due to GIL (Global Interpreter Lock).
 
 ## news vs init
 `New actually creates something (an object), while init just initialize.
