@@ -18,7 +18,6 @@ It is gonna be a bit messy here.
 - [MachineLearning](MachineLearning)
   - [DeepLearning](MachineLearning/DeepLearning)
   - [RCNN](MachineLearning/RCNN)
-  - [examples](MachineLearning/examples)
 - [Nginx](Nginx)
 - [Nodejs](Nodejs)
 - [Python](Python)
