@@ -1,6 +1,7 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
   - [add more emails](#add-more-emails)
+  - [multiple ssh keys](#multiple-ssh-keys)
   - [delete file](#delete-file)
   - [diff](#diff)
   - [gitignore](#gitignore)
@@ -18,6 +19,20 @@
 
 ## add more emails
 The only identity to differ from admin or guest is email address. Say you are pushing codes from company and home, your company email is your default commit account, one way to recognize it as yourself is to add emails to git account.
+
+## multiple ssh keys
+```
+Host 10.173.248.175
+HostName 10.173.248.175
+Port 222
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_ed25519_platform
+
+Host bosch.com
+HostName bosch.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_ed25519
+```
 
 ## delete file
 ```sh
