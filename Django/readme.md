@@ -3,6 +3,12 @@
   - [reference](#reference)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
   - [detail](#detail)
+  - [database relationships](#database-relationships)
+    - [one to one relationships](#one-to-one-relationships)
+    - [one to many relationships](#one-to-many-relationships)
+    - [many to many relationships](#many-to-many-relationships)
+    - [self referencing relationships](#self-referencing-relationships)
+  - [difference between ForeignKey and ManyTOManyField](#difference-between-foreignkey-and-manytomanyfield)
   - [download file](#download-file)
   - [websocket channel](#websocket-channel)
   - [why channel](#why-channel)
@@ -46,6 +52,66 @@ def status(self, request, *args, **kwargs):
 
 # if detail is set to be false, url: http://localhost:8000/api/v1/web/task/1/status
 ```
+
+## database relationships
+### one to one relationships
+![one to one 1](assets/onetoone_1.png)
+
+If each address can belong to only one customer, this relationship is "One to One".
+
+Our initial table that included the address along with the customer could have worked fine in most cases.
+
+![one to one 2](assets/onetoone_2.png)
+
+We can visualize the relationship between the customer and address records like this:
+
+![one to one 3](assets/onetoone_3.png)
+
+### one to many relationships
+This is the most commonly used type of relationship. Consider an e-commerce website, with the following:
+- Customers can make many orders.
+- Orders can contain many items.
+- Items can have descriptions in many languages.
+
+![one to many 1](assets/onetomany_1.png)
+
+![one to many 2](assets/onetomany_2.png)
+
+![one to many 3](assets/onetomany_3.png)
+
+### many to many relationships
+In some cases, you may need multiple instances on both sides of the relationship. For example, each order can contain multiple items. And each item can also be in multiple orders.
+
+![many to many 1](assets/manytomany_1.png)
+
+![many to many 2](assets/manytomany_2.png)
+
+### self referencing relationships
+This is used when a table needs to have a relationship with itself. For example, let's say you have a referral program. Customers can refer other customers to your shopping website. The table may look like this:
+
+![self referencing 1](assets/selfreferencing_1.png)
+
+This actually can also be similar to "one to many" relationship since one customer can refer multiple customers. Also it can be visualized like a tree structure.
+
+![self referencing 2](assets/selfreferencing_2.png)
+
+## difference between ForeignKey and ManyTOManyField
+```python
+class Author(models.Model):
+    name = models.CharField(...)
+
+class Paper(models.Model):
+    title = models.CharField(...)
+
+# a) Add an authors field in Paper and add authors to a Paper instance:
+    authors = models.ManyToManyFields(Author)
+
+# b) Or, I can create another model which contains the authors of a paper:
+class PaperAuthor(models.Model):
+    paper = models.ForeignKey(Paper)
+    author = models.ForeignKey(Author)
+```
+Those are exactly equivalent. A ManyToManyField automatically creates that "through" table for you; the only difference is that it gives you the ability to access all authors for a paper, or all papers for an author, with a single expression.
 
 ## download file
 > In a regular HTTP response, the **Content-Disposition** response header is a header indicating if the content is expected to be displayed inline in the browser, that is, as a Web page or as part of a Web page, or as an attachment, that is downloaded and saved locally.
