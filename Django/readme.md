@@ -461,10 +461,12 @@ class FooViewset(viewsets.ModelViewSet):
 ## commands
 1. python shell
 ```sh
+# shell is a vanilla python shell using python script
 python manage.py shell
 ```
 2. dbshell
 ```sh
+# dbshell is a sql like shell using sqls
 python manage.py dbshell
 # show all tables
 .tables
