@@ -747,6 +747,7 @@ if str(ROOT) not in sys.path:
 ROOT=Path(os.path.relpath(ROOT, Path.cwd()))  
 ```
 **把main函数放在根目录，内部的函数relative import是支持的。**
+
 ![relative import](assets/relativeimport.png)
 
 ## requests

@@ -15,6 +15,7 @@
   - [semantic commit messages](#semantic-commit-messages)
   - [status](#status)
   - [stash](#stash)
+  - [undo reset](#undo-reset)
   - [upstream](#upstream)
 
 ## add more emails
@@ -197,6 +198,12 @@ git stash apply stash@{n}
 # The git stash pop command restores the stashed changes and schedules the stash for deletion from the reference
 git stash list
 git stash pop stash@{n}
+```
+
+## undo reset
+```sh
+git reflog
+git reset 'HEAD@{1}'
 ```
 
 ## upstream

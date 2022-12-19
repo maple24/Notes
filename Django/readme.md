@@ -10,6 +10,7 @@
     - [self referencing relationships](#self-referencing-relationships)
   - [difference between ForeignKey and ManyTOManyField](#difference-between-foreignkey-and-manytomanyfield)
   - [download file](#download-file)
+  - [serializer](#serializer)
   - [websocket channel](#websocket-channel)
   - [why channel](#why-channel)
     - [routing](#routing)
@@ -137,6 +138,9 @@ response = HttpResponse(full_zip_in_memory, content_type='application/force-down
 response['Content-Disposition'] = 'attachment; filename="{}"'.format('images.zip')
 return response
 ```
+
+## serializer
+![serializer](assets/djangoserializer.png)
 
 ## websocket channel
 ![channel](assets/django-channels.png)
@@ -472,6 +476,32 @@ python manage.py dbshell
 .tables
 # quit
 .quit
+```
+3. Django ORM – Inserting, Updating & Deleting Data
+```python
+# adding objects
+a = Album(title = "Divide", artist = "Ed Sheeran", genre = "Pop")
+a.save()
+
+# retrieving objects
+Album.objects.all()
+Album.objects.filter(artist = "The Beatles")
+Album.objects.exclude(genre = "Rock")
+Album.objects.get(pk = 3)
+
+# modifying existing objects
+a = Album.objects.get(pk = 3)
+a.genre = "Pop"
+a.save()
+
+# deleting objects
+## delete a single object
+a = Album.objects.get(pk = 2)
+a.delete()
+Album.objects.all()
+## delete multiple objects
+Album.objects.filter(genre = "Pop").delete()
+Album.objects.all()
 ```
 
 ## examples

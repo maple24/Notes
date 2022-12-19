@@ -5,6 +5,7 @@
   - [colon vs equal](#colon-vs-equal)
   - [create element](#create-element)
   - [constructor function](#constructor-function)
+  - [destructuring](#destructuring)
   - [filter](#filter)
   - [for loop](#for-loop)
   - [functions vs methods](#functions-vs-methods)
@@ -59,6 +60,18 @@ let product = {}
 
 ## constructor function
 ![constructor function](assets/constructorfunction.png)
+
+## destructuring
+> The destructuring assignment syntax is a JavaScript expression that makes it possible to **unpack values from arrays, or properties from objects, into distinct variables.**
+
+```javascript
+(e) => { console.log(e.data) }
+// works the same as
+({ data }) => {console.log(data)}
+```
+![destructuring1](assets/destructuring1.png)
+
+![destructuring2](assets/destructuring2.png)
 
 ## filter
 ```javascript

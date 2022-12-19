@@ -37,6 +37,7 @@
     - [33. Why is a deep neural network better than a shallow neural network?](#33-why-is-a-deep-neural-network-better-than-a-shallow-neural-network)
     - [34. What is the need to add randomness in the weight initialization process?](#34-what-is-the-need-to-add-randomness-in-the-weight-initialization-process)
     - [35. How can you train hyperparameters in a neural network?](#35-how-can-you-train-hyperparameters-in-a-neural-network)
+  - [epoch vs training step](#epoch-vs-training-step)
 
 
 ## Reference
@@ -267,3 +268,9 @@ Hyperparameters in a neural network can be trained using four components:
 - Learning rate: Represents the time required for the network to update the parameters and learn.
 
 ![momentum](../assets/momentun.png)
+
+## epoch vs training step
+> A training step is one gradient update. In one step batch_size examples are processed.
+An epoch consists of one full cycle through the training data. This is usually many steps. As an example, if you have 2,000 images and use a batch size of 10 an epoch consists of:
+2,000images / (10images / step) = 200steps.
+If you choose your training image randomly (and independently) in each step, you normally do not call it epoch.
