@@ -2,6 +2,9 @@
 假如不使用kafka就是直接分发任务到代理端，那么假设代理端目前有任务没执行完，这时任务分发就要等待了。
 有kafka的话任务就可以等代理端自己去取，前端/后端只负责把任务布置下去存在kafka内，也就是producer，等代理端自行consumer。
 
+另外，kafka相比于django channel的区别是，kafka是会存储数据到本地的，因此通讯的时效性相比于redis会差一些，但是好处是如果连接断开，数据不会丢失。
+因此选择kafka还是redis取决于数据的可靠性还是时效性。
+
 # Reference
 
 [Kafka Python client](https://github.com/dpkp/kafka-python)
