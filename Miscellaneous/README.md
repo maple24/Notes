@@ -9,6 +9,7 @@
     - [intercepting requests and responses](#intercepting-requests-and-responses)
   - [bearer token](#bearer-token)
   - [blob](#blob)
+  - [bundling](#bundling)
   - [camel case](#camel-case)
   - [commonJS vs ES module](#commonjs-vs-es-module)
   - [CORS](#cors)
@@ -17,6 +18,10 @@
   - [cookie vs localstorage](#cookie-vs-localstorage)
   - [curl](#curl)
   - [docker daemon](#docker-daemon)
+  - [HMR(hot module replacement)](#hmrhot-module-replacement)
+  - [JSX](#jsx)
+  - [vite](#vite)
+  - [stores in frontend](#stores-in-frontend)
 
 ## reference
 [ultimate guide to enabling cross origin resouce sharing](https://blog.logrocket.com/the-ultimate-guide-to-enabling-cross-origin-resource-sharing-cors/)
@@ -88,6 +93,9 @@ Authorization: Bearer
 
 > Blobs can represent data that isn't necessarily in a JavaScript-native format. The File interface is based on Blob, inheriting blob functionality and expanding it to support files on the user's system.
 
+## bundling
+> Before ES modules were available in browsers, developers had no native mechanism for authoring JavaScript in a modularized fashion. This is why we are all familiar with the concept of "bundling": using tools that crawl, process and concatenate our source modules into files that can run in the browser.
+
 ## camel case
 ```
 addBlog
@@ -128,3 +136,21 @@ In the browser JavaScript ecosystem, **the use of JavaScript modules depends on 
 ## docker daemon
 - The Docker daemon is a service that runs on your host operating system.
 - It currently only runs on Linux because it depends on a number of Linux kernel features, but there are a few ways to run Docker on MacOS and Windows too.
+
+## HMR(hot module replacement)
+> HMR is a way of exchanging modules in a running application (and adding/removing modules). You basically can update changed modules without a full page reload.
+
+## JSX
+> ReactJS relies on **JavaScript Expressions**, popularly known as JSX. In simple terms, JSX is a means of adding HTML code within the JavaScript code.
+
+## vite
+> As we build more and more ambitious applications, the amount of JavaScript we are dealing with is also increasing dramatically. It is not uncommon for large scale projects to contain thousands of modules. We are starting to hit a performance bottleneck for JavaScript based tooling: **it can often take an unreasonably long wait (sometimes up to minutes!) to spin up a dev server, and even with Hot Module Replacement (HMR), file edits can take a couple of seconds to be reflected in the browser**. The slow feedback loop can greatly affect developers' productivity and happiness.
+
+vite basically solves two problems:
+- slow server start: Vite improves the dev server start time by first dividing the modules in an application into two categories: dependencies and source code.
+- slow updates: In Vite, HMR is performed over native ESM. When a file is edited, Vite only needs to precisely invalidate the chain between the edited module and its closest HMR boundary (most of the time only the module itself), making HMR updates consistently fast regardless of the size of your application.
+  
+## stores in frontend
+Isn't Redux just glorified global state?
+
+> Of course it is. But the same holds for every database you have ever used. It is better to treat Redux as an in-memory database - which **your components can reactively depend upon.** Same as Vuex and pinia.

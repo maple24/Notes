@@ -1,5 +1,6 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
+  - [cheatsheet](#cheatsheet)
   - [async and await](#async-and-await)
   - [class](#class)
   - [colon vs equal](#colon-vs-equal)
@@ -24,6 +25,10 @@
   - [this](#this)
   - [typeof](#typeof)
 
+## cheatsheet
+```javascript
+array.indexOf(newItem) === -1 ? array.push(newItem) : console.log("this item already exists")
+```
 
 ## async and await
 ```javascript

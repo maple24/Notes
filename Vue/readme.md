@@ -47,6 +47,9 @@
     - [alias](#alias)
     - [different router same component](#different-router-same-component)
     - [exact router link](#exact-router-link)
+  - [vite](#vite)
+    - [problem with ES6 modules](#problem-with-es6-modules)
+    - [why vite?](#why-vite)
   - [vue2 vs vue3](#vue2-vs-vue3)
   - [vuetify](#vuetify)
   - [vue.config.js](#vueconfigjs)
@@ -298,6 +301,19 @@ So, if we had <router-link to="/foo"> and <router-link to="/foo/bar">, both comp
 
 `This class is applied automatically to the <router-link> component when its target route is an exact match. Take into consideration that both classes, router-link-active and router-link-exact-active, will be applied to the component in this case.
 Using the same example, if we had <router-link to="/foo"> and <router-link to="/foo/bar">, the router-link-exact-activeclass would only be applied to <router-link to="/foo/bar"> when the path is /foo/bar.`
+
+## vite
+### problem with ES6 modules
+> Writing JavaScript code in the form of ES6 modules has become a common industry practice. Browsers today already have the support for ES6 modules, but just like with most other problems in web development, not all browsers support it.
+
+> So, instead of serving the exact ES modules to the client, we have to rely on a build system to transpile and bundle the code into something that all browsers can process, not just for production but also for development.
+
+> Since IE still has a sizable share of the market, it's not practical to just serve the 'future' code and ignore IE. That’s why the current standard workflow is to **convert the 'future' code into something more 'traditional' that all browsers can understand**. That's usually taken care of by tools like **Webpack and Babel**.
+
+> During the development cycle, we have to change and save the code a few hundred times on a daily basis. The **hot reloading process involves putting a module through the bundling pipeline every time we change the code in the module, and this is as slow as it sounds**.
+
+### why vite?
+![vite](assets/vite_concept.png)
 
 ## vue2 vs vue3
 ![vue2&3_1](assets/vue2%263_1.png)
