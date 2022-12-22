@@ -15,6 +15,7 @@
   - [imutable](#imutable)
   - [if statement in oneline](#if-statement-in-oneline)
   - [let vs var vs const](#let-vs-var-vs-const)
+  - [map](#map)
   - [map vs filter vs reduce](#map-vs-filter-vs-reduce)
   - [map vs foreach](#map-vs-foreach)
   - [propagation](#propagation)
@@ -166,6 +167,9 @@ So a variable declared in a block with let is only available for use within that
     }
    console.log(hello) // hello is not defined
 ```
+
+## map
+> A Map object can iterate its elements in insertion order - a for..of loop will return an array of [key, value] for each iteration.
 
 ## map vs filter vs reduce
 ![map vs filter vs reduce](assets/map_filter_reduce.png)
