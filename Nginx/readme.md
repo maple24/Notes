@@ -1,8 +1,27 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
+  - [what is Nginx](#what-is-nginx)
+  - [how does Nginx work](#how-does-nginx-work)
   - [Configuration explaination](#configuration-explaination)
   - [errors](#errors)
     - [502 bad gateway](#502-bad-gateway)
+
+## what is Nginx
+> Nginx, pronounced like “engine-ex”, is an open-source web server that, since its initial success as a web server, is now also used as a reverse proxy, HTTP cache, and load balancer.
+
+## how does Nginx work
+> Nginx is built to offer low memory usage and high concurrency. Rather than creating new processes for each web request, Nginx uses an asynchronous, event-driven approach where requests are handled in a single thread.
+
+> With Nginx, one master process can control multiple worker processes. The master maintains the worker processes, while the workers do the actual processing. Because Nginx is asynchronous, each request can be executed by the worker concurrently without blocking other requests.
+
+Some common features seen in Nginx include:
+- Reverse proxy with caching
+- IPv6
+- Load balancing
+- FastCGI support with caching
+- WebSockets
+- Handling of static files, index files, and auto-indexing
+- TLS/SSL with SNI
 
 ## Configuration explaination
 ---

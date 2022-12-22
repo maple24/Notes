@@ -18,10 +18,41 @@
   - [cookie vs localstorage](#cookie-vs-localstorage)
   - [curl](#curl)
   - [docker daemon](#docker-daemon)
+  - [favicon](#favicon)
+  - [hash](#hash)
+  - [heartbeat](#heartbeat)
+  - [IPC](#ipc)
   - [HMR(hot module replacement)](#hmrhot-module-replacement)
   - [JSX](#jsx)
   - [vite](#vite)
   - [stores in frontend](#stores-in-frontend)
+  - [JWT](#jwt)
+  - [JQuery](#jquery)
+  - [network basic](#network-basic)
+  - [TCP/IP vs OSI model](#tcpip-vs-osi-model)
+  - [TCP vs UDP](#tcp-vs-udp)
+  - [parameters vs arguments](#parameters-vs-arguments)
+  - [pipeline](#pipeline)
+  - [port number](#port-number)
+  - [plop](#plop)
+  - [proxy](#proxy)
+    - [what is a proxy server?](#what-is-a-proxy-server)
+    - [what is a reverse proxy?](#what-is-a-reverse-proxy)
+    - [跨域问题](#跨域问题)
+    - [webpack devserver](#webpack-devserver)
+  - [public](#public)
+  - [project structure](#project-structure)
+  - [scss/sass](#scsssass)
+  - [socket vs websocket](#socket-vs-websocket)
+  - [SPA vs SPC](#spa-vs-spc)
+  - [static vs dynamic website](#static-vs-dynamic-website)
+  - [status codes](#status-codes)
+  - [SSG vs SSR](#ssg-vs-ssr)
+  - [use strict](#use-strict)
+  - [XHR](#xhr)
+  - [yarn](#yarn)
+  - [80port](#80port)
+  - [脚手架(scaffold)](#脚手架scaffold)
 
 ## reference
 [ultimate guide to enabling cross origin resouce sharing](https://blog.logrocket.com/the-ultimate-guide-to-enabling-cross-origin-resource-sharing-cors/)
@@ -126,7 +157,7 @@ In the browser JavaScript ecosystem, **the use of JavaScript modules depends on 
 - d: delete
 
 ## cookie vs localstorage
-对前端来说作为临时存储，存储在cookie里或者localstorage都可以。
+对前端来说作为临时存储,存储在cookie里或者localstorage都可以。
 ![cookie vs localstorage](assets/cookievslocalstorage.png)
 
 ## curl
@@ -136,6 +167,42 @@ In the browser JavaScript ecosystem, **the use of JavaScript modules depends on 
 ## docker daemon
 - The Docker daemon is a service that runs on your host operating system.
 - It currently only runs on Linux because it depends on a number of Linux kernel features, but there are a few ways to run Docker on MacOS and Windows too.
+
+## favicon
+> A favicon is a small image displayed next to the page title in the browser tab.
+
+![favicon](assets/img_favicon.png)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page Title</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+```
+
+## hash
+data structure: same as dictionary, map
+
+## heartbeat
+It's common practice to send a small message (heartbeat) for every given time passed to keep the connection active.
+
+## IPC
+IPC stands for inter process communication.
+
+six ways in general to do IPC:
+
+![IPC](assets/IPC.png)
+
+[python code](https://zhuanlan.zhihu.com/p/446374478)
 
 ## HMR(hot module replacement)
 > HMR is a way of exchanging modules in a running application (and adding/removing modules). You basically can update changed modules without a full page reload.
@@ -154,3 +221,163 @@ vite basically solves two problems:
 Isn't Redux just glorified global state?
 
 > Of course it is. But the same holds for every database you have ever used. It is better to treat Redux as an in-memory database - which **your components can reactively depend upon.** Same as Vuex and pinia.
+
+## JWT
+JWT stands for JSON Web Tokens.
+
+## JQuery
+jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
+
+## network basic
+![network basic1](assets/networkbasic1.png)
+
+![network basic2](assets/networkbasic2.png)
+
+![network basic3](assets/networkbasic3.png)
+
+![network basic4](assets/networkbasic4.png)
+
+## TCP/IP vs OSI model
+Physical layer transfer data(which are binaries, eg.01100) into signals(electrical, light or radio signals), and transmit thought cables.
+
+![TCP/IP](assets/tcpip.png)
+
+The Open Systems Interconnection (OSI) model describes seven layers that computer systems use to communicate over a network. It was the first standard model for network communications, adopted by all major computer and telecommunication companies in the early 1980s.
+
+The modern Internet is not based on OSI, but on the simpler TCP/IP model.
+
+![OSI model](assets/osimodel.png)
+
+![OSI vs TCP/IP](assets/osi_vs_tcpip.png)
+
+## TCP vs UDP
+`TCP`: you have to create a connection first, and then send messages.  => connection oriented
+
+`UDP`: no connection needed. => less secure
+
+## parameters vs arguments
+> People incorrectly use those terms interchangeably. One way to remember is that parameters are placeholders. The actual values that you pass in when calling a function are what are called arguments.
+
+## pipeline
+> In computing, pipeline refers to the logical queue that is filled with all the instructions for the computer processor to process in parallel. It is the process of storing and queuing tasks and instructions that are executed simultaneously by the processor in an organized way.
+
+## port number
+When you have multiple service on a machine, port number is used to identify them.
+
+range: 0~65535
+
+## plop
+used to generate codes from templates
+
+![plop](assets/plop.png)
+
+this code generate a log post from template/post.hbs into example/index.md. (hbs stands for handlebars)
+
+## proxy
+### what is a proxy server?
+> A forward proxy, often called a proxy, proxy server, or web proxy, is a server that **sits in front of a group of client machines**. When those computers make requests to sites and services on the Internet, the proxy server intercepts those requests and then communicates with web servers on behalf of those clients, like a middleman.
+
+![forward proxy](assets/forwardproxy.png)
+
+Why would anyone add this extra middleman to their Internet activity? There are a few reasons one might want to use a forward proxy:
+- To avoid state or institutional browsing restrictions
+- To block access to certain content
+- To protect their identity online
+
+### what is a reverse proxy?
+> A reverse proxy is a server that **sits in front of one or more web servers**, intercepting requests from clients. This is different from a forward proxy, where the proxy sits in front of the clients. With a reverse proxy, when clients send requests to the origin server of a website, those requests are intercepted at the network edge by the reverse proxy server. The reverse proxy server will then send requests to and receive responses from the origin server.
+
+![reverse proxy](assets/reverseproxy.png)
+
+The difference between a forward and reverse proxy is subtle but important. A simplified way to sum it up would be to say that **a forward proxy sits in front of a client and ensures that no origin server ever communicates directly with that specific client. On the other hand, a reverse proxy sits in front of an origin server and ensures that no client ever communicates directly with that origin server**.
+
+### 跨域问题
+> 跨域,指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的,是浏览器对JavaScript施加的安全限制。所谓同源是指,域名,协议,端口均相同。请注意：localhost和127.0.0.1虽然都指向本机,但也属于跨域。
+
+首先前后端交互不可避免的就会遇到跨域问题,一般有几种解决方式：
+- cors来解决的,
+- dev环境也可以通过 webpack-dev-server的proxy来解决 (前端正向代理)
+- 开发环境用nginx反代理
+
+### webpack devserver
+
+![webpack devserver](assets/webpackdevserver.png)
+
+frontend url: `http://localhost:8080`
+
+backend url: `http://localhost:1234`
+
+If you request `/api/projects` in frontend, the origin url is `http://localhost:8080/api/projects`, the real url would be `http://localhost:1234/projects`.
+
+## public
+假如要从8080向5000发送请求, 当vue配置了代理服务器的时候, 代理服务器8080并不是把所有的请求都转发给5000,当请求的资源8080就有,这个时候就不会把请求转发给5000（人之常情,很好理解）。这个public文件夹就相当于我们服务器的根路径,public中有的就相当于我们现在8080有。
+
+## project structure
+![project structure](assets/projectstructure.png)
+
+## scss/sass
+SCSS, also known as Sassy CSS is one of the two syntax available to write Sass. Sass is a popular CSS preprossing language to generate CSS files.
+
+With Sass, you can reduce the number of times you repeat yourself and ensure you’re writing clean, maintainable code for the future. It also allows us to do math using operators. We can perform simple calculations inside our code for better output.
+
+## socket vs websocket
+> Even though they achieve (in general) similar things, yes, they are really different. WebSockets typically run from browsers connecting to Application Server over a protocol similar to HTTP that runs over TCP/IP. So they are primarily for Web Applications that require a permanent connection to its server. On the other hand, plain sockets are more powerful and generic. They run over TCP/IP but they are not restricted to browsers or HTTP protocol. They could be used to implement any kind of communication.
+
+websocket needs http protocol to make a first connection.
+
+## SPA vs SPC
+SPA stands for single page applications.
+
+SFC stands for single file component, specially for vuejs components.
+
+## static vs dynamic website
+`Static websites` are the websites that **doesn't change the content or layout dynamically with every request to the web server**. Static websites display exactly the same information whenever anyone visits it. User sees the updated content of Static Website only when a web author manually updates them with a text editor or any web editing tool used for creating websites. Static webpages do not have to be simple plain text. They can feature multiple design and even videos.
+
+Static Website: In Static Websites, **Web pages are returned by the server which are prebuilt source code files built using simple languages such as HTML, CSS, or JavaScript**. There is no processing of content on the server (according to the user) in Static Websites. Web pages are returned by the server with no change therefore, static Websites are fast. There is no interaction with databases. Also, they are less costly as the host does not need to support server-side processing with different languages. 
+
+![static website](assets/staticsite.png)
+
+`Dynamic Website`: In Dynamic Websites, Web pages are returned by the server which are processed during runtime means they are not prebuilt web pages but they are built during runtime according to the user’s demand with the help of server-side scripting languages such as PHP, Node.js, ASP.NET and many more supported by the server. So, they are slower than static websites but updates and interaction with databases are possible.
+
+Dynamic Websites are used over Static Websites as updates can be done very easily as compared to static websites (Where altering in every page is required) but in Dynamic Websites, it is possible to do a common change once and it will reflect in all the web pages. 
+
+![dynamic website](assets/dynamicsite.png)
+
+## status codes
+```
+| Code range | Category             |
+| ---------- | -------------------- |
+| 2xx        | Successful operation |
+| 3xx        | Redirection          |
+| 4xx        | Client error         |
+| 5xx        | Server error         |
+```
+
+## SSG vs SSR
+`Static Site Generation (SSG)`, also referred to as pre-rendering, is another popular technique for building fast websites. If the data needed to server-render a page is the same for every user, then instead of rendering the page every time a request comes in, we can render it only once, ahead of time, during the build process. Pre-rendered pages are generated and served as static HTML files.
+
+SSG retains the same performance characteristics of SSR apps: it provides great time-to-content performance. At the same time, it is cheaper and easier to deploy than SSR apps because the output is static HTML and assets. The keyword here is static: SSG can only be applied to pages consuming static data, i.e. data that is known at build time and does not change between deploys. Every time the data changes, a new deployment is needed.
+
+If you're only investigating SSR to improve the SEO of a handful of marketing pages (e.g. /, /about, /contact, etc.), then you probably want SSG instead of SSR. SSG is also great for content-based websites such as documentation sites or blogs. In fact, this website you are reading right now is statically generated using VitePress, a Vue-powered static site generator.
+
+## use strict
+> With strict mode, you can not, for example, use undeclared variables.
+
+## XHR
+XHR stands for XMLHttpRequest.
+
+## yarn
+yarn 是 Facebook 出品的另一个包管理工具, 同样可以管理 npm 中的包, 安装已缓存的包时速度更快, 你也可以使用它来替代 npm.
+
+## 80port
+```sh
+netstat -tulpn
+```
+`80端口和8080端口`:
+一般80作为网页服务器的访问端口,比如一个网站的ip地址是123.123.123.123,我们访问的是123.123.123.123:80 只是80是默认端口可以省略。但是如果一个服务器上有不同的站点,那可以用另外的端口,比如123.123.123.123:8080 来访问,选择8080是因为两个80好记。
+
+`区别与联系`:
+80是http协议的默认端口,是在输入网站的时候其实浏览器（非IE）已经帮你输入协议了,所以你输入http://baidu.com,其实是访问http://baidu.com:80。而8080,一般用与webcahe,完全不一样的两个,比如linux服务器里apache默认跑80端口,而apache-tomcat默认跑8080端口,其实端口没有实际意义只是一个接口,主要是看服务的监听端口。
+
+## 脚手架(scaffold)
+![scaffold](assets/scaffold.png)

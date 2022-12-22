@@ -84,6 +84,8 @@ this.tasks = this.tasks.filter((task) => task.id !== id);
 ```
 
 ## for loop
+> forEach is not promise-aware (you can't return values in a forEach loop). It cannot support async and await since it does not return any value. You cannot use await in forEach.
+
 ```javascript
 function greet(persons) {
     persons.forEach(person => {
@@ -211,6 +213,7 @@ setTimeout(function, miiliseconds, param1, param2)
 ```
 
 ## spread operator
+It allows us the privilege to obtain a list of parameters from an array. Can be used to copy and concate.
 ```javascript
 this.tasks.push(task)
 // ==

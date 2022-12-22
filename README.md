@@ -8,9 +8,11 @@ It is gonna be a bit messy here.
 [Kafka vs Redis – What’s the Difference ? ](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
 
 # Table of Contents
+- [CSS](CSS)
 - [Django](Django)
 - [Docker](Docker)
 - [Git](Git)
+- [HTML](HTML)
 - [Javascript](Javascript)
 - [Jenkins](Jenkins)
 - [kafka](Kafka)
@@ -31,6 +33,24 @@ It is gonna be a bit messy here.
 - [Websocket](Websocket)
 - [LessonLearned](Lesson-learned)
 
+# Markdown basic syntax
+```
+| Element         | Markdown Synatx           |
+| --------------- | ------------------------- |
+| Heading         | # H1                      |
+|                 | ## H2                     |
+|                 | ### H3                    |
+| Bold            | **bold text**             |
+| Italic          | *italicized text*         |
+| Blockquote      | > blackquote              |
+| Unordered List  | - First item              |
+|                 | - Second item             |
+|                 | - Third item              |
+| Code            | `code`                    |
+| Horizontal Rule | ---                       |
+| Link            | [title](wwww.example.com) |
+| Image           | ![alt text](image.jpg)    |
+```
 
 # Markdown code block language list
 - actionscript3
