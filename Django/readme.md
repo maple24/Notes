@@ -18,6 +18,7 @@
     - [client](#client)
     - [django consumer](#django-consumer)
   - [filter](#filter)
+  - [LDAP](#ldap)
   - [general steps](#general-steps)
   - [html variable/condition](#html-variablecondition)
   - [html style](#html-style)
@@ -32,6 +33,7 @@
 ## reference
 [django-channels-official](https://channels.readthedocs.io/en/stable/introduction.html#turtles-all-the-way-down)
 [django-channels](https://arunrocks.com/understanding-django-channels/)
+[User-model](https://www.geeksforgeeks.org/creating-custom-user-model-using-abstractuser-in-django_restframework/?ref=lbp)
 
 ## Django vs Django RestFramework
 > You can use Django only to build a fully functional web app without using any frontend frameworks, such as React, Angular, etc. Doing so, you have used Django for both backend and frontend. Actually, doing like this, you do not have the concept of backend and frontend. Your web app is just your web app, and that is it.
@@ -380,6 +382,87 @@ class TaskFilter(django_filters.rest_framework.FilterSet):
         return queryset.filter(query)
 ```
 
+## LDAP
+```
+<!-- LDAP   Mappings Table View -->
+TAB|                |Active Directory Field	           |LDAP Attribute
+General 	        |First Name                        |givenName
+General 	        |Initials 	                       |initials
+General 	        |Last name	                       |sn
+General 	        |Display name	                   |displayName
+General 	        |Description 	                   |description
+General 	        |Office	                           |physicalDeliveryOfficeName
+General 	        |Telephone number	               |telephoneNumber
+General 	        |E-mail	                           |mail
+General 	        |Web page	                       |wWWHomePage
+Address 	        |Street	                           |streetAddress
+Address 	        |P.O Box 	                       |postOfficeBox
+Address 	        |City               	           |l
+Address 	        |State/province   	               |St
+Address 	        |Zip/Postal Code 	               |postalCode
+Address 	        |County/region     	               |co
+Account 	        |User logon name 	               |userPrincipalName
+Account 	        |user logon name (pre-Windows 200) |sAMAccountName
+Profile 	        |Profile path                      |profilePath
+Profile 	        |Logon script                      |scriptPath
+Profile 	        |Local path                        |homeDirectory
+Profile 	        |Connect	                       |homeDrive
+Telephone   	    |Home	                           |homePhone
+Telephones  	    |Pager	                           |pager
+Telephones  	    |Mobile	                           |Mobile
+Telephones  	    |Fax	                           |facsimileTelephoneNumber
+Telephones  	    |IP Phone	                       |ipPhone
+Organization    	|Job Title	                       |title
+Organization    	|Department	                       |department
+Organization    	|Company	                       |company
+Organization    	|Manager	                       |manager
+Organization    	|Direct Reports	                   |directreports
+```
+```python
+AUTH_USER_MODEL = 'user.User' # customer User model
+
+# LDAP
+AUTHENTICATION_BACKENDS = [
+    'django_python3_ldap.auth.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend', # two auth methods
+]
+LDAP_AUTH_URL = ['ldap://apac.bosch.com:389']
+LDAP_AUTH_USE_TLS = False
+LDAP_AUTH_SEARCH_BASE = "dc=APAC,dc=bosch,dc=com"
+LDAP_AUTH_OBJECT_CLASS = "user"
+LDAP_AUTH_USER_FIELDS = {
+    "username": "sAMAccountName",
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail",
+    'account': "displayName",
+}
+LDAP_AUTH_USER_LOOKUP_FIELDS = ("username",)
+LDAP_AUTH_CLEAN_USER_DATA = "django_python3_ldap.utils.clean_user_data"
+LDAP_AUTH_SYNC_USER_RELATIONS = "django_python3_ldap.utils.sync_user_relations"
+LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filters"
+LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_active_directory_principal"
+LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "apac"
+LDAP_AUTH_CONNECT_TIMEOUT = None
+LDAP_AUTH_RECEIVE_TIMEOUT = None
+LDAP_AUTH_CONNECTION_USERNAME = None
+LDAP_AUTH_CONNECTION_PASSWORD = None
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django_python3_ldap": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    },
+}
+```
 
 ## general steps
 1. django-admin startproject lecture3
