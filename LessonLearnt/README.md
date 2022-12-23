@@ -1,3 +1,14 @@
+# Table of contents
+- [Table of contents](#table-of-contents)
+  - [template](#template)
+  - [Django channel vs Kafka](#django-channel-vs-kafka)
+  - [python requests vs javascript fetch](#python-requests-vs-javascript-fetch)
+  - [python same module being imported in different files](#python-same-module-being-imported-in-different-files)
+  - [thread with queue](#thread-with-queue)
+
+## template
+![template](assets/template.png)
+
 ## Django channel vs Kafka
 `Conclusion`: Use Redis if you want to send messages to consumers instantly, and you can live with data loss and a small amount of data to manage. Kafka can be used when you are looking for reliability, high performance, fault tolerance and large amounts of data.
 

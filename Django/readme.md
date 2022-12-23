@@ -383,6 +383,12 @@ class TaskFilter(django_filters.rest_framework.FilterSet):
 ```
 
 ## LDAP
+Companies store usernames, passwords, email addresses, printer connections, and other static data within directories. LDAP is an open, vendor-neutral application protocol for accessing and maintaining that data. LDAP can also tackle authentication, so **users can sign on just once and access many different files on the server**.
+
+LDAP is a protocol, so it doesn't specify how directory programs work. Instead, it's a form of language that allows users to find the information they need very quickly.
+
+![ldap](how-ldap-works.png)
+
 ```
 <!-- LDAP   Mappings Table View -->
 TAB|                |Active Directory Field	           |LDAP Attribute

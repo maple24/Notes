@@ -1,3 +1,15 @@
+# Table of contents
+- [Table of contents](#table-of-contents)
+  - [Docker cheatsheet](#docker-cheatsheet)
+    - [Docker images](#docker-images)
+    - [Dockerfiles](#dockerfiles)
+      - [Dockerfile reference](#dockerfile-reference)
+    - [Docker compose](#docker-compose)
+      - [Basic structure of a Docker Compose YAML file](#basic-structure-of-a-docker-compose-yaml-file)
+    - [Build](#build)
+    - [Share](#share)
+    - [Note](#note)
+
 ## Docker cheatsheet
 
 https://groupe-sii.github.io/cheat-sheets/docker/index.html
@@ -119,6 +131,13 @@ Delete an image from the local image store
 
 ```sh
 docker image rm alpine:3.4
+```
+build with proxy
+
+```sh
+docker build --build-arg HTTP_PROXY=http://host.docker.internal:3128 --build-arg HTTPS_PROXY=http://host.docker.internal:3128 --build-arg http_proxy=http://host.docker.internal:3128 --build-arg https_proxy=http://host.docker.internal:3128 --tag name .
+
+docker-compose build --build-arg HTTP_PROXY=http://host.docker.internal:3128 --build-arg HTTPS_PROXY=http://host.docker.internal:3128 --build-arg http_proxy=http://host.docker.internal:3128 --build-arg https_proxy=http://host.docker.internal:3128 --tag name .
 ```
 
 ### Share

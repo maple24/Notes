@@ -31,7 +31,7 @@ It is gonna be a bit messy here.
 - [VScode](VScode)
 - [Vue](Vue)
 - [Websocket](Websocket)
-- [LessonLearned](Lesson-learned)
+- [LessonLearnt](LessonLearnt)
 
 # Markdown basic syntax
 ```
