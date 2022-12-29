@@ -1,3 +1,18 @@
+## undefined error
+You can either use ! (non-nullable assertion operator) to tell TypeScript that a property is not undefined or null (assuming you are 100% SURE), or check it and assign it if it's undefined.
+```
+<!-- Example 1: -->
+<!-- if cannot be undefined -->
+config.headers!.Authorization = `Bearer ${accessToken}`;
+
+<!-- Example 2: -->
+<!-- default it with an empty object -->
+config.headers = config.headers ?? {};
+
+<!-- Example 3: -->
+if(!config.headers) config.headers =  {};
+```
+
 ## Tutorial
 ```javascript
 // static coding

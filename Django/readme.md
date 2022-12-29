@@ -24,6 +24,8 @@
   - [html style](#html-style)
   - [migrate](#migrate)
   - [shell](#shell)
+  - [permission\&authentication](#permissionauthentication)
+  - [manage tokens](#manage-tokens)
   - [Django admin](#django-admin)
   - [glossary](#glossary)
   - [commands](#commands)
@@ -506,6 +508,32 @@ LOGGING = {
 6. Airport.objects.get(city="New York")
 7. jfk = Airport(city="New York", code="JFK")
 8. jfk.save()
+
+## permission&authentication
+[API reference](https://www.django-rest-framework.org/api-guide/permissions/)
+
+```python
+# JTWAuthentication 不是必要的，配置了以后可以通过JWT token访问
+# BasicAuthentication和SessionAuthentication 是需要配置的，基础访问权限会继承djangoadmin
+# IsAuthenticated 配置了以后所有登录的用户都可以请求api
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}
+```
+
+## manage tokens
+[manage tokens](https://medium.com/@byeduardoac/managing-jwt-token-expiration-bfb2bd6ea584)
 
 ## Django admin
 ```sh
