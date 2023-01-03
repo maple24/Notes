@@ -2,6 +2,9 @@
 - websocket proxy on nginx and vite.config.js
 - websocket server on python backend
 
+## Securing WebSocket Endpoints Against Cross-Site Attacks
+[Securing WebSocket Endpoints Against Cross-Site Attacks](https://dev.solita.fi/2018/11/07/securing-websocket-endpoints.html)
+
 ## Python server example
 ```python
 import asyncio
@@ -59,4 +62,36 @@ websocketOnMessage(e) {
     this.agentLogContainer[host] = this.agentLogContainer[host] == undefined ? '' : this.agentLogContainer[host] + '>>' + log + '\r'
   }
 },
+```
+
+## proxy
+```javascript
+// two ways to config websocket at frontend
+// 1. ws:true
+// 2. target: ws://localhost:8000
+// ngnix do not have to config because it works same for http
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        ws: true
+        // rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+      // Proxying websockets or socket.io: ws://localhost:5173/ws -> ws://localhost:8000/ws
+      // '/ws': {
+      //   target: 'ws://localhost:8000',
+      //   ws: true,
+      //   // rewrite: (path) => path.replace(/^\/ws/, ''),
+      // },
+    },
+  },
+});
 ```

@@ -41,8 +41,10 @@
     - [what is a reverse proxy?](#what-is-a-reverse-proxy)
     - [跨域问题](#跨域问题)
     - [webpack devserver](#webpack-devserver)
+  - [port in use](#port-in-use)
   - [public](#public)
   - [project structure](#project-structure)
+  - [relational vs non-relational database](#relational-vs-non-relational-database)
   - [rest client](#rest-client)
   - [scss/sass](#scsssass)
   - [socket vs websocket](#socket-vs-websocket)
@@ -338,11 +340,33 @@ backend url: `http://localhost:1234`
 
 If you request `/api/projects` in frontend, the origin url is `http://localhost:8080/api/projects`, the real url would be `http://localhost:1234/projects`.
 
+## port in use
+```sh
+# it needs few seconds to get all
+netstat -ab
+```
+
 ## public
 假如要从8080向5000发送请求, 当vue配置了代理服务器的时候, 代理服务器8080并不是把所有的请求都转发给5000,当请求的资源8080就有,这个时候就不会把请求转发给5000（人之常情,很好理解）。这个public文件夹就相当于我们服务器的根路径,public中有的就相当于我们现在8080有。
 
 ## project structure
 ![project structure](assets/projectstructure.png)
+
+## relational vs non-relational database
+[relational vs non-relational database](https://www.mongodb.com/databases/non-relational)
+
+Relational database:
+- PostgreSQL
+- MariaDB
+- MySQL
+- Oracle
+- SQLite
+
+Non-relational database:
+- MongoDB
+- Redius
+
+![non-relational](non-assets/non-relational.png)
 
 ## rest client
 ```sh
