@@ -1,3 +1,6 @@
+## question mark
+[question mark](https://www.becomebetterprogrammer.com/typescript-question-mark/)
+
 ## undefined error
 You can either use ! (non-nullable assertion operator) to tell TypeScript that a property is not undefined or null (assuming you are 100% SURE), or check it and assign it if it's undefined.
 ```

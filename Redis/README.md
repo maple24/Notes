@@ -22,6 +22,9 @@ Runs in RAM, super quick, but if your system crashes, data are gone. So it is mo
 ## redis on windows
 `memurai`: Redis™* for Windows alternative, In-Memory Datastore
 ![memurai](assets/memurai.png)
+```
+memurai-cli
+```
 
 ## redis on docker
 ```sh

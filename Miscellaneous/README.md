@@ -21,6 +21,7 @@
   - [favicon](#favicon)
   - [hash](#hash)
   - [heartbeat](#heartbeat)
+  - [httpOnly cookie](#httponly-cookie)
   - [IPC](#ipc)
   - [HMR(hot module replacement)](#hmrhot-module-replacement)
   - [JSX](#jsx)
@@ -86,7 +87,7 @@ npm install axios
 > Once an HTTP request is made, Axios returns a promise that is either fulfilled or rejected, depending on the response from the backend service. To handle the result, you can use the then() method, handle error use catch().
 
 ### fetch vs axios
-- Fetch API is built into the window object and therefore doesn’t need to be installed as a dependency or imported in client-side code.
+- Fetch API is built into the window object and therefore doesn't need to be installed as a dependency or imported in client-side code.
 - Axios needs to be installed as a dependency. However, it automatically transforms JSON data for you, thereby avoiding the two-step process of making a .fetch() request and then a second call to the .json() method on the response.
 
 ### simultaneous requests
@@ -213,6 +214,15 @@ data structure: same as dictionary, map
 
 ## heartbeat
 It's common practice to send a small message (heartbeat) for every given time passed to keep the connection active.
+
+## httpOnly cookie
+当你在cookie上设置HttpOnly标识后，浏览器就会知会到这是特殊的cookie,只能由服务器检索到，所有来自客户端脚本的访问都会被禁止。
+
+HttpOnly is a flag the website can specify about a cookie. In other words, the webserver tells your browser 'Hey, here is a cookie, and you should treat is as HttpOnly'.
+
+**An HttpOnly Cookie is not accessible by the JavaScript. Only the browser knows about it, and it doesn't give it to the JavaScript code in the page**. At first, it might sound like a limitation, and it is. However, the goal of that is that we cannot trust the JavaScript code. An attacker may use JavaScript to steal our authentication token stored in a cookie, and then access the website with our account. With HttpOnly cookies, this is not possible. This makes XSS(cross-site scripting) attacks (the one we just described) harder to perform.
+
+It is a recognized best practice to share any authentication data only with HttpOnly cookies. Using a standard cookie for authentication is a known vulnerability we should avoid in any case.
 
 ## IPC
 IPC stands for inter process communication.
@@ -343,7 +353,7 @@ Authorization: Basic root:adminadmin
 ## scss/sass
 SCSS, also known as Sassy CSS is one of the two syntax available to write Sass. Sass is a popular CSS preprossing language to generate CSS files.
 
-With Sass, you can reduce the number of times you repeat yourself and ensure you’re writing clean, maintainable code for the future. It also allows us to do math using operators. We can perform simple calculations inside our code for better output.
+With Sass, you can reduce the number of times you repeat yourself and ensure you're writing clean, maintainable code for the future. It also allows us to do math using operators. We can perform simple calculations inside our code for better output.
 
 ## socket vs websocket
 > Even though they achieve (in general) similar things, yes, they are really different. WebSockets typically run from browsers connecting to Application Server over a protocol similar to HTTP that runs over TCP/IP. So they are primarily for Web Applications that require a permanent connection to its server. On the other hand, plain sockets are more powerful and generic. They run over TCP/IP but they are not restricted to browsers or HTTP protocol. They could be used to implement any kind of communication.
@@ -362,7 +372,7 @@ Static Website: In Static Websites, **Web pages are returned by the server which
 
 ![static website](assets/staticsite.png)
 
-`Dynamic Website`: In Dynamic Websites, Web pages are returned by the server which are processed during runtime means they are not prebuilt web pages but they are built during runtime according to the user’s demand with the help of server-side scripting languages such as PHP, Node.js, ASP.NET and many more supported by the server. So, they are slower than static websites but updates and interaction with databases are possible.
+`Dynamic Website`: In Dynamic Websites, Web pages are returned by the server which are processed during runtime means they are not prebuilt web pages but they are built during runtime according to the user's demand with the help of server-side scripting languages such as PHP, Node.js, ASP.NET and many more supported by the server. So, they are slower than static websites but updates and interaction with databases are possible.
 
 Dynamic Websites are used over Static Websites as updates can be done very easily as compared to static websites (Where altering in every page is required) but in Dynamic Websites, it is possible to do a common change once and it will reflect in all the web pages. 
 

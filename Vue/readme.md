@@ -16,6 +16,7 @@
   - [high order array functions](#high-order-array-functions)
   - [icons](#icons)
   - [object vs function](#object-vs-function)
+  - [pinia](#pinia)
   - [props](#props)
   - [prevent](#prevent)
   - [query](#query)
@@ -171,6 +172,9 @@ methods:{
 ## object vs function
 ![data must be a function](assets/object.png)
 The reason for this is to ensure that for each individual instance of the reusable child component, there is a unique object containing all of the data being operated on. If, in a child component, you instead use data: { ... }, that same data object will be shared between the child components which can cause some nasty bugs.
+
+## pinia
+> pinia can not be used outside of a component!!
 
 ## props
 understanding: if props is an object or array, data binding is required; if props is a string or number, no data binding needed.
