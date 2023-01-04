@@ -22,6 +22,7 @@
   - [function parameter](#function-parameter)
   - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
+  - [GIL](#gil)
   - [inserted function](#inserted-function)
   - [logging](#logging)
   - [loguru](#loguru)
@@ -136,6 +137,7 @@ if not condition:
 ```
 
 ## asyncrounous
+![concurrency vs parallelism](assets/concurrency_vs_parallelism.png)
 ```python
 import asyncio
 from time import sleep
@@ -466,6 +468,17 @@ class Starter:
 ```python
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```
+
+## GIL
+[GIL](https://realpython.com/python-gil/)
+
+> The Python Global Interpreter Lock or GIL, in simple words, is a mutex (or a lock) that allows only one thread to hold the control of the Python interpreter.
+
+CPU-bound programs are those that are pushing the CPU to its limit. This includes programs that do mathematical computations like matrix multiplications, searching, image processing, etc.
+
+I/O-bound programs are the ones that spend time waiting for Input/Output which can come from a user, file, database, network, etc. I/O-bound programs sometimes have to wait for a significant amount of time till they get what they need from the source due to the fact that the source may need to do its own processing before the input/output is ready, for example, a user thinking about what to enter into an input prompt or a database query running in its own process.
+
+To recap the above, concurrency encompasses both multiprocessing (ideal for CPU-bound tasks) and threading (suited for IO-bound tasks). Multiprocessing is a form of parallelism, with parallelism being a specific type (subset) of concurrency. The Python standard library has offered longstanding support for both of these through its multiprocessing, threading, and concurrent.futures packages.
 
 ## inserted function
 ```python

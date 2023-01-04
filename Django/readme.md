@@ -27,6 +27,7 @@
   - [permission\&authentication](#permissionauthentication)
   - [manage tokens](#manage-tokens)
   - [Django admin](#django-admin)
+  - [caching with django](#caching-with-django)
   - [glossary](#glossary)
   - [commands](#commands)
   - [examples](#examples)
@@ -539,6 +540,9 @@ REST_FRAMEWORK = {
 ```sh
 python manager.py createsuperuser
 ```
+
+## caching with django
+[caching and scaling django](https://medium.com/swlh/caching-and-scaling-django-dc80a54012)
 
 ## glossary
 1. serializer(django rest framework module)

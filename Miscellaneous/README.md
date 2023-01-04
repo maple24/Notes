@@ -355,6 +355,8 @@ netstat -ab
 ## relational vs non-relational database
 [relational vs non-relational database](https://www.mongodb.com/databases/non-relational)
 
+> if you are looking for an easier to use solution and speed is one of your major concern, MySQL is more suitable for you. On the other end, you should look at PostgreSQL if you have complex queries or need additional features are not included in MySQL.
+
 Relational database:
 - PostgreSQL
 - MariaDB
