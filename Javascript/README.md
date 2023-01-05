@@ -25,6 +25,7 @@
   - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
   - [this](#this)
   - [typeof](#typeof)
+  - [upload a file](#upload-a-file)
 
 ## cheatsheet
 ```javascript
@@ -254,4 +255,14 @@ typeof new Date()             // Returns "object"
 typeof function () {}         // Returns "function"
 typeof myCar                  // Returns "undefined" *
 typeof null                   // Returns "object"
+```
+
+## upload a file
+```javascript
+// You can use html5 file type like this:
+
+<input type="file" id="myFile">
+{/* You file will be in value: */}
+
+var myUploadedFile = document.getElementById("myFile").files[0];
 ```

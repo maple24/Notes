@@ -6,6 +6,7 @@
   - [workflow](#workflow)
   - [commands](#commands)
   - [example](#example)
+  - [docker compose file](#docker-compose-file)
 
 ## what is redis
 > Redis is an in memory data structure store used as a database, cache and message broker.
@@ -133,3 +134,6 @@ app.get("/photos/:id", async (req, res) => {
 
 app.listen(3000)
 ```
+
+## docker compose file
+![redis docker](assets/redis_docker.png)
