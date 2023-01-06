@@ -258,6 +258,9 @@ typeof null                   // Returns "object"
 ```
 
 ## upload a file
+[upload file](https://betterprogramming.pub/a-complete-guide-of-file-uploading-in-javascript-2c29c61336f5)
+
+![upload file](assets/uploadfile.png)
 ```javascript
 // You can use html5 file type like this:
 

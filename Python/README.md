@@ -9,6 +9,7 @@
   - [asyncrounous](#asyncrounous)
   - [call](#call)
   - [call method by name](#call-method-by-name)
+  - [class variable scope](#class-variable-scope)
   - [cli](#cli)
   - [compile pyd](#compile-pyd)
   - [complexity](#complexity)
@@ -218,6 +219,19 @@ call_method(f, "bar1")  # prints 1
 print(call_property(f, 'name')) # prints maple
 ```
 
+## class variable scope
+```python
+class TestB:
+    varNum = 0
+
+    def __init__(self):
+        self.varNum = 3
+
+b = TestB()
+print(b.varNum)  # print 3
+print(TestB.varNum)  # print 0
+```
+
 ## cli
 ```sh
 python.exe -c "from <pythonscript> import <function>; function()"
@@ -328,6 +342,9 @@ print (de)
 ```
 
 ## decorator
+[decorator](https://www.freecodecamp.org/news/python-property-decorator/)
+> The main objective of any decorator is to modify your class methods or attributes in such a way so that the user of your class no need to make any change in their code.
+
 ```python
 def announce(f):
 	def wrapper():
