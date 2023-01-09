@@ -8,6 +8,7 @@
   - [constructor function](#constructor-function)
   - [destructuring](#destructuring)
   - [filter](#filter)
+  - [download json file](#download-json-file)
   - [for loop](#for-loop)
   - [functions vs methods](#functions-vs-methods)
   - [high order functions](#high-order-functions)
@@ -83,6 +84,47 @@ let product = {}
 ## filter
 ```javascript
 this.tasks = this.tasks.filter((task) => task.id !== id);
+```
+
+## download json file
+```javascript
+// new feature in HTML5
+// <a href="file.pdf" download="resume.pdf">Download PDF</a> 
+
+function download(path: string, filename: string) {
+    // Create a new link
+    const anchor = document.createElement('a');
+    anchor.href = path;
+    anchor.download = filename;
+
+    // Append to the DOM
+    document.body.appendChild(anchor);
+
+    // Trigger `click` event
+    anchor.click();
+
+    // Remove element from DOM
+    document.body.removeChild(anchor);
+}; 
+
+const handleDownload = async (filename: string) => {
+    const response = await downloadFile(filename)
+
+    // convert to readable json file
+    const data = JSON.stringify(response.data, null, 4); 
+
+    // Create a Blob object
+    const blob = new Blob([data], { type: 'application/json' });
+
+    // Create an object URL
+    const url = URL.createObjectURL(blob);
+
+    // Download file
+    download(url, filename);
+
+    // Release the object URL
+    URL.revokeObjectURL(url);
+}
 ```
 
 ## for loop
