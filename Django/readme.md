@@ -23,6 +23,7 @@
   - [html variable/condition](#html-variablecondition)
   - [html style](#html-style)
   - [migrate](#migrate)
+  - [parser](#parser)
   - [shell](#shell)
   - [permission\&authentication](#permissionauthentication)
   - [manage tokens](#manage-tokens)
@@ -499,6 +500,37 @@ LOGGING = {
 ## migrate
 1. python manager.py makemigrations: create migrations based on models
 2. python manager.py migrate: apply changes to django database
+
+## parser
+How the parser is determined?
+
+> The set of valid parsers for a view is always defined as a list of classes. When request.data is accessed, REST framework will examine the Content-Type header on the incoming request, and determine which parser to use to parse the request content.
+
+Note: When developing client applications always remember to make sure you're setting the Content-Type header when sending data in an HTTP request.
+
+If you don't set the content type, most clients will default to using 'application/x-www-form-urlencoded', which may not be what you wanted.
+
+As an example, if you are sending json encoded data using jQuery with the .ajax() method, you should make sure to include the contentType: 'application/json' setting.
+
+Parser Classes in Django REST:
+
+- JSONParser
+  - It parses the incoming request JSON content into python content type dict.
+  - It is used if "Content-Type" is set to "application/json".
+- FormParser
+  - It parses the incoming request form contents into QueryDict.
+  - It is used if "Content-Type" is set to "application/x-www-form-urlencoded".
+- MultiPartParser
+  - It parses the incoming request form contents into QueryDict.
+  - It is used if "Content-Type" is set to "multipart/form-data".
+  - request.data will be a QueryDict containing all the form parameters.
+  - request.files will be a QueryDict containing all the form files.
+  - FormParser and MultiPartParser together used for full support of HTML form data.
+- FileUploadParser
+  - It is used to parse a single file sent in HTTP request.
+  - It expects a url keyword argument "filename". If it's not provided then we should provide the filename in the Content-Disposition HTTP header. For example Content-Disposition: attachment; filename=upload.jpg.
+  - request.file is used to access the contents of uploaded file.
+  - To work with XML data we have use third party library "REST Framework XML" .
 
 ## shell
 1. python manager.py shell

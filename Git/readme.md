@@ -5,6 +5,7 @@
   - [delete file](#delete-file)
   - [diff](#diff)
   - [gitignore](#gitignore)
+  - [github web editor](#github-web-editor)
   - [log](#log)
   - [merge](#merge)
   - [push](#push)
@@ -77,6 +78,15 @@ bin/*
 Bin/*
 Ignore all files and directories inside the directory
 ```
+
+## github web editor
+Go to your repo that contains the folder.
+
+Then, press the "." key.
+
+A web editor will show up. Navigate to the folder, click on it, and press enter.
+
+commit your change in "source control" wedget
 
 ## log
 ```sh

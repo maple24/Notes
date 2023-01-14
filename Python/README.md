@@ -53,6 +53,7 @@
   - [subprocess](#subprocess)
   - [thread](#thread)
   - [tkinter](#tkinter)
+  - [try/except/finally](#tryexceptfinally)
   - [type hint](#type-hint)
   - [tuple vs list](#tuple-vs-list)
   - [underscore](#underscore)
@@ -969,6 +970,9 @@ if __name__ == '__main__':
     app = App()
     app.mainloop()
 ```
+
+## try/except/finally
+> Python provides a keyword finally, which is always executed after try and except blocks. The finally block always executes after normal termination of try block or after try block terminates due to some exception. **Even if you return in the except block still the finally block will execute**.
 
 ## type hint
 ```python
