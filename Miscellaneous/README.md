@@ -142,6 +142,22 @@ addBlog
 changeTitle
 ```
 
+## ChatGPT
+general use of ChatGPT:
+- memerize questions/conversions
+- generate codes, eg. **python, HTML, CSS, javascript, typescript**
+- explain codes
+- **improve codes**
+- translating codes, eg. converting python code to javascript
+- rewrite css/html with tailwindcss
+- uncaught error
+- generate resume
+- generate contract
+- generate interview questions
+- generate dummy data
+
+TBD: how to ask questions, checkout YouTube video(https://youtu.be/sTeoEFzVNSc)
+
 ## commonJS vs ES module
 > In modern software development, modules organize software code into self-contained chunks that together make up a larger, more complex application.
 In the browser JavaScript ecosystem, **the use of JavaScript modules depends on the import and export statements; these statements load and export EMCAScript modules (or ES modules), respectively.**
