@@ -226,6 +226,15 @@ import B from …
 // a module can have only one default export but multiple named exports
 ```
 
+## improve javascript performance
+- reduce application size with webpack
+- **use cache in the browser**
+- remove unused javascript
+- place javascript at the bottom of the page
+- use minification
+- use Gzip compression
+- avoid unnecessary access to DOM
+
 ## imutable
 > It is better to keep data imutable in js, in which case, 'this' will not be misleaded when called back.
 
