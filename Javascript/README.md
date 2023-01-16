@@ -67,6 +67,43 @@ var get_func_inner = foo(5);
 console.log(get_func_inner(4));
 console.log(get_func_inner(3));
 ```
+```javascript
+// closure just refer to the variable not stored
+const add = (function () {
+  let counter = 0;
+  return function () {counter += 1; return counter}
+})();
+
+add();
+add();
+add();
+// output: 3
+// -----------------------------------------------
+unction outer() 
+{
+    var arr = [];
+    var i;
+    for (i = 0; i < 4; i++) 
+    {
+        // storing anonymous function
+        arr[i] = function () { return i; }
+    }
+  
+    // returning the array.
+    return arr;
+}
+  
+var get_arr = outer();
+  
+console.log(get_arr[0]());
+console.log(get_arr[1]());
+console.log(get_arr[2]());
+console.log(get_arr[3]());
+// output:4
+// output:4
+// output:4
+// output:4
+```
 
 ## colon vs equal
 ```javascript
