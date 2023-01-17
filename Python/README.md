@@ -23,6 +23,7 @@
   - [function parameter](#function-parameter)
   - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
+  - [get hostname](#get-hostname)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
   - [logging](#logging)
@@ -485,6 +486,12 @@ class Starter:
 ## for loop in square brackets
 ```python
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
+```
+
+## get hostname
+```python
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 ```
 
 ## GIL

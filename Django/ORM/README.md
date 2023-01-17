@@ -7,6 +7,39 @@ ORM stands for Object Relational Mapping. The ORM is here to connect between the
 - Relational: This part represents the RDBMS database you're using (Relational Database Manager System). There are numerous popular relational databases out there, but you're probably usin MSSQL, MySQL, Oracle Database, PostgreSQL, MariaDB, PerconaDB, ir TokuDB. What's common between most relational databases is their relational structures (tables, columns, keys, constraints, etc.).
 - Mapping: This final part represents the bridge and connection between the two previous parts.
 
+## extensible data modeling
+Senario: types of products with slightly different features, if just using one table there are many 'nulls' in some fields.
+
+Solutions:
+- Concrete Table Inheritance
+> Create a new table for every single product
+  - Disadvantages:
+    - Field definition duplicated
+    - Multiple SELECT with UNION
+- Multi-table Inheritance
+> Inherite a generic table
+- Abstract models
+> Inherite an abstract generic table
+```python
+class Product(models.Model):
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={'model_in': ('book', 'cupboard')})
+    object_id = models.PositiveIntergerField()
+    item = GenericForeignKey('content_type', 'object_id')
+
+class Base(models.Model):
+    title = models.CharField()
+
+    class Meta:
+        abstract = True
+
+class Book(Base):
+    pass
+
+class Cupboard(Base):
+    pass
+```
+- Polymorphism
+
 ## OR query
 ```python
 # 1. use |
@@ -145,6 +178,39 @@ r = cursor.fetchone()
 r = cursor.fetchall()
 ```
 
+## setup multiple database
+```python
+# in settings.py
+DATABSE = {
+    'default': {},
+    'users_db': {
+        'ENGINE': 'django.db.backends.sqlite3'
+        'NAME': BASE_DIR / 'users.db.sqlite3'
+    }
+}
+
+# create a folder called routers
+# create db_routers.py in routers
+# in db_routers.py
+class AuthRouter:
+    route_app_labels = {'auth', 'contenttypes'}
+
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label in self.route_app_labels:
+            return 'users_db'
+        return None
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label in self.route_app_labels:
+            return 'users_db'
+        return None
+
+# in settings
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter',]
+
+Author.objects.using('users_db').all()
+```
+
 ## commands
 ```sh
 exact
@@ -194,4 +260,8 @@ posts = Student.objects.all().values('firstname')
 # gte (greater than or equal)
 # lt (less than)
 # lte (less than or equal)
+
+# join three tables, eliminate too many queries
+products = Product.objects.all().select_related('book', 'cupboard')
+products = Product.objects.all().prefetch_related('book', 'cupboard')
 ```
