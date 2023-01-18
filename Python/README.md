@@ -26,6 +26,7 @@
   - [get hostname](#get-hostname)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
+  - [kwargs](#kwargs)
   - [logging](#logging)
   - [loguru](#loguru)
   - [I/O](#io)
@@ -520,6 +521,19 @@ print(' '.join(text))
 Name = 'zhu'
 Print(Name.title())
 # Output: Zhu
+```
+
+## kwargs
+```python
+shoppinglist = {'icecream':5, 'apple':1}
+def func(*args, **kwargs):
+    # deployment_id = params.pop("deployment_id", None)
+    for key, value in kwargs.items():
+        print(key, value)
+
+func(**shoppinglist)
+# or
+func(icream=5, apple=1)
 ```
 
 ## logging
