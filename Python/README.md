@@ -175,6 +175,11 @@ async def main():
 # a appears until b finished
 ```
 
+## automating windows application using COM
+[COM](https://pbpython.com/windows-com.html)
+1. win32com.client.Dispatch()
+2. win32com.client.gencache.EnsureDispatch()
+
 ## call
 ```python
 class Product:
