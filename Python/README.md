@@ -858,6 +858,10 @@ process.poll()
 ```
 
 ## thread
+[Python Threading: The Complete Guide](https://superfastpython.com/threading-in-python/#Run_a_Function_in_a_Thread)
+1. run a function in thread
+2. extend the thread class
+
 ```python
 import threading 
 
