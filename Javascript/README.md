@@ -3,9 +3,11 @@
   - [cheatsheet](#cheatsheet)
   - [async and await](#async-and-await)
   - [class](#class)
+  - [closure](#closure)
   - [colon vs equal](#colon-vs-equal)
   - [create element](#create-element)
   - [constructor function](#constructor-function)
+  - [deep copy](#deep-copy)
   - [destructuring](#destructuring)
   - [filter](#filter)
   - [download json file](#download-json-file)
@@ -13,6 +15,7 @@
   - [functions vs methods](#functions-vs-methods)
   - [high order functions](#high-order-functions)
   - [import](#import)
+  - [improve javascript performance](#improve-javascript-performance)
   - [imutable](#imutable)
   - [if statement in oneline](#if-statement-in-oneline)
   - [let vs var vs const](#let-vs-var-vs-const)
@@ -122,6 +125,83 @@ let product = {}
 
 ## constructor function
 ![constructor function](assets/constructorfunction.png)
+
+## deep copy
+1. spread operator (...object)
+2. object assign Object.assign({}, object)
+> However, both of the two methods are only work for "top level" values. Child objects which are nested inside the original object are referenced when using the spread operator or object assign function. This means if the child object values are changing, they are changing in all copies as well.
+
+3. json parser
+```javascript
+JSON.parse(JSON.stringify(animals))
+```
+> This method is not perfect, it may occur some unexpected errors.
+
+4. recursive function
+```javascript
+var toString = Object.prototype.toString;
+function deepCopy(obj) {
+    var rv;
+
+    switch (typeof obj) {
+        case "object":
+            if (obj === null) {
+                // null => null
+                rv = null;
+            } else {
+                switch (toString.call(obj)) {
+                    case "[object Array]":
+                        // It's an array, create a new array with
+                        // deep copies of the entries
+                        rv = obj.map(deepCopy);
+                        break;
+                    case "[object Date]":
+                        // Clone the date
+                        rv = new Date(obj);
+                        break;
+                    case "[object RegExp]":
+                        // Clone the RegExp
+                        rv = new RegExp(obj);
+                        break;
+                    // ...probably a few others
+                    default:
+                        // Some other kind of object, deep-copy its
+                        // properties into a new object
+                        rv = Object.keys(obj).reduce(function(prev, key) {
+                            prev[key] = deepCopy(obj[key]);
+                            return prev;
+                        }, {});
+                        break;
+                }
+            }
+            break;
+        default:
+            // It's a primitive, copy via assignment
+            rv = obj;
+            break;
+    }
+    return rv;
+}
+var a = [1, {foo: "bar"}, ['a', 'b'], new Date()];
+snippet.log(JSON.stringify(a));
+var b = deepCopy(a);
+snippet.log(JSON.stringify(b));
+```
+5. lodash
+> This is the best way to deal with this problem.
+```javascript
+const _ = require('lodash');
+// ES6
+import { cloneDeep } from 'lodash'
+
+const animals = [{ cat: '🐱', monkey: '🐒', whale: '🐋' }];
+
+const moreAnimals = _.cloneDeep(animals);
+
+console.log(moreAnimals);
+
+// [{ cat: '🐱', monkey: '🐒', whale: '🐋' }]
+```
 
 ## destructuring
 > The destructuring assignment syntax is a JavaScript expression that makes it possible to **unpack values from arrays, or properties from objects, into distinct variables.**

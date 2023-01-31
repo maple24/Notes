@@ -68,6 +68,12 @@ If each address can belong to only one customer, this relationship is "One to On
 
 Our initial table that included the address along with the customer could have worked fine in most cases.
 
+> Unless you have a good reason not to, a 1:1 relationship usually indicates that you’d be better off combining the two tables’ data into a single table.
+
+> However, you might want to create tables with a 1:1 relationship under a particular set of circumstances. If you have a field with optional data, such as “description,” that is blank for many of the records, you can move all of the descriptions into their own table, eliminating empty space and improving database performance.
+
+> To guarantee that the data matches up correctly, you’d then have to include at least one identical column in each table, most likely the primary key.
+
 ![one to one 2](assets/onetoone_2.png)
 
 We can visualize the relationship between the customer and address records like this:
@@ -81,8 +87,6 @@ This is the most commonly used type of relationship. Consider an e-commerce webs
 - Items can have descriptions in many languages.
 
 ![one to many 1](assets/onetomany_1.png)
-
-![one to many 2](assets/onetomany_2.png)
 
 ![one to many 3](assets/onetomany_3.png)
 

@@ -11,6 +11,7 @@
   - [blob](#blob)
   - [bundling](#bundling)
   - [camel case](#camel-case)
+  - [ChatGPT](#chatgpt)
   - [commonJS vs ES module](#commonjs-vs-es-module)
   - [CORS](#cors)
   - [CDN](#cdn)
@@ -19,6 +20,7 @@
   - [ctrl+c in command line](#ctrlc-in-command-line)
   - [curl](#curl)
   - [docker daemon](#docker-daemon)
+  - [environment variable](#environment-variable)
   - [favicon](#favicon)
   - [hash](#hash)
   - [heartbeat](#heartbeat)
@@ -212,6 +214,35 @@ d: data
 ## docker daemon
 - The Docker daemon is a service that runs on your host operating system.
 - It currently only runs on Linux because it depends on a number of Linux kernel features, but there are a few ways to run Docker on MacOS and Windows too.
+
+## environment variable
+check current environment variables
+```sh
+# list all environment variables
+# in command prompt
+set
+# in powershell
+Get-ChildItem Env:
+
+# check a specific environment variable
+# in command prompt
+echo %[variable_name]%
+echo %USERNAME%
+
+# in powershell
+echo $Env:[variable_name]
+echo $Env:USERNAME
+
+# set environment variable
+# via command prompt
+# set a new user-specific environment variable
+setx [variable_name] "[variable_value]"
+
+# set a system-wide environment variable
+setx [variable_name] "[variable_value]" /M
+```
+
+
 
 ## favicon
 > A favicon is a small image displayed next to the page title in the browser tab.

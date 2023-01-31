@@ -23,8 +23,10 @@
   - [function parameter](#function-parameter)
   - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
+  - [get hostname](#get-hostname)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
+  - [kwargs](#kwargs)
   - [logging](#logging)
   - [loguru](#loguru)
   - [I/O](#io)
@@ -487,6 +489,12 @@ class Starter:
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```
 
+## get hostname
+```python
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+```
+
 ## GIL
 [GIL](https://realpython.com/python-gil/)
 
@@ -513,6 +521,19 @@ print(' '.join(text))
 Name = 'zhu'
 Print(Name.title())
 # Output: Zhu
+```
+
+## kwargs
+```python
+shoppinglist = {'icecream':5, 'apple':1}
+def func(*args, **kwargs):
+    # deployment_id = params.pop("deployment_id", None)
+    for key, value in kwargs.items():
+        print(key, value)
+
+func(**shoppinglist)
+# or
+func(icream=5, apple=1)
 ```
 
 ## logging
