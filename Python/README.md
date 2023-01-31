@@ -9,6 +9,7 @@
   - [asyncrounous](#asyncrounous)
   - [call](#call)
   - [call method by name](#call-method-by-name)
+  - [classmethod \& staticmethod](#classmethod--staticmethod)
   - [class variable scope](#class-variable-scope)
   - [cli](#cli)
   - [compile pyd](#compile-pyd)
@@ -220,6 +221,68 @@ def call_property(o, name):
 f = Foo()
 call_method(f, "bar1")  # prints 1
 print(call_property(f, 'name')) # prints maple
+```
+
+## classmethod & staticmethod
+```python
+class BookCase:
+
+    def __init__(self, books=None):
+        self.books = books
+
+    @classmethod
+    def create_bookcase(cls, books):
+        list_of_books = []
+
+        for t, a in books:
+            list_of_books.append(Book(t, a))
+
+        return cls(list_of_books)
+```
+> When you need a utility function that doesn’t access any properties of a class, but makes sense that it belongs to the class, we use static functions.
+
+> Class methods are for when you need to have methods that aren't specific to any particular instance, but still involve the class in some way. 
+
+> You can use class methods for any methods that are not bound to a specific instance but the class. In practice, you often use class methods for methods that **create an instance of the class.**
+
+1. factory method (create an instance)
+```python
+class Supermarket:    
+    def __init__(self, product, best_before):
+        self.best_before = "2022-05-18"
+        self.product = "Milk"
+    
+    @classmethod    
+    def add_product(cls):
+        return cls("Bread", "2022-05-29")
+>>> obj = Supermarket.add_product()
+>>> obj.product
+'Milk'
+>>> obj.best_before
+'2022-05-18'
+```
+2. Correct instance creation in inheritance (can be inheritance)
+```python
+class Supermarket:
+    product_price = {"Milk": 1}
+    def __init__(self, product, best_before):
+        self.best_before = "2022-05-18"
+        self.product = "Milk"
+    @staticmethod
+    def add_import_product(product, best_before):
+        return Supermarket(product, best_before)
+    @classmethod    
+    def add_product(cls, product, best_before):
+        return cls(product, best_before)
+
+class GroceryStore(Supermarket):
+    product_price = {"Milk": 2}
+grocery1 = GroceryStore.add_import_product("Bread", "2022-06-05")
+isinstance(grocery1, GroceryStore)
+>>> False
+grocery2 = GroceryStore.add_product("Apple", "2022-06-10")
+isinstance(grocery2, GroceryStore)
+>>> True
 ```
 
 ## class variable scope
