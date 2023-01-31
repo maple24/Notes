@@ -387,6 +387,11 @@ dumpbin /dependents MyLibrary.cp37-win_amd64.pyd
 ## exceptions
 ![exception1](assets/exception1.png)
 ![exception2](assets/exception2.png)
+```python
+# customized exceptions
+class WriteCoordinateError(Exception):
+    pass
+```
 
 ## function parameter
 ```python
@@ -655,6 +660,30 @@ where pip
 ```
 
 ## property vs instance method
+```python
+import math
+
+class Circle:
+    def __init__(self, radius):
+        # call radius setter function first to enable initial value is float
+        self.radius = radius
+
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        self._radius = float(value)
+
+    @property
+    def diameter(self):
+        return self.radius * 2
+
+    @diameter.setter
+    def diameter(self, value):
+        self.radius = value / 2
+```
 ```python
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -1007,6 +1036,12 @@ def first(l: Sequence[T]) -> T:   # Generic function
 > So, we use a list when we want to contain similar items, but use a tuple when we know what information goes into it.
 
 ## underscore
+[property](https://realpython.com/python-property/)
+> Note: Python doesn’t have the notion of access modifiers, such as private, protected, and public, to restrict access to attributes and methods. In Python, the distinction is between public and non-public class members.
+
+If you want to signal that a given attribute or method is non-public, then you have to use the well-known Python convention of prefixing the name with an underscore (_). That’s the reason behind the naming of the attributes ._x and ._y.
+
+Note that this is just a convention. It doesn’t stop you and other programmers from accessing the attributes using dot notation, as in obj._attr. However, it’s bad practice to violate this convention.
 ```python
 # 1.use in interpreter
 # Store the results of above expression
