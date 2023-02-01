@@ -176,6 +176,11 @@ async def main():
 # a appears until b finished
 ```
 
+## automating windows application using COM
+[COM](https://pbpython.com/windows-com.html)
+1. win32com.client.Dispatch()
+2. win32com.client.gencache.EnsureDispatch()
+
 ## call
 ```python
 class Product:
@@ -971,6 +976,10 @@ process.poll()
 ```
 
 ## thread
+[Python Threading: The Complete Guide](https://superfastpython.com/threading-in-python/#Run_a_Function_in_a_Thread)
+1. run a function in thread
+2. extend the thread class
+
 ```python
 import threading 
 
