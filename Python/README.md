@@ -7,6 +7,7 @@
   - [array vs list](#array-vs-list)
   - [assert](#assert)
   - [asyncrounous](#asyncrounous)
+  - [automating windows application using COM](#automating-windows-application-using-com)
   - [call](#call)
   - [call method by name](#call-method-by-name)
   - [classmethod \& staticmethod](#classmethod--staticmethod)
@@ -978,8 +979,6 @@ process.poll()
 ## thread
 [Python Threading: The Complete Guide](https://superfastpython.com/threading-in-python/#Run_a_Function_in_a_Thread)
 1. run a function in thread
-2. extend the thread class
-
 ```python
 import threading 
 
@@ -991,6 +990,26 @@ def fun(args, event):
 	if event.set():
 print("start thread")
 ```
+2. extend the thread class
+```python
+# two ways to rewrite a thread class
+# 1. send default target function 
+class WebSocketClient(threading.Thread):
+    def __init__(self, server, queue: Queue= None):
+        super().__init__(target=self.connect)
+    
+    def connect(self):
+        pass
+
+# 2. rewrite run function
+class Counter(threading.Thread):
+    def run(self) -> None:
+        for i in range(10):
+            print("counting")
+            time.sleep(10)
+        # return super().run()
+```
+
 > Daemon threads are those threads which are killed when the main program exits.
 
 > Because daemon is set True, all threads terminate when the program ends.
