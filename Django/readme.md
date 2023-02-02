@@ -3,6 +3,7 @@
   - [reference](#reference)
   - [Django vs Django RestFramework](#django-vs-django-restframework)
   - [detail](#detail)
+  - [primary key](#primary-key)
   - [database relationships](#database-relationships)
     - [one to one relationships](#one-to-one-relationships)
     - [one to many relationships](#one-to-many-relationships)
@@ -57,7 +58,23 @@
 def status(self, request, *args, **kwargs):
     pass
 
-# if detail is set to be false, url: http://localhost:8000/api/v1/web/task/1/status
+# if detail is set to be true, url: http://localhost:8000/api/v1/web/task/1/status
+```
+
+## primary key
+```python
+# two ways to get pk from viewset
+# 1. define **kwargs
+@action(methods=['GET'], detail=False)
+def status(self, request, *args, **kwargs):
+    pass
+pk = int(kwargs.get('pk'))
+
+# 2. define pk
+@action(methods=['GET'], detail=False)
+def status(self, request, pk=None):
+    pass
+pk = pk
 ```
 
 ## database relationships
