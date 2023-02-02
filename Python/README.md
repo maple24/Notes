@@ -33,6 +33,7 @@
   - [loguru](#loguru)
   - [I/O](#io)
   - [inheritance](#inheritance)
+  - [json dumps/loads](#json-dumpsloads)
   - [lambda function](#lambda-function)
   - [map](#map)
   - [module info](#module-info)
@@ -670,6 +671,11 @@ class Employee( Person ):
 `In the same way, super().fullname() calls person.fullname() method.` 
 
 `The super().fullname() can be called as super(student, self).fullname()`
+
+## json dumps/loads
+> json.dumps() function will convert a subset of Python objects into a json string. Not all objects are convertible and you may need to create a dictionary of data you wish to expose before serializing to JSON.
+
+> json.loads() method can be used to parse a valid JSON string and convert it into a Python Dictionary. It is mainly used for deserializing native string, byte, or byte array which consists of JSON data into Python Dictionary.
 
 ## lambda function
 `multiple inputs, single output`
