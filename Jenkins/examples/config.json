@@ -21,7 +21,7 @@
 		"Slot3": {
 			"SwitchboxComport": "COM11",
 			"PuttyComport": "COM14"
-		}		
+		}
 	},
 	"WX-C-000RY": {
 		"PythonInterpreter": "C:\\Users\\ets1szh\\Desktop\\work\\venv_work\\Scripts\\python.exe",
