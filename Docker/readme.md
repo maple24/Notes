@@ -219,9 +219,11 @@ docker container logs --tail 100 web
 ```sh
 docker run -it --rm python:rc
 ```
-
 `-it: running container interactive`
 
 `--rm: remove container after use`
 
 `rc: shorthand tag for release candiate and points to the latest development version`
+```sh
+docker-compose -f docker-compose.yml up -d
+```

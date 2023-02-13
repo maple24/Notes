@@ -1,0 +1,42 @@
+## Reference
+[Apache Kafka](https://towardsdatascience.com/how-to-install-apache-kafka-using-docker-the-easy-way-4ceb00817d8b)
+
+## Terminology rundown
+Kafka — Basically an event streaming platform. It enables users to collect, store, and process data to build real-time event-driven applications. It’s written in Java and Scala, but you don’t have to know these to work with Kafka. There’s also a Python API.
+
+Kafka broker — A single Kafka Cluster is made of Brokers. They handle producers and consumers and keeps data replicated in the cluster.
+
+Kafka topic — A category to which records are published. Imagine you had a large news site — each news category could be a single Kafka topic.
+
+Kafka producer — An application (a piece of code) you write to get data to Kafka.
+
+Kafka consumer — A program you write to get data out of Kafka. Sometimes a consumer is also a producer, as it puts data elsewhere in Kafka.
+
+Zookeeper — Used to manage a Kafka cluster, track node status, and maintain a list of topics and messages. Kafka version 2.8.0 introduced early access to a Kafka version without Zookeeper, but it’s not ready yet for production environments.
+
+## deploy in docker
+```yml
+# docker-compose
+version: '3'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+```
+
+## connect to kafka shell
+```sh
+# Just replace kafka with the value of container_name
+docker exec -it kafka /bin/sh
+```
