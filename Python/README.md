@@ -10,6 +10,7 @@
   - [automating windows application using COM](#automating-windows-application-using-com)
   - [call](#call)
   - [call method by name](#call-method-by-name)
+  - [class](#class)
   - [classmethod \& staticmethod](#classmethod--staticmethod)
   - [class variable scope](#class-variable-scope)
   - [cli](#cli)
@@ -228,6 +229,42 @@ def call_property(o, name):
 f = Foo()
 call_method(f, "bar1")  # prints 1
 print(call_property(f, 'name')) # prints maple
+```
+
+## class
+1. singleton
+```python
+# you can use singleton decorator to avoid multiple instances, or import the instance
+def Singleton(cls):
+    _instance = {}
+    def _singleton(*args, **kwagrs):
+        if cls not in _instance:
+            _instance[cls] = cls(*args, **kwagrs)
+        return _instance[cls]
+    return _singleton
+
+@Singleton
+class Person:
+    pass
+
+person = Person()
+# ===============================================
+import person
+```
+2. global variable
+```python
+# for a class without init, it is like a class of toolkits and can be initialized many times, so no singleton needed.
+# for this senario, classmethod is useful
+class Person:
+    name = 'maple'
+    age = 25
+
+    def greet(self):
+        print("hello" + self.name)
+
+    @classmethod
+    def is_adult(cls):
+        return cls.age > 18
 ```
 
 ## classmethod & staticmethod
@@ -908,6 +945,10 @@ ROOT=Path(os.path.relpath(ROOT, Path.cwd()))
 
 ## requests
 > 阻塞：程序会等待一个结果出现（不出现就一直等待）然后才执行其他的代码, requests模块是阻塞的
+```python
+# json.dumps is used along with application.json
+requests.patch(url, data=json.dumps(data), headers={"Content-Type": 'application/json'})
+```
 
 ## serial
 ```sh
@@ -980,6 +1021,9 @@ output = process.stdout.readline()
 
 # The poll() method will return exit code if completed, or None if the process is still running
 process.poll()
+
+# main process will wait the subprocess done, you can use communicate either, it has wait at the end
+process.wait()
 ```
 
 ## thread

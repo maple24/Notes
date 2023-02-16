@@ -59,3 +59,167 @@ docker exec -it kafka /bin/sh
 > Committing an offset for a partition is the action of saying that the offset has been processed so that Kafka cluster won't send the committed records for the same partition.
 
 > For a consumer, we can enable auto commit by setting enable.auto.commit property to true.
+
+
+## example
+```python
+'''
+bootstrp_server: Default port is 9092. If no servers are specified, will default to localhost:9092.
+topic: optional list of topics to subscribe to
+partition: data stream in each topic 
+offset: id of message in each partition
+key:
+value:
+group_id: The group.id is how you distinguish different consumer groups. Remember that consumers work together in groups to read data from a particular topic.
+One partition of a topic can only be consumed by one consumer within the same ConsumerGroup.
+
+If you do not set the group.id, the KafkaConsumer will generate a new, random group.id for you. As this group.id is unique you will see data is being consumed.
+
+If you have multiple consumers running with the identical group.id, only one consumer will read the data whereas the other one stays idle not consuming anything.
+
+auto_offset_reset: read from the very first one if set "earliest". Default "latest"
+enable_auto_commit: True by default
+consumer_timeout_ms: close connection when no message fetched
+'''
+# create a new topic
+from kafka.admin import KafkaAdminClient, NewTopic
+
+admin_client = KafkaAdminClient(
+    bootstrap_servers="localhost:9092", 
+    client_id='test'
+)
+
+topic_list = []
+topic_list.append(NewTopic(name="example_topic", num_partitions=1, replication_factor=1))
+admin_client.create_topics(new_topics=topic_list, validate_only=False)
+
+
+# ================================================
+# create a new partition for a topic
+from kafka import KafkaAdminClient
+from kafka.admin import NewPartitions
+
+topic = 'mytopic1'
+bootstrap_servers = 'localhost:9092'
+
+admin_client = KafkaAdminClient(bootstrap_servers=bootstrap_servers)
+topic_partitions = {}
+topic_partitions[topic] = NewPartitions(total_count=4)
+admin_client.create_partitions(topic_partitions)
+
+
+# ================================================
+# retrieve partitions of a topic
+from kafka import KafkaConsumer, TopicPartition
+from kafka.structs import TopicPartition
+
+topic = 'mytopic1'
+bootstrap_servers = 'localhost:9092'
+consumer = KafkaConsumer(
+    bootstrap_servers=bootstrap_servers, auto_offset_reset='earliest')
+
+partitions = consumer.partitions_for_topic(topic)
+print(partitions)
+
+first_topic_part = TopicPartition(topic, 2)
+print(first_topic_part)
+
+consumer.assign([first_topic_part])
+
+partitions = consumer.assignment()
+print(partitions)
+
+
+
+# ================================================
+# read from a specific partition
+from kafka import KafkaConsumer
+from kafka.structs import TopicPartition
+
+topic = 'mytopic'
+bootstrap_servers = 'localhost:9092'
+consumer = KafkaConsumer(
+    bootstrap_servers=bootstrap_servers, auto_offset_reset='earliest')
+# Read the specified partition
+consumer.assign([TopicPartition(topic, 1)])
+for msg in consumer:
+    print(msg.value.decode("utf-8"))
+    
+
+# position (partition need to be assigned, do not specify topic for instance)
+partition = TopicPartition(topic=topic, partition=0)
+consumer.assign([partition])
+for msg in consumer:
+    print(consumer.position(partition))
+    print(msg)
+
+# ================================================
+# commit (group_id need to specified)
+for msg in consumer:
+    print(msg.value.decode("utf-8"))
+    consumer.commit()
+
+
+# ================================================
+# seek (do not set auto offset)
+topic = 'mytopic'
+bootstrap_servers = 'localhost:9092'
+consumer = KafkaConsumer(
+    topic,
+    client_id='local-test',
+    bootstrap_servers=bootstrap_servers,
+    # auto_offset_reset='earliest'
+)
+
+consumer.partitions_for_topic(topic)
+partition = TopicPartition(topic=topic, partition=1)
+consumer.seek(partition=partition, offset=1)
+for message in consumer:
+    print(message)
+    
+
+# ================================================
+# seek to beginning (works the same as `earliest` offset reset)
+topic = 'mytopic'
+bootstrap_servers = 'localhost:9092'
+consumer = KafkaConsumer(
+    topic,
+    client_id='local-test',
+    bootstrap_servers=bootstrap_servers,
+    # auto_offset_reset='earliest'
+)
+
+consumer.partitions_for_topic(topic)
+consumer.seek_to_beginning()
+for message in consumer:
+    print(message)
+
+
+# ================================================
+# assign (do not specify topic for instance)
+bootstrap_servers = 'localhost:9092'
+consumer = KafkaConsumer(
+    client_id='local-test',
+    bootstrap_servers=bootstrap_servers,
+)
+
+topic = 'mytopic'
+partition = TopicPartition(topic=topic, partition=1)
+consumer.assign([partition])
+for message in consumer:
+    print(message)
+    
+    
+# ================================================
+# poll
+while True:
+    print('polling...')
+    records = consumer.poll(timeout_ms=1000)
+    for _, consumer_records in records.items():
+        # Parse records
+        for consumer_record in consumer_records:
+            print(str(consumer_record.value.decode('utf-8')))
+        continue
+    
+
+```

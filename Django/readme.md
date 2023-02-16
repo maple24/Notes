@@ -62,6 +62,7 @@ def status(self, request, *args, **kwargs):
 ```
 
 ## primary key
+> pk is part of kwargs, so you can specify pk
 ```python
 # two ways to get pk from viewset
 # 1. define **kwargs
