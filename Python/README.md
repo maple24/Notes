@@ -23,6 +23,7 @@
   - [dictionary](#dictionary)
   - [dlls](#dlls)
   - [exceptions](#exceptions)
+  - [event vs global variable](#event-vs-global-variable)
   - [function parameter](#function-parameter)
   - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
@@ -499,6 +500,20 @@ dumpbin /dependents MyLibrary.cp37-win_amd64.pyd
 class WriteCoordinateError(Exception):
     pass
 ```
+
+## event vs global variable
+
+There is a fundamental difference between the two. When you write
+
+event_is_set = e.wait(1)
+
+then you are stating to wait for a maximal time If, during the wait, the other thread has triggered a change, it will be noted (nearly) immediately. Conversely,
+
+time.sleep(1)
+
+is an unconditional time. If, during the wait, the other thread has triggered a change, it will be not be noted until the sleep has ended.
+
+The event, therefore, is inherently more responsive than the latter.
 
 ## function parameter
 ```python
@@ -1009,21 +1024,30 @@ print(c.recv(1024).decode())
 
 ## subprocess
 ```python
+# put err and out in the same pipe
+# stderr=subprocess.STDOUT, stdout=subprocess.PIPE
+p = subprocess.Popen("ls", shell=True, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+
 # To run a process and read all of its output, set the stdout value to PIPE and call communicate().
 import subprocess
 process = subprocess.Popen(['echo', '"Hello stdout"'], stdout=subprocess.PIPE)
 
-# wait for the process to complete and then it will display the output
-stdout = process.communicate()[0]
+# wait for the process to complete and then it will display the output, can have some inputs while communicating
+stdout, stderr = process.communicate(input=None)[0]
 
-# This will read a line from the stdout.
-output = process.stdout.readline()
+# This will read a line from the stdout.Use while to read all outputs
+# output is a string
+process.stdout.readline()
 
 # The poll() method will return exit code if completed, or None if the process is still running
 process.poll()
 
 # main process will wait the subprocess done, you can use communicate either, it has wait at the end
 process.wait()
+
+# works the same as communicate, except no input allowed
+# output is a list
+process.stdout.readlines()
 ```
 
 ## thread
