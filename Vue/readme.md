@@ -50,6 +50,7 @@
     - [exact router link](#exact-router-link)
   - [vite](#vite)
     - [problem with ES6 modules](#problem-with-es6-modules)
+  - [VNode](#vnode)
     - [why vite?](#why-vite)
   - [vue2 vs vue3](#vue2-vs-vue3)
   - [vuetify](#vuetify)
@@ -61,6 +62,7 @@
 
 ## Reference
 [javascript](https://wesbos.com/javascript/01-the-basics/variables-and-statements/#statements-and-semi-colons-in-javascript)
+[vue source code lessonlearnt](https://nlrx-wjc.github.io/Learn-Vue-Source-Code/virtualDOM/#_3-vue%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9Fdom)
 
 ## alias&proxy
 ```javascript
@@ -315,6 +317,11 @@ Using the same example, if we had <router-link to="/foo"> and <router-link to="/
 > Since IE still has a sizable share of the market, it's not practical to just serve the 'future' code and ignore IE. That’s why the current standard workflow is to **convert the 'future' code into something more 'traditional' that all browsers can understand**. That's usually taken care of by tools like **Webpack and Babel**.
 
 > During the development cycle, we have to change and save the code a few hundred times on a daily basis. The **hot reloading process involves putting a module through the bundling pipeline every time we change the code in the module, and this is as slow as it sounds**.
+
+## VNode
+> VNode在Vue的整个虚拟DOM过程起了什么作用呢？
+
+> 其实VNode的作用是相当大的。我们在视图渲染之前，把写好的template模板先编译成VNode并缓存下来，等到数据发生变化页面需要重新渲染的时候，我们把数据发生变化后生成的VNode与前一次缓存下来的VNode进行对比，找出差异，然后有差异的VNode对应的真实DOM节点就是需要重新渲染的节点，最后根据有差异的VNode创建出真实的DOM节点再插入到视图中，最终完成一次视图更新.
 
 ### why vite?
 ![vite](assets/vite_concept.png)

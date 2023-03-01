@@ -34,6 +34,7 @@
   - [this](#this)
   - [typeof](#typeof)
   - [upload a file](#upload-a-file)
+  - [virtual DOM](#virtual-dom)
 
 ## bundler
 What bundlers do?
@@ -584,3 +585,22 @@ typeof null                   // Returns "object"
 
 var myUploadedFile = document.getElementById("myFile").files[0];
 ```
+
+## virtual DOM
+What is virtual DOM?
+```javascript
+// *Use Javascript to describe a html element.*
+<div class="a" id="b">content</div>
+
+{
+  tag:'div',
+  attrs:{
+    class:'a',
+    id:'b'
+  },
+  text:'content',
+  children:[]
+}
+```
+Why virtual DOM?
+1. Real DOM is very performance intense. So using Javascript compuation efficency as a workaround.
