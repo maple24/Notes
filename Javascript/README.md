@@ -382,18 +382,24 @@ function myFunc(total, num) {
 ![promise2](assets/promise2.png)
 ![promise3](assets/promise3.png)
 ```javascript
-let myPromise = new Promise(function(myResolve, myReject) {
-// "Producing Code" (May take some time)
-
-  myResolve(); // when successful
-  myReject();  // when error
-});
-
-// "Consuming Code" (Must wait for a fulfilled Promise)
-myPromise.then(
-  function(value) { /* code if successful */ },
-  function(error) { /* code if some error */ }
-);
+function makePizza(toppings, ready) {
+    const pizzaPromise = new Promise(function (resolve, reject) {
+        if (ready === true) {
+            resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        } else {
+            reject('pizza not ready')
+        }
+    })
+        .finally(() => console.log("Promise ready")) // triggers first
+        .then((pizza) => {
+            console.log("Ahh I got it!");
+            console.log(pizza);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    return pizzaPromise;
+}
 ```
 
 ## prototype
