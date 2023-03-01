@@ -1,5 +1,6 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
+  - [bundler](#bundler)
   - [cheatsheet](#cheatsheet)
   - [async and await](#async-and-await)
   - [class](#class)
@@ -28,9 +29,23 @@
   - [setTimeout](#settimeout)
   - [spread operator](#spread-operator)
   - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
+  - [third party modules](#third-party-modules)
   - [this](#this)
   - [typeof](#typeof)
   - [upload a file](#upload-a-file)
+
+## bundler
+What bundlers do?
+1. a bundler is able to compress all your code.
+2. bundler will minify all the code. The way minification works is longer variables are replaced with shorter ones to save space. For example options would be replaced with o.
+3. make your code as small as possible.
+4. dead-code elimination - if you have a function that is never used, it will detect that and remove that.
+
+Bundler options:
+1. parcel
+2. pika
+3. webpack
+4. vite
 
 ## cheatsheet
 ```javascript
@@ -383,22 +398,14 @@ function myFunc(total, num) {
 ![promise3](assets/promise3.png)
 ```javascript
 function makePizza(toppings, ready) {
-    const pizzaPromise = new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
         if (ready === true) {
             resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
-        } else {
-            reject('pizza not ready')
+            return
         }
+        reject(new Error('pizza not ready'))
     })
         .finally(() => console.log("Promise ready")) // triggers first
-        .then((pizza) => {
-            console.log("Ahh I got it!");
-            console.log(pizza);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    return pizzaPromise;
 }
 ```
 
@@ -476,6 +483,53 @@ this.task = [...this.task, task]
 <!-- textContent: hello 123 -->
 <!-- innerText: hello -->
 <!-- innerHTML: hello<span style="display:none">123</span> -->
+```
+
+## third party modules
+```javascript
+// 1. waait: sleep for sometime
+import wait from waait
+async function greet() {
+    await wait(200)
+    console.log("hello world")
+}
+
+// 2. fake: generate random data
+import faker from faker
+const randomName = faker.name.firstName()
+const randomEmail = faker.internet.email()
+const randomCard = faker.helpers.createCard() // random contact card
+
+// 3. date-nfs: includes methods that makes working and formatting dates much nicer
+import { formatDistance } from "date-fns";
+cost diff = formatDistance(
+  new Date(1986, 3, 4, 11, 32, 0),
+  new Date(1986, 3, 4, 10, 32, 0),
+  { addSuffix: true }
+); // "in about 1 hour"
+
+// 4. axios
+// Axios is a library that is does basically the same thing as fetch, but it includes some defaults that fetch doe not have and it does not have weird double await that our promises do because of the JSON default
+
+// 5. lodash
+// Lodash is a utility library for working with arrays, objects and a few other interesting things.
+import { intersection } from "lodash";
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const b = [5, 3, 8, 3, 7, 453, 34];
+
+const sameValues = intersection(a, b);
+console.log(sameValues);//[3, 5, 7, 8]
+
+// 6. await-to-js: allows you to handle errors a bit differently
+// the await to package will always return an array and the first thing will always be an error, and the second thing will be the resolved value.
+import to from "await-to-js"
+const [err, successValue] = await to(checkIfNameIsCool("snickers"));
+if (err) {
+  // deal with it
+  console.log(err);
+} else {
+  console.log(successValue);
+}
 ```
 
 ## this
