@@ -14,6 +14,7 @@
   - [download json file](#download-json-file)
   - [for loop](#for-loop)
   - [functions vs methods](#functions-vs-methods)
+  - [getter and setter](#getter-and-setter)
   - [high order functions](#high-order-functions)
   - [import](#import)
   - [improve javascript performance](#improve-javascript-performance)
@@ -305,6 +306,25 @@ Take console.log(), log is a method inside console object
 ![methods](assets/methods.png)
 
 `callback functions`: callback function is a function that gets passed into another function and then it is called by the browser at a later point in time.
+
+## getter and setter
+```javascript
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(newName) {
+        newName = newName.trim();
+        if (newName === '') {
+            throw 'The name cannot be empty';
+        }
+        this._name = newName;
+    }
+}
+```
 
 ## high order functions
 ![high order functions](assets/highorderfunctions.png)
