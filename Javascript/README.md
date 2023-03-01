@@ -24,6 +24,7 @@
   - [map vs foreach](#map-vs-foreach)
   - [propagation](#propagation)
   - [promise](#promise)
+  - [prototype](#prototype)
   - [setTimeout](#settimeout)
   - [spread operator](#spread-operator)
   - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
@@ -393,6 +394,55 @@ myPromise.then(
   function(value) { /* code if successful */ },
   function(error) { /* code if some error */ }
 );
+```
+
+## prototype
+```javascript
+// Instead of putting functions on every single instance (this.eat), we can put them on what is referred to as the prototype (Pizza.prototype.eat).
+// why prototype?
+// The problem comes when you have 20,000 pizzas. Then you have lots of instances of the pizza, and every time you define a new function, that takes up memory in your computer and that is what causes websites and computers to go slow in many cases.
+class Pizza {
+    constructor(toppings = [], customer) {
+        console.log("Making a pizza");
+        // save the toppings that were passed in, to this instance of pizza
+        this.toppings = toppings;
+        this.customer = customer;
+        this.id = Math.floor(Math.random() * 16777215).toString(16);
+        this.slices = 2
+        // this.eat = function () {
+        //     if (this.slices > 0) {
+        //         console.log("CHOMP");
+        //         return this.slices -= 1
+        //     } else {
+        //         throw new Error("No slice left!")
+        //     }
+        // }
+
+        Pizza.prototype.eat = function () {
+            if (this.slices > 0) {
+                console.log("CHOMP");
+                return this.slices -= 1
+            } else {
+                throw new Error("No slice left!")
+            }
+        }
+    }
+    // better way in ES6, this also works as an instance method in ES6, whereas it is a staic method is ES5
+    eat() {
+        if (this.slices > 0) {
+            console.log("CHOMP");
+            return this.slices -= 1
+        } else {
+            throw new Error("No slice left!")
+        }
+    }
+}
+```
+```javascript
+// If you set both prototype variable and class variable, the instance size will be `medium`
+this.size = 'Medium'
+Pizza.prototype.size = 'Large'
+// It first checks for a property on the instance and if it doesn't exist, it will go to the prototype and look that up.
 ```
 
 ## setTimeout

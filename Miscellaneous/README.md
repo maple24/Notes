@@ -426,7 +426,7 @@ Relational database:
 
 Non-relational database:
 - MongoDB
-- Redius
+- Redis
 
 ![non-relational](non-assets/non-relational.png)
 
