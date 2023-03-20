@@ -27,6 +27,7 @@
   - [function parameter](#function-parameter)
   - [file locking](#file-locking)
   - [for loop in square brackets](#for-loop-in-square-brackets)
+  - [garbage collection](#garbage-collection)
   - [get hostname](#get-hostname)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
@@ -616,6 +617,12 @@ class Starter:
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```
 
+## garbage collection
+1. reference counting reaches to 0
+> When the reference count of an object reaches 0, reference counting garbage collection algorithm cleans up the object immediately.
+2. generational garbage collection
+> If you have a cycle, reference count doesn’t reach zero, you wait for the generational garbage collection algorithm to run and clean the object.
+
 ## get hostname
 ```python
 import socket
@@ -632,6 +639,10 @@ CPU-bound programs are those that are pushing the CPU to its limit. This include
 I/O-bound programs are the ones that spend time waiting for Input/Output which can come from a user, file, database, network, etc. I/O-bound programs sometimes have to wait for a significant amount of time till they get what they need from the source due to the fact that the source may need to do its own processing before the input/output is ready, for example, a user thinking about what to enter into an input prompt or a database query running in its own process.
 
 To recap the above, concurrency encompasses both multiprocessing (ideal for CPU-bound tasks) and threading (suited for IO-bound tasks). Multiprocessing is a form of parallelism, with parallelism being a specific type (subset) of concurrency. The Python standard library has offered longstanding support for both of these through its multiprocessing, threading, and concurrent.futures packages.
+
+Effect:
+1. The first effect of the GIL is well-known: multiple Python threads cannot run in parallel. Thus, a multi-threaded program is not faster than its single-threaded equivalent even on a multi-core machine. (Then Why multi-threads? For requests problem, multi-threads can save waiting time. As a result, python multi-thread and aysnc I/O will have the same speed.)
+> Although Python threads cannot help us speed up CPU-intensive code, they are useful when we want to perform multiple I/O-bound tasks simultaneously. Consider a server that listens for incoming connections and, when it receives a connection, runs a handler function in a separate thread. The handler function talks to the client by reading from and writing to the client's socket. When reading from the socket, the thread just hangs until the client sends something.
 
 ## inserted function
 ```python

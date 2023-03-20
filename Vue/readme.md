@@ -51,6 +51,7 @@
   - [vite](#vite)
     - [problem with ES6 modules](#problem-with-es6-modules)
   - [VNode](#vnode)
+  - [Vuejs render process](#vuejs-render-process)
     - [why vite?](#why-vite)
   - [vue2 vs vue3](#vue2-vs-vue3)
   - [vuetify](#vuetify)
@@ -319,9 +320,102 @@ Using the same example, if we had <router-link to="/foo"> and <router-link to="/
 > During the development cycle, we have to change and save the code a few hundred times on a daily basis. The **hot reloading process involves putting a module through the bundling pipeline every time we change the code in the module, and this is as slow as it sounds**.
 
 ## VNode
+VNode is a class to describe DOM, which is how virtual DOM generated.
+
 > VNode在Vue的整个虚拟DOM过程起了什么作用呢？
 
 > 其实VNode的作用是相当大的。我们在视图渲染之前，把写好的template模板先编译成VNode并缓存下来，等到数据发生变化页面需要重新渲染的时候，我们把数据发生变化后生成的VNode与前一次缓存下来的VNode进行对比，找出差异，然后有差异的VNode对应的真实DOM节点就是需要重新渲染的节点，最后根据有差异的VNode创建出真实的DOM节点再插入到视图中，最终完成一次视图更新.
+
+## Vuejs render process
+![render process](assets/renderprocess.png)
+![render function](assets/renderfunction.png)
+> 函数字符串可以通过Function类来生成函数，比如`h(value,options)`，生成函数后通过该函数转换成其他类型，比如virtual DOM。
+
+workflow:
+1. raw HTML to AST
+```HTML
+<div id="app">
+  <p>{{name}}</p>
+</div>
+```
+```javascript
+{
+  "type": 1,
+  "tag": "div",
+  "attrsList": [
+    {
+      "name": "id",
+      "value": "app",
+      "start": 5,
+      "end": 13
+    }
+  ],
+  "attrsMap": {
+    "id": "app"
+  },
+  "rawAttrsMap": {
+    "id": {
+      "name": "id",
+      "value": "app",
+      "start": 5,
+      "end": 13
+    }
+  },
+  "children": [
+    {
+      "type": 1,
+      "tag": "p",
+      "attrsList": [],
+      "attrsMap": {},
+      "rawAttrsMap": {},
+      "parent": "[Circular ~]",
+      "children": [
+        {
+          "type": 2,
+          "expression": "_s(name)",
+          "tokens": [
+            {
+              "@binding": "name"
+            }
+          ],
+          "text": "{{name}}",
+          "start": 22,
+          "end": 30,
+          "static": false
+        }
+      ],
+      "start": 19,
+      "end": 34,
+      "plain": true,
+      "static": false,
+      "staticRoot": false
+    }
+  ],
+  "start": 0,
+  "end": 41,
+  "plain": false,
+  "attrs": [
+    {
+      "name": "id",
+      "value": "\"app\"",
+      "start": 5,
+      "end": 13
+    }
+  ],
+  "static": false,
+  "staticRoot": false
+}
+```
+2. AST to renderString
+```javascript
+_c('div', {
+  attrs: {
+    "id": "app"
+  }
+}, [_c('p', [_v(_s(name))])])
+```
+3. renderString to VNode(virtual DOM)
+![virtual DOM](assets/virtualDOM.png)
 
 ### why vite?
 ![vite](assets/vite_concept.png)
