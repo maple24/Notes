@@ -52,6 +52,7 @@
   - [rest client](#rest-client)
   - [scss/sass](#scsssass)
   - [socket vs websocket](#socket-vs-websocket)
+  - [socket.io](#socketio)
   - [SPA vs SPC](#spa-vs-spc)
   - [static vs dynamic website](#static-vs-dynamic-website)
   - [status codes](#status-codes)
@@ -445,6 +446,13 @@ With Sass, you can reduce the number of times you repeat yourself and ensure you
 > Even though they achieve (in general) similar things, yes, they are really different. WebSockets typically run from browsers connecting to Application Server over a protocol similar to HTTP that runs over TCP/IP. So they are primarily for Web Applications that require a permanent connection to its server. On the other hand, plain sockets are more powerful and generic. They run over TCP/IP but they are not restricted to browsers or HTTP protocol. They could be used to implement any kind of communication.
 
 websocket needs http protocol to make a first connection.
+
+## socket.io
+socket.io is **a javascript library** that enables low-latency, bi-directional communication between web clients and servers. 
+
+Socket.io is **built on top of the WebSocket protocol** and provides additional capabilities such as automatic reconnections, broadcast support, or falling back to HTTP long polling.
+
+similary to Django channels.
 
 ## SPA vs SPC
 SPA stands for single page applications.
