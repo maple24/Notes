@@ -33,6 +33,21 @@ It is gonna be a bit messy here.
 - [Websocket](Websocket)
 - [LessonLearnt](LessonLearnt)
 
+# Git semantic commit messages
+- feat: add new features
+- fix: fix issues/bugs
+- style: code style, do not affect running results
+- perf: improve performance
+- refactor: reconstructure
+- revert: reset/revert commits
+- test: 
+- docs: 
+- chore: 
+- workflow: improve workflow
+- ci: continous integrated
+- types: change typescript variables
+- wip: under development
+
 # Markdown basic syntax
 ```
 | Element         | Markdown Synatx           |
