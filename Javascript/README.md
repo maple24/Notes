@@ -3,13 +3,15 @@
   - [bundler](#bundler)
   - [cheatsheet](#cheatsheet)
   - [async and await](#async-and-await)
+  - [browser](#browser)
   - [class](#class)
-  - [closure](#closure)
+  - [closure (anonymous/lambda function)](#closure-anonymouslambda-function)
   - [colon vs equal](#colon-vs-equal)
   - [create element](#create-element)
   - [constructor function](#constructor-function)
   - [deep copy](#deep-copy)
   - [destructuring](#destructuring)
+  - [event loop](#event-loop)
   - [filter](#filter)
   - [download json file](#download-json-file)
   - [for loop](#for-loop)
@@ -69,10 +71,13 @@ console.log(res)
 // await use before a promise
 ```
 
+## browser
+![browser](assets/architecture.png)
+
 ## class
 ![class](assets/class.png)
 
-## closure
+## closure (anonymous/lambda function)
 > A closure is an inner function that has access to the outer (enclosing) function's variables.
 
 ```javascript
@@ -232,6 +237,9 @@ console.log(moreAnimals);
 ![destructuring1](assets/destructuring1.png)
 
 ![destructuring2](assets/destructuring2.png)
+
+## event loop
+![event loop](assets/event_loop.png)
 
 ## filter
 ```javascript
