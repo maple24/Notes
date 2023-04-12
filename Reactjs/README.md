@@ -5,6 +5,10 @@
 1. Elements: convert JSX to VDOM
 2. Rendering: transform VDOM to actual DOM
 3. Patching: a process of reconciliation of existing DOM with a freshly built VDOM tree
+   - Build a fresh VDOM.
+   - Recursively compare it with existing DOM.
+   - Locate nodes that were added, removed or changed in any other way.
+   - Patch them.
 4. Components: components are like functions that return HTML elements
 ```javascript
 // example function to convert javascript element into AST(vnode), in reactJs it is `React.createElement`
