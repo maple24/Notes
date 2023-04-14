@@ -27,6 +27,7 @@
   - [httpOnly cookie](#httponly-cookie)
   - [IPC](#ipc)
   - [HMR(hot module replacement)](#hmrhot-module-replacement)
+  - [hook](#hook)
   - [JSX](#jsx)
   - [vite](#vite)
   - [stores in frontend](#stores-in-frontend)
@@ -292,6 +293,9 @@ six ways in general to do IPC:
 
 ## HMR(hot module replacement)
 > HMR is a way of exchanging modules in a running application (and adding/removing modules). You basically can update changed modules without a full page reload.
+
+## hook
+Hooking is a computer programming term that refers to a collection of techniques employed to change how applications or operating systems behave. Hooking involves the interception of function calls, system events, or messages, and the code snippets that perform these interceptions are called hooks.
 
 ## JSX
 > ReactJS relies on **JavaScript Expressions**, popularly known as JSX. In simple terms, JSX is a means of adding HTML code within the JavaScript code.
