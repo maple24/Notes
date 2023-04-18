@@ -59,6 +59,7 @@
   - [status codes](#status-codes)
   - [SSG vs SSR](#ssg-vs-ssr)
   - [use strict](#use-strict)
+  - [web app vs native app](#web-app-vs-native-app)
   - [XHR](#xhr)
   - [yarn](#yarn)
   - [80port](#80port)
@@ -495,6 +496,9 @@ If you're only investigating SSR to improve the SEO of a handful of marketing pa
 
 ## use strict
 > With strict mode, you can not, for example, use undeclared variables.
+
+## web app vs native app
+![web app vs native app](assets/webapp_vs_nativeapp.png)
 
 ## XHR
 XHR stands for XMLHttpRequest.
