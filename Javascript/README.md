@@ -30,6 +30,7 @@
   - [propagation](#propagation)
   - [promise](#promise)
   - [prototype](#prototype)
+  - [self-invoking function](#self-invoking-function)
   - [setTimeout](#settimeout)
   - [spread operator](#spread-operator)
   - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
@@ -489,6 +490,14 @@ class Pizza {
 this.size = 'Medium'
 Pizza.prototype.size = 'Large'
 // It first checks for a property on the instance and if it doesn't exist, it will go to the prototype and look that up.
+```
+
+## self-invoking function
+> A self-invoking expression is invoked (started) automatically, without being called.
+```javascript
+(function () {
+  let x = "Hello!!";  // I will invoke myself
+})();
 ```
 
 ## setTimeout

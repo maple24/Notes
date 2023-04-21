@@ -499,6 +499,7 @@ If you're only investigating SSR to improve the SEO of a handful of marketing pa
 
 ## web app vs native app
 ![web app vs native app](assets/webapp_vs_nativeapp.png)
+[web app vs native app](https://www.mobiloud.com/blog/native-app-vs-webview-app)
 
 ## XHR
 XHR stands for XMLHttpRequest.
