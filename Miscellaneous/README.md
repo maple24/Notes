@@ -284,6 +284,9 @@ HttpOnly is a flag the website can specify about a cookie. In other words, the w
 It is a recognized best practice to share any authentication data only with HttpOnly cookies. Using a standard cookie for authentication is a known vulnerability we should avoid in any case.
 
 ## IPC
+1. shared memeory
+2. message passing(message-based communication)
+
 IPC stands for inter process communication.
 
 six ways in general to do IPC:
