@@ -12,6 +12,7 @@
     - [Uncaught TypeError: route.children.forEach is not a function](#uncaught-typeerror-routechildrenforeach-is-not-a-function)
     - [Browser clients must use the native WebSocket object](#browser-clients-must-use-the-native-websocket-object)
     - [Unexpected mutation of prop vue/no-mutating-props](#unexpected-mutation-of-prop-vueno-mutating-props)
+    - [Redirect is not allowed for a preflight request](#redirect-is-not-allowed-for-a-preflight-request)
   - [filter vs method](#filter-vs-method)
   - [high order array functions](#high-order-array-functions)
   - [icons](#icons)
@@ -148,6 +149,8 @@ eventname:(value){
 ### Unexpected mutation of prop vue/no-mutating-props
 `props can not be changed directly`
 ![error1](assets/error1.png)
+### Redirect is not allowed for a preflight request
+`Ensure the request URL in your code isn’t missing a trailing slash`
 
 ## filter vs method
 ```javascript
