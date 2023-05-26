@@ -1,3 +1,12 @@
+## Reference
+[Typescript](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+
+## cheat sheet
+![Control flow](assets/TypeScript%20Control%20Flow%20Analysis.png)
+![Types](assets/TypeScript%20Classes.png)
+![Interface](assets/TypeScript%20Interfaces.png)
+![Class](assets/TypeScript%20Classes.png)
+
 ## question mark
 [question mark](https://www.becomebetterprogrammer.com/typescript-question-mark/)
 
@@ -15,6 +24,12 @@ config.headers = config.headers ?? {};
 <!-- Example 3: -->
 if(!config.headers) config.headers =  {};
 ```
+
+## difference between type aliases and interface
+![difference between type aliases and interface](assets/types_vs_interface.png)
+
+## function type expression
+![function type expression](assets/function_type_expression.png)
 
 ## Tutorial
 ```javascript
