@@ -1,5 +1,6 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
+  - [array vs tuple](#array-vs-tuple)
   - [bundler](#bundler)
   - [cheatsheet](#cheatsheet)
   - [async and await](#async-and-await)
@@ -39,6 +40,9 @@
   - [typeof](#typeof)
   - [upload a file](#upload-a-file)
   - [virtual DOM](#virtual-dom)
+
+## array vs tuple
+A tuple is a typed array with a pre-defined length and types for each index
 
 ## bundler
 What bundlers do?

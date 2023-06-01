@@ -31,6 +31,162 @@ if(!config.headers) config.headers =  {};
 ## function type expression
 ![function type expression](assets/function_type_expression.png)
 
+## call signatures
+```javascript
+type DescribableFunction = {
+    description: string;
+    (someArg: number): boolean;
+    isAcceptable(s: string): boolean;
+}
+
+function doNothing(fn: DescribableFunction) {
+    console.log(fn.description + " returned " + fn(6) + " length " + fn.isAcceptable("1234567"));
+}
+
+function myFunc(someArg: number) {
+    return someArg > 3;
+}
+myFunc.description = "default description";
+myFunc.isAcceptable = (s: string) => {
+    return s.length > 6 ? true : false
+}
+
+doNothing(myFunc);
+```
+
+## namespace
+```javascript
+namespace Validation {
+  export interface StringValidator {
+    isAcceptable(s: string): boolean;
+  }
+  const lettersRegexp = /^[A-Za-z]+$/;
+  const numberRegexp = /^[0-9]+$/;
+  export class LettersOnlyValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return lettersRegexp.test(s);
+    }
+  }
+  export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return s.length === 5 && numberRegexp.test(s);
+    }
+  }
+}
+// Some samples to try
+let strings = ["Hello", "98052", "101"];
+// Validators to use
+let validators: { [s: string]: Validation.StringValidator } = {};
+validators["ZIP code"] = new Validation.ZipCodeValidator();
+validators["Letters only"] = new Validation.LettersOnlyValidator();
+// Show whether each string passed each validator
+for (let s of strings) {
+  for (let name in validators) {
+    console.log(
+      `"${s}" - ${
+        validators[name].isAcceptable(s) ? "matches" : "does not match"
+      } ${name}`
+    );
+  }
+}
+```
+
+## multi-file namespace
+split our Validation namespace across many files
+```javascript
+// @filename: Validation.ts
+namespace Validation {
+  export interface StringValidator {
+    isAcceptable(s: string): boolean;
+  }
+}
+
+// @filename: LettersOnlyValidator.ts
+/// <reference path="Validation.ts" />
+namespace Validation {
+  const lettersRegexp = /^[A-Za-z]+$/;
+  export class LettersOnlyValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return lettersRegexp.test(s);
+    }
+  }
+}
+```
+
+## generics
+```javascript
+function identity<Type>(arg: Type): Type {
+  return arg;
+}
+
+// explicitly set Type to be string
+let output = identity<string>("myString");
+
+// use type argument inference, the compiler sets the value of Type for us automatically based on the type of the argument we pass in
+let output = identity("myString");
+
+let myIdentity: <Type>(arg: Type) => Type = identity;
+
+interface GenericIdentityFn {
+  <Type>(arg: Type): Type;
+}
+
+let myIdentity: GenericIdentityFn = identity;
+```
+```javascript
+// function in javascript is also an object
+function foo() { return 'foo' }
+
+// vs
+
+const foo = Object.assign(
+  function () { return 'foo' },
+  {}
+)
+```
+
+## declaration
+To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes. Because most JavaScript libraries expose only a few top-level objects, namespaces are a good way to represent them.
+
+We call declarations that don’t define an implementation 'ambient'. Typically these are defined in .d.ts files. If you’re familiar with C/C++, you can think of these as .h files. 
+```javascript
+// code
+let result = myLib.makeGreeting("hello, world");
+console.log("The computed greeting is:" + result);
+let count = myLib.numberOfGreetings;
+
+// declaration
+declare namespace myLib {
+  function makeGreeting(s: string): string;
+  let numberOfGreetings: number;
+}
+
+// overloaded function
+function greet(setting) {
+  console.log(setting.greeting)
+}
+interface GreetingSettings {
+  greeting: string;
+  duration?: number;
+  color?: string;
+}
+declare function greet(setting: GreetingSettings): void;
+```
+
+## array
+```javascript
+// The two functions work the same while the inputs are slightly different
+function myarr(...items: Array<number>) {
+    return items
+}
+const ma = myarr(1, 2, 3)
+
+function myarr1(items: Array<number>) {
+    return items
+}
+const mb = myarr1([1, 2, 3])
+```
+
 ## Tutorial
 ```javascript
 // static coding
