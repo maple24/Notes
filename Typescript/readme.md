@@ -7,6 +7,41 @@
 ![Interface](assets/TypeScript%20Interfaces.png)
 ![Class](assets/TypeScript%20Classes.png)
 
+## declare vs export
+```javascript
+// i.something.d.ts
+export default interface ISomething {
+    myValue: string;
+}
+
+// something.ts
+import ISomething from 'i.something';
+export class Something implements ISomething {...}
+```
+```javascript
+// i.something.d.ts
+declare interface ISomething {
+    myValue: string;
+}
+
+// something.ts
+export class Something implements ISomething {...}
+```
+**However, even declare doesn't work ambiently if it has to import another type of its own.**
+```javascript
+// i.something-else.d.ts
+import SomeBiggerThing from '...';
+import SomeKindOfType from '...';
+declare interface ISomethingElse extends SomeBiggerThing {
+    myValue: SomeKindOfType;
+} 
+
+// something-else.ts
+// ISomethingElse isn't available unless I import it, because it imports its own stuff.
+import ISomethingElse from 'i.something-else';
+export class Something implements ISomethingElse {...}
+```
+
 ## question mark
 [question mark](https://www.becomebetterprogrammer.com/typescript-question-mark/)
 
