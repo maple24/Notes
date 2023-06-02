@@ -28,12 +28,14 @@
   - [map](#map)
   - [map vs filter vs reduce](#map-vs-filter-vs-reduce)
   - [map vs foreach](#map-vs-foreach)
+  - [primitive value](#primitive-value)
   - [propagation](#propagation)
   - [promise](#promise)
   - [prototype](#prototype)
   - [self-invoking function](#self-invoking-function)
   - [setTimeout](#settimeout)
   - [spread operator](#spread-operator)
+  - [symbol](#symbol)
   - [textContent vs innerText vs innerHTML](#textcontent-vs-innertext-vs-innerhtml)
   - [third party modules](#third-party-modules)
   - [this](#this)
@@ -427,6 +429,43 @@ function myFunc(total, num) {
 ## map vs foreach
 ![map vs foreach](assets/map_foreach.png)
 
+## primitive value
+> Some languages, such as C, have the concept of pass-by-reference and pass-by-value. JavaScript sort of has this concept too, though, it’s inferred based on the type of data being passed around. If you ever pass a value into a function, reassigning that value will not modify the value in the calling location. However, if you modify a non-primitive value, the modified value will also be modified where it has been called from.
+```javascript
+function primitiveMutator(val) {
+  val = val + 1;
+}
+let x = 1;
+primitiveMutator(x);
+console.log(x); // 1
+
+function objectMutator(val) {
+  val.prop = val.prop + 1;
+}
+let obj = { prop: 1 };
+objectMutator(obj);
+console.log(obj.prop); // 2
+```
+> Primitive values (except for the mystical NaN value) will always be exactly equal to another primitive with an equivalent value. However, constructing equivalent non-primitive values will not result in values which are exactly equal.
+```javascript
+const obj1 = { name: "Intrinsic" };
+const obj2 = { name: "Intrinsic" };
+console.log(obj1 === obj2); // false
+// Though, their .name properties ARE primitives:
+console.log(obj1.name === obj2.name); // true
+```
+> Objects play an elemental role in the JavaScript language. They’re used everywhere. They’re often used as collections of key/value pairs. However, this is a big limitation of using them in this manner: Until symbols existed, object keys could only be strings. If we ever attempt to use a non-string value as a key for an object, the value will be coerced to a string. 
+```javascript
+const obj = {};
+obj.foo = 'foo';
+obj['bar'] = 'bar';
+obj[2] = 2;
+obj[{}] = 'someobj';
+console.log(obj);
+>> { '2': 2, foo: 'foo', bar: 'bar',
+     '[object Object]': 'someobj' }
+```
+
 ## propagation
 ![propagation](assets/propagation.png)
 
@@ -518,6 +557,35 @@ this.tasks.push(task)
 // ==
 this.task = [...this.task, task]
 ```
+
+## symbol
+> A symbol is a primitive which cannot be recreated. In this case a symbols is similar to an object as creating multiple instances will result in values which are not exactly equal. But, a symbol is also a primitive in that it cannot be mutated.
+```javascript
+const s1 = Symbol();
+const s2 = Symbol();
+console.log(s1 === s2); // false
+```
+> When instantiating a symbol there is an optional first argument where you can choose to provide it with a string. This value is intended to be used for debugging code, it otherwise doesn’t really affect the symbol itself.
+```javascript
+const s1 = Symbol('debug');
+const str = 'debug';
+const s2 = Symbol('xxyy');
+console.log(s1 === str); // false
+console.log(s1 === s2); // false
+console.log(s1); // Symbol(debug)
+```
+1. `Symbols as Object Properties`: Symbols have another important use. They can be used as keys in objects!
+```javascript
+const obj = {};
+const sym = Symbol();
+obj[sym] = 'foo';
+obj.bar = 'bar';
+console.log(obj); // { bar: 'bar' }
+console.log(sym in obj); // true
+console.log(obj[sym]); // foo
+console.log(Object.keys(obj)); // ['bar']
+```
+2. `Preventing Property Name Collisions`: They are useful in situations where disparate libraries want to add properties to objects without the risk of having name collisions.
 
 ## textContent vs innerText vs innerHTML
 - textContent ignores styles
