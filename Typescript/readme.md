@@ -184,6 +184,8 @@ const foo = Object.assign(
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes. Because most JavaScript libraries expose only a few top-level objects, namespaces are a good way to represent them.
 
 We call declarations that don’t define an implementation 'ambient'. Typically these are defined in .d.ts files. If you’re familiar with C/C++, you can think of these as .h files. 
+
+However, it is a good practice to name the .d.ts file similarly to the .ts file it corresponds to, as it helps maintain clarity and organization in your codebase. Additionally, if you're publishing a library or module, there are conventions for naming the .d.ts files to ensure they are properly associated with the JavaScript files they provide typings for.
 ```javascript
 // code
 let result = myLib.makeGreeting("hello, world");
