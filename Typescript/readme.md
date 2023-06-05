@@ -7,6 +7,18 @@
 ![Interface](assets/TypeScript%20Interfaces.png)
 ![Class](assets/TypeScript%20Classes.png)
 
+## declare
+When using external JavaScript libraries or modules that don't have TypeScript declarations, you can use the declare keyword to create declarations for the symbols provided by those libraries. These declarations inform the TypeScript compiler about the types and structure of the external code, enabling type checking and IntelliSense support.
+
+Here's an example of declaring an external function using declare:
+```javascript
+declare function myExternalFunction(arg: string): void;
+
+// Usage of the declared function
+myExternalFunction("Hello, TypeScript!");
+```
+In this example, we use the declare keyword to inform TypeScript about the existence of the myExternalFunction function. We don't provide an implementation for it because it's an external function defined elsewhere. This allows us to use the function in our TypeScript code without compilation errors.
+
 ## declare vs export
 ```javascript
 // i.something.d.ts
