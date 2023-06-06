@@ -7,6 +7,37 @@
 ![Interface](assets/TypeScript%20Interfaces.png)
 ![Class](assets/TypeScript%20Classes.png)
 
+## export {}
+If you do not include the export {} statement in a TypeScript declaration file (.d.ts), it will be treated as a global script file rather than an external module.
+
+By default, TypeScript treats .ts files as modules, even if they don't have any explicit exports. However, declaration files (.d.ts) have slightly different behavior. If a declaration file doesn't contain any exports or export {}, it is considered a global script file.
+
+When a file is treated as a global script file, its contents are assumed to extend the global scope directly. This means that any declarations made within the file will be available in the global namespace without the need for explicit import/export statements.
+
+```javascript
+// global-script.d.ts
+declare const myGlobalVariable: string;
+
+declare function myGlobalFunction(): void;
+```
+In this case, myGlobalVariable and myGlobalFunction are declared at the global level. This means you can reference and use them directly throughout your TypeScript code without importing them or using any module system.
+
+By omitting export {} in the declaration file, you indicate that the declarations within it should be treated as part of the global script environment.
+
+It's important to note that using global variables and functions can lead to potential naming conflicts and make your code less modular. It's generally recommended to encapsulate your code within modules or namespaces to avoid polluting the global scope. However, there may be scenarios where working with global script files is necessary, and in those cases, omitting export {} allows you to extend the global scope directly.
+
+```javascript
+// global.d.ts
+export {}; // Empty export to indicate ambient module declaration
+
+declare global {
+  interface Window {
+    myGlobalVariable: string;
+  }
+}
+```
+To summarize, the export {} statement in a declaration file is used to indicate an ambient module declaration, signaling that the file doesn't introduce any new exports but provides type information for existing modules or global variables.
+
 ## declare
 When using external JavaScript libraries or modules that don't have TypeScript declarations, you can use the declare keyword to create declarations for the symbols provided by those libraries. These declarations inform the TypeScript compiler about the types and structure of the external code, enabling type checking and IntelliSense support.
 
