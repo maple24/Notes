@@ -7,6 +7,11 @@
 ![Interface](assets/TypeScript%20Interfaces.png)
 ![Class](assets/TypeScript%20Classes.png)
 
+## include vs typeRoots
+The TypeScript compiler will search for declaration files (*.d.ts) within these directories or their subdirectories which are specified in `typeRoots`.
+
+If your custom .d.ts files are located outside the specified typeRoots, they will not be automatically included. In that case, you will need to include them explicitly using the include property in your tsconfig.json file.
+
 ## export {}
 If you do not include the export {} statement in a TypeScript declaration file (.d.ts), it will be treated as a global script file rather than an external module.
 
@@ -20,7 +25,7 @@ declare const myGlobalVariable: string;
 
 declare function myGlobalFunction(): void;
 ```
-In this case, myGlobalVariable and myGlobalFunction are declared at the global level. This means you can reference and use them directly throughout your TypeScript code without importing them or using any module system.
+In this case, myGlobalVariable and myGlobaklFunction are declared at the global level. This means you can reference and use them directly throughout your TypeScript code without importing them or using any module system.
 
 By omitting export {} in the declaration file, you indicate that the declarations within it should be treated as part of the global script environment.
 
