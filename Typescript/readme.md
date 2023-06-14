@@ -7,10 +7,21 @@
 ![Interface](assets/TypeScript%20Interfaces.png)
 ![Class](assets/TypeScript%20Classes.png)
 
-## include vs typeRoots
+## include vs typeRoots vs types
+If types is specified, only packages listed will be included in the global scope. For instance:
+```json
+{
+  "compilerOptions": {
+    "types": ["node", "jest", "express"]
+  }
+}
+```
+
 The TypeScript compiler will search for declaration files (*.d.ts) within these directories or their subdirectories which are specified in `typeRoots`.
 
 If your custom .d.ts files are located outside the specified typeRoots, they will not be automatically included. In that case, you will need to include them explicitly using the include property in your tsconfig.json file.
+
+In addition, only files included will be loaded in the program.
 
 ## export {}
 If you do not include the export {} statement in a TypeScript declaration file (.d.ts), it will be treated as a global script file rather than an external module.
