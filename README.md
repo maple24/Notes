@@ -2,6 +2,11 @@
 Collection of my notes.
 It is gonna be a bit messy here.
 
+# Opening the github.dev editor
+You can open any GitHub repository in github.dev in either of the following ways:
+- To open the repository in the same browser tab, press . while browsing any repository or pull request on GitHub.
+- To open the repository in a new browser tab, press >.
+
 # Reference
 [Architectural messaging patterns: an illustrated guide](https://www.redhat.com/architect/architectural-messaging-patterns)
 
