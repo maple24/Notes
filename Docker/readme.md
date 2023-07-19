@@ -9,6 +9,7 @@
     - [Build](#build)
     - [Share](#share)
     - [Note](#note)
+    - [volumes](#volumes)
 
 ## Docker cheatsheet
 
@@ -226,4 +227,45 @@ docker run -it --rm python:rc
 `rc: shorthand tag for release candiate and points to the latest development version`
 ```sh
 docker-compose -f docker-compose.yml up -d
+```
+
+### volumes
+The reason for specifying volumes and networks twice is to define them globally at the top level and make them available for reuse by multiple services.
+
+By defining volumes and networks globally, you can reuse them across multiple services. `This can be particularly useful in more complex setups where multiple services need to share the same volume or be connected to the same network.` It promotes modularity and simplifies the management of volumes and networks within the Compose file.
+
+volumes: The volumes section at the top level defines a named volume called db-data. This named volume can be used by any service within the Compose file. In this specific case, the mysql service uses the db-data volume to persist its MySQL database data.
+
+networks: The networks section at the top level defines a network called overlay. Similar to volumes, this network can be utilized by multiple services within the Compose file. `Both the wordpress and mysql services are connected to the overlay network, allowing them to communicate with each other.`
+```yml
+version: "3.8"
+
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - "8080:80"
+    networks:
+      - overlay
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+
+  mysql:
+    image: mysql
+    volumes:
+       - db-data:/var/lib/mysql/data
+    networks:
+       - overlay
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: dnsrr
+
+volumes:
+  db-data:
+
+networks:
+  overlay:
 ```
