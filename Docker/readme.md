@@ -10,6 +10,7 @@
     - [Share](#share)
     - [Note](#note)
     - [volumes](#volumes)
+    - [use existing mysql container](#use-existing-mysql-container)
     - [most frequently used commands](#most-frequently-used-commands)
 
 ## Docker cheatsheet
@@ -269,6 +270,32 @@ volumes:
 
 networks:
   overlay:
+```
+
+### use existing mysql container
+```yml
+version: '3'
+
+services:
+  db:
+    image: mysql:8
+    restart: always
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'viteadmin'
+      MYSQL_USER: 'ets1szh'
+      MYSQL_PASSWORD: 'estbangbangde6'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - db_volume:/var/lib/mysql
+
+volumes:
+  db_volume:
+    external: true
+    name: mysql_volume
 ```
 
 ### most frequently used commands
