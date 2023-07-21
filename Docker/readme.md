@@ -10,6 +10,7 @@
     - [Share](#share)
     - [Note](#note)
     - [volumes](#volumes)
+    - [most frequently used commands](#most-frequently-used-commands)
 
 ## Docker cheatsheet
 
@@ -268,4 +269,21 @@ volumes:
 
 networks:
   overlay:
+```
+
+### most frequently used commands
+```sh
+docker ps
+docker volume ls
+docker volume inspect <volume name>
+docker container ls
+docker image ls
+docker image rm <image name>:<tag>
+docker image prune
+docker compose build --no-cache
+docker compose -f docker-compose.yml pull
+docker compose -f docker-compose.yml up -d
+docker compose down
+docker exec -it <container name> bash
+docker logs <container name>
 ```
