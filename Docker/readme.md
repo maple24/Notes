@@ -11,6 +11,7 @@
     - [Note](#note)
     - [volumes](#volumes)
     - [use existing mysql container](#use-existing-mysql-container)
+    - [how to share a mysql docker container](#how-to-share-a-mysql-docker-container)
     - [most frequently used commands](#most-frequently-used-commands)
 
 ## Docker cheatsheet
@@ -298,6 +299,11 @@ volumes:
     name: mysql_volume
 ```
 
+### how to share a mysql docker container
+```sh
+docker network create mysql_network
+```
+
 ### most frequently used commands
 ```sh
 docker ps
@@ -310,7 +316,7 @@ docker image prune
 docker compose build --no-cache
 docker compose -f docker-compose.yml pull
 docker compose -f docker-compose.yml up -d
-docker compose down
+docker compose -f docker-compose.yml down
 docker exec -it <container name> bash
 docker logs <container name>
 ```
