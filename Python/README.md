@@ -384,21 +384,22 @@ Combatlink.bat logger
 [complexity](#reference)
 
 ## copy
+A shallow copy doesn't create a copy of nested objects, instead it just copies the reference of nested objects. `(Not recursive)`
+
+For example, [[1, 2], [1, 3]]. If you want to copy all, deepcopy is needed. Otherwise only outside list is copyed.
 ```python
-class p:
-    name = None
-
-class q:
-    name = None
-
 a = []
-p.name = a
-p.name.append("maple")
-q.name = a
-print(q.name)
-# output
-# >> ['maple']
-# in this senario, copy module is needed
+b = a
+b.append("maple")
+print(a)
+# >> ["maple"]
+
+import copy
+a = []
+b = copy.copy(a)
+b.append("maple")
+print(a)
+# >> []
 ```
 
 ## cython
@@ -457,6 +458,7 @@ print (de)
 ```
 
 ## decorator
+decorators: return a function as a value
 [decorator](https://www.freecodecamp.org/news/python-property-decorator/)
 > The main objective of any decorator is to modify your class methods or attributes in such a way so that the user of your class no need to make any change in their code.
 
@@ -729,6 +731,8 @@ class Employee( Person ):
         self.post = post
         # invoking the __init__ of the parent class
         Person.__init__(self, name, idnumber)
+        # or
+        # super.__init__(name, idnumber)
 ```
 `If you forget to invoke the __init__() of the parent class then its instance variables would not be available to the child class. `
 
