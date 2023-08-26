@@ -22,6 +22,7 @@
   - [decorator](#decorator)
   - [dictionary](#dictionary)
   - [dlls](#dlls)
+  - [dunder variable](#dunder-variable)
   - [exceptions](#exceptions)
   - [event vs global variable](#event-vs-global-variable)
   - [function parameter](#function-parameter)
@@ -49,6 +50,7 @@
   - [path](#path)
   - [python flag -m](#python-flag--m)
   - [process](#process)
+  - [pydantic](#pydantic)
   - [pyinstaller](#pyinstaller)
   - [py2exe](#py2exe)
   - [queue](#queue)
@@ -56,6 +58,7 @@
   - [relative import](#relative-import)
   - [requests](#requests)
   - [serial](#serial)
+  - [serialization](#serialization)
   - [singleton class](#singleton-class)
   - [socket](#socket)
   - [subprocess](#subprocess)
@@ -498,6 +501,28 @@ def name():
 dumpbin /dependents MyLibrary.cp37-win_amd64.pyd
 ```
 
+## dunder variable
+Python uses dunder variables for two general purposes:
+
+- To convey information (often a form of metadata) to Python programmers
+- To empower Python programmers to convey information to the Python interpreter
+
+For example: Python stores docstrings in a __doc__ attribute:
+```python
+import math
+math.__doc__
+>>> 'This module provides access to the mathematical functions\ndefined by the C standard.'
+math.sqrt.__doc__
+>>> 'Return the square root of x.'
+```
+Classes use these dunder attributes:
+
+__name__: stores their name
+__dict__: stores their attributes (see where attributes are stored)
+__module__: stores the name of the module they were defined in within
+__bases__: stores their base classes (see inheritance)
+__mro__: stores their method resolution order
+
 ## exceptions
 ![exception1](assets/exception1.png)
 ![exception2](assets/exception2.png)
@@ -896,6 +921,46 @@ except subprocess.TimeoutExpired:
     kill(proc.pid)
 ```
 
+## pydantic
+```python
+# continuing the above example...
+
+from pydantic import ValidationError
+
+
+class User(BaseModel):
+    id: int
+    name: str = 'John Doe'
+    signup_ts: datetime | None
+    tastes: dict[str, PositiveInt]
+
+
+external_data = {'id': 'not an int', 'tastes': {}}  
+
+try:
+    User(**external_data)  
+except ValidationError as e:
+    print(e.errors())
+    """
+    [
+        {
+            'type': 'int_parsing',
+            'loc': ('id',),
+            'msg': 'Input should be a valid integer, unable to parse string as an integer',
+            'input': 'not an int',
+            'url': 'https://errors.pydantic.dev/2/v/int_parsing',
+        },
+        {
+            'type': 'missing',
+            'loc': ('signup_ts',),
+            'msg': 'Field required',
+            'input': {'id': 'not an int', 'tastes': {}},
+            'url': 'https://errors.pydantic.dev/2/v/missing',
+        },
+    ]
+    """
+```
+
 ## pyinstaller
 ```sh
 # convert python script to executable file
@@ -992,6 +1057,11 @@ python -m serial.tools.list_ports
 from serial.tools import list_ports
 list_ports.comports()
 ```
+
+## serialization
+> WHAT is (de)serialization and WHY do we need it?
+
+We create plenty of objects in Python every day, and these objects will eventually disappear if the program dies. Sometimes we want to store the state of an object **in a file or in a database**, or **transmit it across the network** for using it in the future. This helps us to reuse the object in different programs or even in different environments.
 
 ## singleton class
 > In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
@@ -1212,6 +1282,22 @@ if __name__ == '__main__':
 def first(l: Sequence[T]) -> T:   # Generic function
     return l[0]
 ```
+- hint self class
+```python
+from __future__ import annotations
+# The behaviour enabled by from __future__ import annotations might become the default in future versions of Python, and was going to be made the default in Python 3.10
+
+class Position:
+    def __add__(self, other: Position) -> Position:
+        ...
+# Python <3.7: use a string
+# According to PEP 484, you should use a string instead of the class itself:
+class Position:
+    ...
+    def __add__(self, other: 'Position') -> 'Position':
+       ...
+```
+
 
 ## tuple vs list
 > A list has a variable size while a tuple has a fixed size. 
