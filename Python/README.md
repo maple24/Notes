@@ -515,6 +515,7 @@ math.__doc__
 math.sqrt.__doc__
 >>> 'Return the square root of x.'
 ```
+```
 Classes use these dunder attributes:
 
 __name__: stores their name
@@ -522,7 +523,7 @@ __dict__: stores their attributes (see where attributes are stored)
 __module__: stores the name of the module they were defined in within
 __bases__: stores their base classes (see inheritance)
 __mro__: stores their method resolution order
-
+```
 ## exceptions
 ![exception1](assets/exception1.png)
 ![exception2](assets/exception2.png)
