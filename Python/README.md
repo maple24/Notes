@@ -30,6 +30,7 @@
   - [for loop in square brackets](#for-loop-in-square-brackets)
   - [garbage collection](#garbage-collection)
   - [get hostname](#get-hostname)
+  - [generator](#generator)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
   - [kwargs](#kwargs)
@@ -69,6 +70,7 @@
   - [tuple vs list](#tuple-vs-list)
   - [underscore](#underscore)
   - [virtual environment](#virtual-environment)
+  - [walrus operator](#walrus-operator)
   - [yield](#yield)
 
 ## Reference
@@ -658,6 +660,62 @@ new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```python
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+```
+
+## generator
+There are several reasons that make generators a powerful implementation.
+
+1. easy to implement(less code)
+```python
+def PowTwoGen(max=0):
+    n = 0
+    while n < max:
+        yield 2 ** n
+        n += 1
+
+res = PowTwoGen(3)
+for i in res:
+    print(i)
+```
+2. memory efficient
+
+A normal function to return a sequence will create the entire sequence in memory before returning the result. This is an overkill, if the number of items in the sequence is very large.
+
+Generator implementation of such sequences is memory friendly and is preferred since it only produces one item at a time.
+
+3. represent infinite stream
+
+Generators are excellent mediums to represent an infinite stream of data. Infinite streams cannot be stored in memory, and since generators produce only one item at a time, they can represent an infinite stream of data.
+```python
+def all_even():
+    n = 0
+    while True:
+        yield n
+        n += 2
+
+res = all_even()
+print(next(res))
+print(next(res))
+print(next(res))
+print(next(res))
+```
+4. pipelining generators
+
+Multiple generators can be used to pipeline a series of operations.
+```python
+def fibonacci_numbers(nums):
+    x, y = 0, 1
+    for _ in range(nums):
+        x, y = y, x+y
+        yield x
+
+def square(nums):
+    for num in nums:
+        yield num**2
+
+print(sum(square(fibonacci_numbers(10))))
+
+# Output: 4895
 ```
 
 ## GIL
@@ -1370,6 +1428,27 @@ Powershell（python terminal:Tutorial-env/scripts/Activate.ps1
 deactivate
 Cmd:Tutorial-env/scripts/activate.bat
 # Note: put project folder wherever make sense to you, just do not put it inside env directory tree 
+```
+
+## walrus operator
+```python
+def some_func():
+        # Assume some expensive computation here
+        # time.sleep(1000)
+        return 5
+
+# So instead of,
+if some_func():
+        print(some_func()) # Which is bad practice since computation is happening twice
+
+# or
+a = some_func()
+if a:
+    print(a)
+
+# Now you can concisely write
+if a := some_func():
+        print(a)
 ```
 
 ## yield
