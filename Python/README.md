@@ -21,6 +21,7 @@
   - [deque](#deque)
   - [decorator](#decorator)
   - [dictionary](#dictionary)
+  - [distribute](#distribute)
   - [dlls](#dlls)
   - [dunder variable](#dunder-variable)
   - [exceptions](#exceptions)
@@ -496,6 +497,18 @@ def name():
 `setdefault()`:returns the value of a key (if the key is in dictionary). Else, it inserts a key with the default value to the dictionary.
 
 `get()`:returns the value of a key (if the key and value exist)> Else, it gets a default value. 
+
+## distribute
+1. pyinstaller
+```sh
+pip install pyinstaller
+pyinstaller main.py -n webcamapp
+```
+2. nuitka
+```sh
+pip install -U nuitka
+python -m nuitka --follow-imports .\main.py
+```
 
 ## dlls
 ```sh
