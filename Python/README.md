@@ -41,7 +41,7 @@
   - [inheritance](#inheritance)
   - [json dumps/loads](#json-dumpsloads)
   - [lambda function](#lambda-function)
-  - [map](#map)
+  - [map, filter, reduce](#map-filter-reduce)
   - [module info](#module-info)
   - [multithreading vs multiprocess](#multithreading-vs-multiprocess)
   - [news vs init](#news-vs-init)
@@ -857,7 +857,7 @@ def f(a, b):
     return a+b
 ```
 
-## map
+## map, filter, reduce
 ```python
 def square(number):
     return number ** 2
@@ -871,6 +871,26 @@ list(squared)
 numbers = [1, 2, 3, 4, 5]
 square_numbers = list(map(lambda x: x*x, numbers))
 print(square_numbers)
+
+# filter
+def getNumbers(givenNumbers):
+    if givenNumbers > 5:
+        return givenNumbers
+
+givenNumbers = filter(getNumbers, [1, 3, 5, 2, 6, 10])
+print(list(givenNumbers))
+
+# reduce
+from functools import reduce
+# function that returns the sum of all list items
+def addNumbers(x, y):
+    print(x, y)
+    return x+y
+# input list
+inputList = [12]
+# Print the sum of the list items using reduce() function
+print("The sum of all list items:")
+print(reduce(addNumbers, inputList))
 ```
 
 ## module info
