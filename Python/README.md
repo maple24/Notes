@@ -85,7 +85,8 @@
 
 ## *
 ```python
-    print(*sorted(l), sep='\n')
+# print all items of a list in one line
+print(*sorted(l), sep='\n')
 ```
 ```python
 # Unpacking a function using positional argument. (same theory)
