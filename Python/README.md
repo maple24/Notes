@@ -85,6 +85,9 @@
 
 ## *
 ```python
+    print(*sorted(l), sep='\n')
+```
+```python
 # Unpacking a function using positional argument. (same theory)
 arr = [1, 'monday', 'tuesday', 'wednesday']
  
