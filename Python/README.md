@@ -3,6 +3,7 @@
 - [Table of contents](#table-of-contents)
   - [Reference](#reference)
   - [compiled vs interpreted](#compiled-vs-interpreted)
+  - [\*](#)
   - [argparse](#argparse)
   - [array vs list](#array-vs-list)
   - [assert](#assert)
@@ -81,6 +82,18 @@
 > Compiled programming languages are more performant but are harder to port to different CPU architectures and operating systems. Interpreted programming languages are more portable, but their performance is much worse than that of compiled languages. These are the two extremes of the spectrum.
 
 > Then there are programming languages such as Python that do **a mix of both compilation and interpretation**. *Specifically, Python is first compiled into an intermediate bytecode, which is then interpreted by CPython. This makes the code perform better than code written in a purely interpreted programming language, and it maintains the portability advantage.*
+
+## *
+```python
+# Unpacking a function using positional argument. (same theory)
+arr = [1, 'monday', 'tuesday', 'wednesday']
+ 
+# without using asterisk
+print(' '.join(map(str,arr)))
+ 
+# using asterisk
+print(*arr)
+```
 
 ## argparse
 ```python
