@@ -35,6 +35,7 @@
   - [generator](#generator)
   - [GIL](#gil)
   - [inserted function](#inserted-function)
+  - [keyword-only argument](#keyword-only-argument)
   - [kwargs](#kwargs)
   - [logging](#logging)
   - [loguru](#loguru)
@@ -778,6 +779,15 @@ print(' '.join(text))
 Name = 'zhu'
 Print(Name.title())
 # Output: Zhu
+```
+
+## keyword-only argument
+![arguments](assets/arguments.png)
+```python
+def func(p1, *, kw):
+    print(p1, kw)
+
+func("hello", kw = "world")
 ```
 
 ## kwargs
