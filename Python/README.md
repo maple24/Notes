@@ -21,6 +21,7 @@
   - [cython](#cython)
   - [deque](#deque)
   - [decorator](#decorator)
+  - [decorator variable](#decorator-variable)
   - [dictionary](#dictionary)
   - [distribute](#distribute)
   - [dlls](#dlls)
@@ -509,6 +510,29 @@ obj()
 @hello
 def name():
     print("Alice") 
+```
+
+## decorator variable
+```python
+# Define the exclude_if decorator
+def exclude_if(*patterns):
+    def decorator(fn):
+        def wrapper(directory_path):
+            file_list = os.listdir(directory_path)
+            filtered_files = [
+                file
+                for file in file_list
+                if not any(re.search(pattern, file) for pattern in patterns)
+            ]
+            return filtered_files
+
+        return wrapper
+
+    return decorator
+
+@exclude_if(r"\.bak$", r"\.dat$", r"\.dir$")
+def list_files(directory_path):
+    return directory_path
 ```
 
 ## dictionary
