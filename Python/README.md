@@ -1172,6 +1172,30 @@ pattern = '(\d+) Size.*_a'
 ```
 
 ## relative import 
+> It's important to note that relative imports are only allowed within packages
+
+1. Using Relative Imports Within Packages:
+
+When you have a package, such as my_package, you can use relative imports to import modules within that package from other modules within the same package. For example, if you're in module1.py and want to import module2.py, you can do:
+```python
+# Inside module1.py
+from . import module2
+```
+Here, the dot (.) signifies that you are importing a module from the same package (my_package).
+
+2. Running Modules as Part of a Package:
+
+When you run a Python module as part of a package, Python treats it differently compared to running it as a standalone script. To run module1.py as part of the my_package, you would navigate to the directory containing main.py (which is outside the package) and execute:
+```python
+python -m my_package.module1
+```
+This tells Python to run module1.py as part of the my_package package. When running modules in this way, relative imports work as expected because Python understands the package structure.
+
+However, if you try to run module1.py directly as a script from outside the package (e.g., python module1.py), relative imports may not work correctly, and you might encounter errors.
+
+To summarize, using relative imports within packages and running modules as part of a package ensures that the package structure is properly recognized, and relative imports function as intended. It's a best practice for organizing and structuring your Python code when working with packages and modules.
+
+3. Running scripts directly:
 ```python
 from pathlib import Path
 FILE=Path(__file__).resolve()
@@ -1202,9 +1226,13 @@ list_ports.comports()
 ```
 
 ## serialization
+[a-gentle-introduction-to-serialization-for-python](https://machinelearningmastery.com/a-gentle-introduction-to-serialization-for-python/)
 > WHAT is (de)serialization and WHY do we need it?
 
 We create plenty of objects in Python every day, and these objects will eventually disappear if the program dies. Sometimes we want to store the state of an object **in a file or in a database**, or **transmit it across the network** for using it in the future. This helps us to reuse the object in different programs or even in different environments.
+
+There are different formats for the serialization of data, such as JSON, XML, HDF5, and Python’s pickle, for different purposes. JSON, for instance, returns a human-readable string form, while Python’s pickle library can return a byte array.
+
 
 ## singleton class
 > In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
