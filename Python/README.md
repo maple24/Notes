@@ -67,6 +67,7 @@
   - [singleton class](#singleton-class)
   - [socket](#socket)
   - [subprocess](#subprocess)
+  - [ternary operator](#ternary-operator)
   - [thread](#thread)
   - [tkinter](#tkinter)
   - [try/except/finally](#tryexceptfinally)
@@ -1307,6 +1308,19 @@ process.wait()
 # works the same as communicate, except no input allowed
 # output is a list
 process.stdout.readlines()
+```
+
+## ternary operator
+The ternary operator in Python is simply a shorter way of writing an if and if…else statement.
+
+```python
+# Program to demonstrate conditional operator
+a, b = 10, 20
+ 
+# Copy value of a in min if a < b else copy b
+min = a if a < b else b
+ 
+print(min)
 ```
 
 ## thread
