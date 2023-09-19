@@ -17,6 +17,7 @@
   - [cli](#cli)
   - [compile pyd](#compile-pyd)
   - [complexity](#complexity)
+  - [context manager](#context-manager)
   - [copy](#copy)
   - [cython](#cython)
   - [deque](#deque)
@@ -408,6 +409,24 @@ Combatlink.bat logger
 
 ## complexity
 [complexity](#reference)
+
+## context manager
+```python
+with open("x.txt") as f:
+    data = f.read()
+    do something with data
+
+
+from contextlib import closing
+from urllib.request import urlopen
+
+with closing(urlopen('http://www.python.org')) as page:
+    for line in page:
+        print(line)
+```
+Some types know how to be used in a *with* statement. File objects, like what you get back from *open*, are an example of such a type. 
+
+But some types don't know how to be used in a *with* statement. The *closing* function is designed to wrap such types—as long as they have a *close* method, it will call their *close* method when you exit the *with* statement.
 
 ## copy
 A shallow copy doesn't create a copy of nested objects, instead it just copies the reference of nested objects. `(Not recursive)`
