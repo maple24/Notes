@@ -1,3 +1,24 @@
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+  - [Reference](#reference)
+  - [cheat sheet](#cheat-sheet)
+  - [include vs typeRoots vs types](#include-vs-typeroots-vs-types)
+  - [export {}](#export-)
+  - [declare](#declare)
+  - [declare vs export](#declare-vs-export)
+  - [question mark](#question-mark)
+  - [undefined error](#undefined-error)
+  - [difference between type aliases and interface](#difference-between-type-aliases-and-interface)
+  - [function type expression](#function-type-expression)
+  - [call signatures](#call-signatures)
+  - [namespace](#namespace)
+  - [multi-file namespace](#multi-file-namespace)
+  - [generics](#generics)
+  - [declaration](#declaration)
+  - [array](#array)
+  - [Tutorial](#tutorial)
+
 ## Reference
 [Typescript](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
 
