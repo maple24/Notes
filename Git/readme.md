@@ -232,3 +232,38 @@ cat .git/config
 # unset upstream
 git branch --unset-upstream [<branchname>]
 ```
+
+## git branch -a
+```
+$ git branch -a
+
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+```
+The remotes/origin/HEAD is the branch currently checked out in the origin repository, which means if you clone that repository, by default that branch will be checked out first.
+
+The origin/main is a remote branch (which is a local copy of the branch named main on the remote named origin)
+
+The remotes/origin/main, usually referred to as origin/main, is the location of a branch called main on the remote called origin the last time you did a git command. If they're related, main will have origin/main as its upstream.
+
+## vanilla workflow
+```sh
+# remote name is origin
+# fetch feature branch from remote
+git fetch origin feature-branch-0
+# check out master branch to merge
+git checkout master
+# check out different between local master branch and remote master branch
+git diff master..origin/master
+# merge feature branch to master
+git merge origin/feature-branch-0
+
+# create new branch based on master
+git checkout -b feature-branch-1
+# commit changes
+git add .
+git commit -m ""
+# push feature branch to remote
+git push origin feature-branch-1
+```
