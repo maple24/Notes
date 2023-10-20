@@ -39,7 +39,7 @@ You can open any GitHub repository in github.dev in either of the following ways
 - [Websocket](Websocket)
 - [LessonLearnt](LessonLearnt)
 
-# Git semantic commit messages
+# [Git](Git) semantic commit messages
 - feat: add new features
 - fix: fix issues/bugs
 - style: code style, do not affect running results
