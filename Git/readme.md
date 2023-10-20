@@ -250,6 +250,7 @@ The remotes/origin/main, usually referred to as origin/main, is the location of 
 ## vanilla workflow
 ```sh
 # remote name is origin
+
 # fetch feature branch from remote
 git fetch origin feature-branch-0
 # check out master branch to merge
@@ -261,9 +262,14 @@ git merge origin/feature-branch-0
 
 # create new branch based on master
 git checkout -b feature-branch-1
+# in case someone else made changes, sync your code before pull request
+git fetch origin master
+git rebase origin/master
 # commit changes
 git add .
 git commit -m ""
+
+# After setting up the tracking branch, git push can be invoked without any parameters
 # push feature branch to remote
-git push origin feature-branch-1
+git push -u origin feature-branch-1
 ```
