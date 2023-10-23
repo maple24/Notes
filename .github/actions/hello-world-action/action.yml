@@ -1,10 +1,9 @@
-name: 'Custom Action'
+name: Hello world
+description: 'custom action'
 
-jobs:
-  customjob:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Custom Action
-        run: |
-          # Your custom action logic here
-          echo "Hello from your custom action!"
+runs:
+  steps: 
+    - name: Echo
+      shell: bash
+      run: |
+        echo Heyyyyy
