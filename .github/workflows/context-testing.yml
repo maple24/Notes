@@ -1,4 +1,5 @@
 name: Context testing
+run-name: ${{ github.actor }} is testing out GitHub context 🚀
 on: push
 
 jobs:
