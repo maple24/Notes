@@ -2,6 +2,7 @@ name: 'Custom Action'
 
 jobs:
   customjob:
+    runs-on: ubuntu-latest
     - name: Run Custom Action
       run: |
         # Your custom action logic here
