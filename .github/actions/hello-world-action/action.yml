@@ -3,7 +3,8 @@ name: 'Custom Action'
 jobs:
   customjob:
     runs-on: ubuntu-latest
-    - name: Run Custom Action
-      run: |
-        # Your custom action logic here
-        echo "Hello from your custom action!"
+    steps:
+      - name: Run Custom Action
+        run: |
+          # Your custom action logic here
+          echo "Hello from your custom action!"
