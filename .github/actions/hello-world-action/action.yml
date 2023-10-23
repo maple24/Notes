@@ -1,8 +1,8 @@
-inputs:
-  num-octocats:
-    description: 'Number of Octocats'
-    required: false
-    default: '1'
-  octocat-eye-color:
-    description: 'Eye color of the Octocats'
-    required: true
+name: 'Custom Action'
+
+jobs:
+  customjob:
+    - name: Run Custom Action
+      run: |
+        # Your custom action logic here
+        echo "Hello from your custom action!"
