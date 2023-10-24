@@ -20,7 +20,7 @@ jobs:
         - name: Get color
           env:
             SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-            all: ${{ steps.color-selector.outputs }}
+            all: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
           run: echo "The selected color is $SELECTED_COLOR" \
                 echo "$all"
     job2:
