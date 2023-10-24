@@ -20,7 +20,9 @@ jobs:
         - name: Get color
           env:
             SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-          run: echo "The selected color is $SELECTED_COLOR"
+            all: ${{ steps.color-selector.outputs }}
+          run: echo "The selected color is $SELECTED_COLOR" \
+                echo "$all"
     job2:
       runs-on: ubuntu-latest
       needs: job1
