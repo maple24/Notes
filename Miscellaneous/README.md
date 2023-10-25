@@ -322,6 +322,32 @@ JWT stands for JSON Web Tokens.
 ## JQuery
 jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
 
+## jqlang
+> jq is a lightweight and flexible command-line JSON processor.
+
+[jq tutorial](https://jqlang.github.io/jq/tutorial/)
+
+```sh
+#!/bin/bash
+json_data='{
+  "name": "John Doe",
+  "age": 30,
+  "address": {
+    "street": "123 Main St",
+    "city": "Exampleville"
+  }
+}'
+
+# Use echo to pass JSON data to jq with --argjson
+# filter out the name
+name_and_age=$(echo "$json_data" | jq --argjson tmp_data "{}" '.name')
+# apply {"name"}
+name_and_age=$(echo "$json_data" | jq --argjson tmp_data "$json_data" '.name=134')
+
+# Print the extracted data
+echo "Name and Age: $name_and_age"
+```
+
 ## network basic
 ![network basic1](assets/networkbasic1.png)
 

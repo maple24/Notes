@@ -1,0 +1,10 @@
+name: Hello world
+description: 'custom action'
+
+runs:
+  using: "composite"
+  steps: 
+    - name: Echo
+      shell: bash
+      run: |
+        echo Heyyyyy
