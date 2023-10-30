@@ -273,3 +273,101 @@ git commit -m ""
 # push feature branch to remote
 git push -u origin feature-branch-1
 ```
+
+## get back to old commits and get back to present
+```sh
+# Suppose your current branch is master and the old commit is a1b2c3, then you can change all the files in your working tree back to the old commit with:
+git checkout a1b2c3
+
+# and return to master with:
+git checkout master
+```
+
+## how to undo git mistakes
+[reference video](https://www.youtube.com/watch?v=lX9hsdsAeTk&ab_channel=freeCodeCamp.org)
+1. work with uncommitted files
+### discard changes in local files
+```sh
+git diff <filename> # see changes in a file
+git restore <filesname> # discard uncommitted local changes, (be aware it cannot be undone)
+```
+### discard all local changes
+```sh
+git restore .
+```
+### restore deleted file
+```sh
+git restore <filename>
+```
+### discard chunks/lines in a file
+```sh
+git restore -p <filename> # enter interactive mode, y/n
+```
+2. work with committed files
+### fix last commit(only the very last commit)
+```sh
+git commit --amend -m "new commit message" # nerver do that on a commit which has been pushed to remote repo
+```
+### revert a commit in the middle
+```sh
+# just revert this one particular commit
+git revert <commit hash> # git revert creates a new commit
+```
+### reset to an old revision
+```sh
+# reset all commits after this commit
+git reset --hard <commit hash> # no local changes saved
+--soft: uncommit changes, changes are left staged (index).
+--mixed (default): uncommit + unstage changes, changes are left in working tree.
+--hard: uncommit + unstage + delete changes, nothing left.
+```
+### reset a file to an old revision
+```sh
+git restore --source <commit hash> <filename>
+```
+3. reflog
+> a journal that logs every movement of the HEAD pointer
+### recover deleted commits (after reset)/recover a deleted branch
+```sh
+git reflog # get commit hash which you want to recover
+git branch <new branch> <commit hash> # a good practice to create a new branch when recovering
+```
+### move a commit to a new branch
+```sh
+git branch <new branch> <old branch> # create a new branch based on that old branch
+git reset --hard HEAD~ # reset commit on old branch
+```
+### move a commit to a different branch(without creating a new branch)
+```sh
+git reflog # get commit hash
+git checkout <target branch>
+git cherry-pick <commit hash> # cherry pick that commit to a different branch
+git checkout <source branch>
+git reset --hard HEAD~ # reset commit on old branch
+```
+4. rebase
+### edit old commit message(only the very last commit can use ammend)
+```sh
+git rebase -i HEAD~3
+# then use reword option
+```
+### delete old commits(not used often)
+```sh
+# then use drop option
+```
+### squash multiple commits into one
+direction: lower commits squashed to uppper
+```sh
+# then use squash option
+```
+### add a change to an old commit(very practical)
+if you create new commit to fix up the previous one, the history is going to be long and unreadable
+```sh
+git add <filename>
+git commit --fixup <commit hash>
+# then use fixup option, fixup will not keep commit message compared to squash
+# or 
+# this will automatically use the fixup option
+git rebase -i --autosquash HEAD~4
+```
+### 
