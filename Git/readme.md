@@ -212,8 +212,22 @@ git stash pop stash@{n}
 
 ## undo reset
 ```sh
-git reflog
-git reset 'HEAD@{1}'
+# To keep the changes from the commit you want to undo
+git reset --soft HEAD^
+
+# To destroy the changes from the commit you want to undo
+git reset --hard HEAD^
+
+# You can also say
+git reset --soft HEAD~2
+# to go back 2 commits.
+
+# or go to any commit hash
+git reset --soft asdf
+
+# if you are on Windows you will need to put HEAD or commit hash in quotes.
+git reset --soft "HEAD^"
+git reset --soft "asdf"
 ```
 
 ## upstream
@@ -271,6 +285,8 @@ git commit -m ""
 
 # After setting up the tracking branch, git push can be invoked without any parameters
 # push feature branch to remote
+git push -u origin feature-branch-1
+```
 git push -u origin feature-branch-1
 ```
 
