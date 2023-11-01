@@ -120,6 +120,9 @@ git merge feature main
 git push <remote> <local_branch>:<remote_name>
 ```
 
+## patch
+> Before Git pull requests existed, developers created Git patches to share their code with team members and project collaborators. Git patches are text files that contain code and Git commit metadata. Creating a Git patch is, in essence, copying and packaging up your work to send to someone else. 
+
 ## rebase
 ![git rebase1](assets/gitrebase1.png)
 ![git rebase2](assets/gitrebase2.png)
