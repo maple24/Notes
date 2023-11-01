@@ -64,6 +64,22 @@ git diff file_name
 git diff --staged
 ```
 
+## fast-forward rule
+> When pushing to the remote repository, git will reject the push if the remote one is not an ancestor of the local one. That is called the "fast-forward rule".
+All of the following cases break the fast-forward rule and are therefore rejected by an ordinary push:
+
+- You rebased your branch onto master.
+- You reordered the commits.
+- You changed the commit messages.
+- You squashed the commits into one.
+
+## force-with-lease
+[reference](https://blog.developer.atlassian.com/force-with-lease/)
+
+--force overwrites a remote branch with your local branch.
+
+--force-with-lease effectively only allows you to force-push if no-one else has pushed changes up to the remote in the interim.
+
 ## gitignore
 ```sh
 bin
