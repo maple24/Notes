@@ -4,11 +4,14 @@
   - [multiple ssh keys](#multiple-ssh-keys)
   - [delete file](#delete-file)
   - [diff](#diff)
+  - [fast-forward rule](#fast-forward-rule)
+  - [force-with-lease](#force-with-lease)
   - [gitignore](#gitignore)
   - [github web editor](#github-web-editor)
   - [log](#log)
   - [merge](#merge)
   - [push](#push)
+  - [patch](#patch)
   - [rebase](#rebase)
   - [remote](#remote)
   - [rename remote branch](#rename-remote-branch)
@@ -18,6 +21,24 @@
   - [stash](#stash)
   - [undo reset](#undo-reset)
   - [upstream](#upstream)
+  - [git branch -a](#git-branch--a)
+  - [vanilla workflow](#vanilla-workflow)
+  - [how to undo git mistakes](#how-to-undo-git-mistakes)
+    - [discard changes in local files](#discard-changes-in-local-files)
+    - [discard all local changes](#discard-all-local-changes)
+    - [restore deleted file](#restore-deleted-file)
+    - [discard chunks/lines in a file](#discard-chunkslines-in-a-file)
+    - [fix last commit(only the very last commit)](#fix-last-commitonly-the-very-last-commit)
+    - [revert a commit in the middle](#revert-a-commit-in-the-middle)
+    - [reset to an old revision](#reset-to-an-old-revision)
+    - [reset a file to an old revision](#reset-a-file-to-an-old-revision)
+    - [recover deleted commits (after reset)/recover a deleted branch](#recover-deleted-commits-after-resetrecover-a-deleted-branch)
+    - [move a commit to a new branch](#move-a-commit-to-a-new-branch)
+    - [move a commit to a different branch(without creating a new branch)](#move-a-commit-to-a-different-branchwithout-creating-a-new-branch)
+    - [edit old commit message(only the very last commit can use ammend)](#edit-old-commit-messageonly-the-very-last-commit-can-use-ammend)
+    - [delete old commits(not used often)](#delete-old-commitsnot-used-often)
+    - [squash multiple commits into one](#squash-multiple-commits-into-one)
+    - [add a change to an old commit(very practical)](#add-a-change-to-an-old-commitvery-practical)
 
 ## add more emails
 The only identity to differ from admin or guest is email address. Say you are pushing codes from company and home, your company email is your default commit account, one way to recognize it as yourself is to add emails to git account.
@@ -405,4 +426,3 @@ git commit --fixup <commit hash>
 # this will automatically use the fixup option
 git rebase -i --autosquash HEAD~4
 ```
-### 
