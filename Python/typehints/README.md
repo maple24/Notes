@@ -3,6 +3,7 @@
   - [reference](#reference)
   - [generic](#generic)
   - [typevar](#typevar)
+  - [Mapping](#mapping)
 
 ## reference
 [reference](https://medium.com/@steveYeah/using-generics-in-python-99010e5056eb)
@@ -44,4 +45,24 @@ if __name__ == "__main__":
 
 T = TypeVar("T", str, int) # T can only represent types of int and str
 T = TypeVar("T", bound=int) # T can only be an int or subtype of int, bool is a subtype of int
+```
+
+## Mapping
+```python
+class _MetaDataTableCol(str, Enum):
+    """Enumeration for metadata table column names."""
+
+    SELECTED = "Selected"
+    RUN_ID = "run_id"
+    MAP_ID = "map_id"
+    RECORDING_ID = "recording_id"
+    _INDEX = "index"
+
+    def __str__(self) -> str:
+        return self.value
+
+_MetaDataTableRow = Mapping[_MetaDataTableCol, Union[int, str, bool]]
+# Mapping type provides similar feature as Dict, but it is immutable
+# There is a mutable one which is MutableMapping
+def _get_map_evaluation_table_info(evaluation_sets: List[KpiTestResultBasicInfo]) -> List[_MetaDataTableRow]:
 ```
