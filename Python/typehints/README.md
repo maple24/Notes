@@ -66,3 +66,29 @@ _MetaDataTableRow = Mapping[_MetaDataTableCol, Union[int, str, bool]]
 # There is a mutable one which is MutableMapping
 def _get_map_evaluation_table_info(evaluation_sets: List[KpiTestResultBasicInfo]) -> List[_MetaDataTableRow]:
 ```
+
+## Type[class]
+```python
+# In case we would like to pass an type/class to an function, we should use Type[].
+def get_entries(
+    mdm_query: str,
+    namespace_name: str,
+    namespace_model: Type[NamespaceModel],
+    data_to_dataframe_input_dict: Callable[[NamespaceModel, List[SearchResponseFile]], dict],
+) -> StoredData:
+
+# I would like to validate data with difference pydantic models, so here I use Type[] to indicate that should be a type or class.
+# If Type[] is not used, it suggests an instance.
+```
+
+## NamedTuple
+```python
+# The difference between a NamedTuple class and a simple class is that a NamedTuple instance is immutable.
+from typing import NamedTuple
+class Person(NamedTuple):
+    name = "maple"
+
+p = Person()
+p.name = "john"
+# This will raise a read-only error!
+```
