@@ -145,13 +145,21 @@ reveal_type(y)
 
 ```python
 from collections.abc import Sequence
-# same as
+
+# this will be deprecated in the future
 from typing import Sequence
 
 def foo(seq: Sequence[str]):
     for i in seq:
         print(i)
 ```
+
+## collection
+> Python collection, unlike a sequence, does not have a deterministic ordering. Examples include sets and dictionaries.
+
+> In a collection, while ordering is arbitrary, physically, they do have an order.
+
+> Every time we visit a set, we get its items in the same order. However, if we add or remove an item, it may affect the order.
 
 ## reveal_type
 > When working with type hints, it is often useful to debug the types of variables. Type checkers allow you to do this with reveal_type() and reveal_locals().
