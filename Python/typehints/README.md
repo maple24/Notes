@@ -4,6 +4,11 @@
   - [generic](#generic)
   - [typevar](#typevar)
   - [Mapping](#mapping)
+  - [typeclass](#typeclass)
+  - [namedtuple](#namedtuple)
+  - [overload](#overload)
+  - [sequence](#sequence)
+  - [reveal_type](#reveal_type)
 
 ## reference
 [reference](https://medium.com/@steveYeah/using-generics-in-python-99010e5056eb)
@@ -92,3 +97,70 @@ p = Person()
 p.name = "john"
 # This will raise a read-only error!
 ```
+
+## overload
+> Function overloading is a powerful concept in programming that allows a programmer to define multiple functions with the same name but different parameters or argument types.
+
+> Sometimes the types of several variables are related, such as “if x is type A, y is type B, else y is type C”. Basic type hints cannot describe such relationships, making type checking cumbersome or inaccurate. We can instead use @typing.overload to represent type relationships properly.
+
+[How to Use @overload](https://adamj.eu/tech/2021/05/29/python-type-hints-how-to-use-overload/)
+```python
+from __future__ import annotations
+
+from collections.abc import Sequence
+from typing import overload
+
+@overload
+def double(input_: int) -> int:
+    ...
+
+@overload
+def double(input_: Sequence[int]) -> list[int]:
+    ...
+
+"""
+The first two @overload definitions exist only for their type hints. Each definition represents an allowed combination of types. These definitions never run, so their bodies could contain anything, but it’s idiomatic to use Python’s ... (ellipsis) literal.
+"""
+
+"""
+The third definition is the actual implementation. In this case, we need to provide type hints that union all the possible types for each variable. 
+"""
+
+def double(input_: int | Sequence[int]) -> int | list[int]:
+    if isinstance(input_, Sequence):
+        return [i * 2 for i in input_]
+    return input_ * 2
+
+x = double(12)
+reveal_type(x)
+
+y = double([1, 2])
+reveal_type(y)
+```
+
+## sequence
+> Sequence types in Python are used to represent collections of items where the order of elements matters. They can be indexed and sliced. Python provides several built-in sequence types, including lists, tuples, range objects, strings, and bytes.
+
+> You can use it if there is no way to specify if it should be a list or string or tuple, etc.
+
+```python
+from collections.abc import Sequence
+# same as
+from typing import Sequence
+
+def foo(seq: Sequence[str]):
+    for i in seq:
+        print(i)
+```
+
+## reveal_type
+> When working with type hints, it is often useful to debug the types of variables. Type checkers allow you to do this with reveal_type() and reveal_locals().
+
+```python
+items = [1, None]
+reveal_type(items)
+# Then when we run our type checker, in this case Mypy.
+# >> mypy example.py
+# >> example.py:2: note: Revealed type is 'builtins.list[Union[builtins.int, None]]'
+```
+
