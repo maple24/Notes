@@ -1,6 +1,7 @@
 # Django ORM vs SQLAlchemy
 
 ## What is an ORM?
+
 ORM stands for Object Relational Mapping. The ORM is here to connect between the programming language to the database in order to simplify the process of creating an application that relies on data
 
 - Object: ORM stands for Object Relational Mapping.
@@ -8,18 +9,26 @@ ORM stands for Object Relational Mapping. The ORM is here to connect between the
 - Mapping: This final part represents the bridge and connection between the two previous parts.
 
 ## extensible data modeling
+
 Senario: types of products with slightly different features, if just using one table there are many 'nulls' in some fields.
 
 Solutions:
+
 - Concrete Table Inheritance
+
 > Create a new table for every single product
-  - Disadvantages:
-    - Field definition duplicated
-    - Multiple SELECT with UNION
+
+- Disadvantages:
+  - Field definition duplicated
+  - Multiple SELECT with UNION
 - Multi-table Inheritance
+
 > Inherite a generic table
+
 - Abstract models
+
 > Inherite an abstract generic table
+
 ```python
 class Product(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to={'model_in': ('book', 'cupboard')})
@@ -38,9 +47,11 @@ class Book(Base):
 class Cupboard(Base):
     pass
 ```
+
 - Polymorphism
 
 ## OR query
+
 ```python
 # 1. use |
 posts = Student.objcts.filter(surname__startswith='austin') | Student.objects.fiter(surname__startswith='baldwin')
@@ -54,6 +65,7 @@ posts = Student.objcts.filter(Q(surname__startswith='austin') | Q(surname__start
 ```
 
 ## AND query
+
 ```python
 # 1. use &
 # student with surname 'baldin' in classroom 3
@@ -64,31 +76,38 @@ posts = Student.objects.filter(Q(surname__startswith='baldwin') & Q(classroom=3)
 ```
 
 ## UNION query
+
 ```python
 # should have the same field and data type
 posts = Student.objects.all().values_list('firstname').union(Teacher.objects.all().value_list('firstname'))
 ```
 
 ## NOT query
+
 ```python
 # 1. exclude
 # 2. ~Q
 ```
 
 ## SELECT & OUTPUT individual fields
+
 ```python
 # only print the firstname of the selected student
 posts = Student.objects.filter(classroom=1).only('firstname')
 ```
 
 ## RAW query
+
 ```python
 posts = Student.objects.raw("SELECT * FROM student_student")
 ```
 
 ## model inheritance
+
 - abstract models
+
 > used when you have common information needed for number of other models
+
 ```python
 # the BaseItem does not create an actual table, so there are two tables: ItemA and ItemB
 class BaseItem(models.Model):
@@ -109,10 +128,15 @@ class ItemA(BaseItem):
 class ItemB(BaseItem):
     name = models.charField()
 ```
+
 - multi-table model inheritance
+
 > every model is a model all by itself, one-to-one link is created automatically
+
 - proxy models
+
 > change the behavior of a model, operates on the original model
+
 ```python
 # BookOrders does not ceate an actual table
 class BookContent(models.Model):
@@ -129,13 +153,16 @@ class BookOrders(BookContent):
 ```
 
 ## django debug toolbar
+
 provide pannels to show debug information
+
 - system information
 - timing
 - setting/configurations
 - header
 - SQL
 - templates, includes
+
 ```python
 # pip install django-debug-toolbar
 # settings.py
@@ -169,7 +196,9 @@ DEBUG_TOOLBAR_PANELS = [
 ```
 
 ## performing custom SQL directly
+
 avoid model layer
+
 ```python
 import django.db.connection
 cursor = connection.cursor()
@@ -179,6 +208,7 @@ r = cursor.fetchall()
 ```
 
 ## setup multiple database
+
 ```python
 # in settings.py
 DATABSE = {
@@ -212,6 +242,7 @@ Author.objects.using('users_db').all()
 ```
 
 ## commands
+
 ```sh
 exact
 iexact
@@ -236,6 +267,7 @@ search
 regex
 iregex
 ```
+
 ```python
 from django.db import connection
 posts = Student.objects.all()

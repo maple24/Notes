@@ -1,24 +1,29 @@
 # Table of Contents
+
 - [Table of Contents](#table-of-contents)
   - [reference](#reference)
   - [generic](#generic)
   - [typevar](#typevar)
   - [Mapping](#mapping)
-  - [typeclass](#typeclass)
-  - [namedtuple](#namedtuple)
+  - [Type\[class\]](#typeclass)
+  - [NamedTuple](#namedtuple)
   - [overload](#overload)
   - [sequence](#sequence)
-  - [reveal_type](#reveal_type)
+  - [collection](#collection)
+  - [reveal\_type](#reveal_type)
 
 ## reference
+
 [reference](https://medium.com/@steveYeah/using-generics-in-python-99010e5056eb)
 
 ## generic
+
 ```python
 
 ```
 
 ## typevar
+
 ```python
 from typing import List, TypeVar
 
@@ -35,6 +40,7 @@ if __name__ == "__main__":
 In the above example even though the only container argument passed to the function has elements of type str, and we return a str, mypy raises an “Incompatible return value type” error, as it was expecting a return value of generic type T .We only define T as the content type for the container parameter in this function, so the return value must come from the container.
 '''
 ```
+
 ```python
 from typing import Dict, TypeVar
 
@@ -53,6 +59,7 @@ T = TypeVar("T", bound=int) # T can only be an int or subtype of int, bool is a 
 ```
 
 ## Mapping
+
 ```python
 class _MetaDataTableCol(str, Enum):
     """Enumeration for metadata table column names."""
@@ -73,6 +80,7 @@ def _get_map_evaluation_table_info(evaluation_sets: List[KpiTestResultBasicInfo]
 ```
 
 ## Type[class]
+
 ```python
 # In case we would like to pass an type/class to an function, we should use Type[].
 def get_entries(
@@ -87,6 +95,7 @@ def get_entries(
 ```
 
 ## NamedTuple
+
 ```python
 # The difference between a NamedTuple class and a simple class is that a NamedTuple instance is immutable.
 from typing import NamedTuple
@@ -99,11 +108,13 @@ p.name = "john"
 ```
 
 ## overload
+>
 > Function overloading is a powerful concept in programming that allows a programmer to define multiple functions with the same name but different parameters or argument types.
 
 > Sometimes the types of several variables are related, such as “if x is type A, y is type B, else y is type C”. Basic type hints cannot describe such relationships, making type checking cumbersome or inaccurate. We can instead use @typing.overload to represent type relationships properly.
 
 [How to Use @overload](https://adamj.eu/tech/2021/05/29/python-type-hints-how-to-use-overload/)
+
 ```python
 from __future__ import annotations
 
@@ -139,6 +150,7 @@ reveal_type(y)
 ```
 
 ## sequence
+>
 > Sequence types in Python are used to represent collections of items where the order of elements matters. They can be indexed and sliced. Python provides several built-in sequence types, including lists, tuples, range objects, strings, and bytes.
 
 > You can use it if there is no way to specify if it should be a list or string or tuple, etc.
@@ -155,6 +167,7 @@ def foo(seq: Sequence[str]):
 ```
 
 ## collection
+>
 > Python collection, unlike a sequence, does not have a deterministic ordering. Examples include sets and dictionaries.
 
 > In a collection, while ordering is arbitrary, physically, they do have an order.
@@ -162,6 +175,7 @@ def foo(seq: Sequence[str]):
 > Every time we visit a set, we get its items in the same order. However, if we add or remove an item, it may affect the order.
 
 ## reveal_type
+>
 > When working with type hints, it is often useful to debug the types of variables. Type checkers allow you to do this with reveal_type() and reveal_locals().
 
 ```python
@@ -171,4 +185,3 @@ reveal_type(items)
 # >> mypy example.py
 # >> example.py:2: note: Revealed type is 'builtins.list[Union[builtins.int, None]]'
 ```
-

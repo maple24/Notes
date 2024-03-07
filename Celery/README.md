@@ -1,10 +1,13 @@
 ## Reference
+
 [django-and-celery](https://testdriven.io/blog/django-and-celery/)
 
 ## why?
+
 Although django handles http requests in multithreads, long-running processes should be run outside the normal HTTP request/response flow, in a background process.
 
 Examples:
+
 - Running machine learning models
 - Sending confirmation emails
 - Scraping and crawling
@@ -13,9 +16,11 @@ Examples:
 - Generating reports
 
 ## workflow
+
 ![workflow](assets/django-celery-flow.png)
 
 ## schedule
+
 ```python
 # schedule a specific time
 # Star arguments shortcut to .apply_async. (.delay(*args, **kwargs) calls .apply_async(args, kwargs)).
@@ -50,6 +55,7 @@ CELERY_BEAT_SCHEDULE = {
 ```
 
 ## run worker/beat
+
 ```sh
 # for windows, celery worker has to run with command below
 celery -A your-application worker -l info --pool=solo

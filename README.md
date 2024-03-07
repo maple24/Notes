@@ -1,18 +1,23 @@
 # Notes
+
 Collection of my notes.
 It is gonna be a bit messy here.
 
-# Opening the github.dev editor
+## Opening the github.dev editor
+
 You can open any GitHub repository in github.dev in either of the following ways:
+
 - To open the repository in the same browser tab, press . while browsing any repository or pull request on GitHub.
 - To open the repository in a new browser tab, press >.
 
-# Reference
+## Reference
+
 [Architectural messaging patterns: an illustrated guide](https://www.redhat.com/architect/architectural-messaging-patterns)
 
-[Kafka vs Redis – What’s the Difference ? ](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
+[Kafka vs Redis – What’s the Difference ?](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
 
-# Table of Contents
+## Table of Contents
+
 - [CSS](CSS)
 - [Django](Django)
 - [Docker](Docker)
@@ -39,23 +44,25 @@ You can open any GitHub repository in github.dev in either of the following ways
 - [Websocket](Websocket)
 - [LessonLearnt](LessonLearnt)
 
-# [Git](Git) semantic commit messages
+## [Git](Git) semantic commit messages
+
 - feat: add new features
 - fix: fix issues/bugs
 - style: code style, do not affect running results
 - perf: improve performance
 - refactor: reconstructure
 - revert: reset/revert commits
-- test: 
-- docs: 
-- chore: 
+- test:
+- docs:
+- chore:
 - workflow: improve workflow
 - ci: continous integrated
 - types: change typescript variables
 - wip: under development
 
-# Markdown basic syntax
-```
+## Markdown basic syntax
+
+```md
 | Element         | Markdown Synatx           |
 | --------------- | ------------------------- |
 | Heading         | # H1                      |
@@ -73,7 +80,8 @@ You can open any GitHub repository in github.dev in either of the following ways
 | Image           | ![alt text](image.jpg)    |
 ```
 
-# Markdown code block language list
+## Markdown code block language list
+
 - actionscript3
 - apache
 - applescript

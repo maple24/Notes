@@ -1,4 +1,5 @@
 # Table of contents
+
 - [Table of contents](#table-of-contents)
   - [what is redis](#what-is-redis)
   - [redis on windows](#redis-on-windows)
@@ -9,6 +10,7 @@
   - [docker compose file](#docker-compose-file)
 
 ## what is redis
+>
 > Redis is an in memory data structure store used as a database, cache and message broker.
 
 > It is a simple key value database store with faster execution time, along with a ttl- (Time to live) functionality.
@@ -21,23 +23,28 @@ Database, everything stored in key/value pair rather sql table.
 Runs in RAM, super quick, but if your system crashes, data are gone. So it is more used as caching(eg. in front of your sql database).
 
 ## redis on windows
+
 `memurai`: Redis™* for Windows alternative, In-Memory Datastore
 ![memurai](assets/memurai.png)
+
 ```
 memurai-cli
 ```
 
 ## redis on docker
+
 ```sh
 docker run -d redis
 docker exec it <redis container name> redis-cli
 ```
 
 ## workflow
+
 ![redis](assets/redis.png)
 > According to the diagram, the client will hit a request to the middleware. The middleware will first add the request in the queue i.e increase the count by 1 of the “request method” key in Redis cache memory. Then middleware will hit the server with the request and complete the tasks. The server sends a response to the middleware. It sends messages to all subscribers(pubsub) about the request and a response to the client.
 
 ## commands
+
 ```sh
 # in windows wsl
 redis-cli
@@ -102,6 +109,7 @@ TYPE <key>
 ```
 
 ## example
+
 ```javascript
 import express from 'express'
 import axios from "axios"
@@ -136,4 +144,5 @@ app.listen(3000)
 ```
 
 ## docker compose file
+
 ![redis docker](assets/redis_docker.png)

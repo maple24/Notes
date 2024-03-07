@@ -4,6 +4,7 @@
   - [stepinto vs stepover](#stepinto-vs-stepover)
 
 ## stepinto vs stepover
+
 Step in: means that if there is a function call, it goes inside the function and you can see how the function is executing line by line till it returns and you go back to the next line right after the function call.
 
 Step over: means that if there is a function call, it just executes it like a black box and returns the result, but you cannot see how the function was executed.

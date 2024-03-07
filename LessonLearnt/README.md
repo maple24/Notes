@@ -1,4 +1,5 @@
 # Table of contents
+
 - [Table of contents](#table-of-contents)
   - [template](#template)
   - [Django channel vs Kafka](#django-channel-vs-kafka)
@@ -7,9 +8,11 @@
   - [thread with queue](#thread-with-queue)
 
 ## template
+
 ![template](assets/template.png)
 
 ## Django channel vs Kafka
+
 `Conclusion`: Use Redis if you want to send messages to consumers instantly, and you can live with data loss and a small amount of data to manage. Kafka can be used when you are looking for reliability, high performance, fault tolerance and large amounts of data.
 
 Based on the capabilities of both tools, Redis processes messages in real time, the delay is the smallest, then you should try Redis. However, if the message is large and the data needs to be reused, Kafka should be considered first.
@@ -33,18 +36,21 @@ Based on the capabilities of both tools, Redis processes messages in real time, 
 In addition to the p2p message queue, it certainly provides a PUB/SUB message model. Moreover, Kafka provides message persistence by default to ensure that the message is not lost (at least in most cases). In addition, since the consumption metadata is stored on the consumer side, the consumer is given a great degree of freedom for consumption. Consumers can consume messages sequentially, or they can re-consume previously processed messages. These are things that Redis PUB/SUB cannot do.
 
 ## python requests vs javascript fetch
+
 Although python and javascript are both syncronous programming language by default, python requests module is blocking and javascript fetch/axios module is not.
 
 This means after sending a request, python waits for response, while javascript continues running following codes.
 
-Both have some problems, for python, no further codes proceed until get response back, it is gonna take lots of time waiting. 
+Both have some problems, for python, no further codes proceed until get response back, it is gonna take lots of time waiting.
 
 For javascript, response may be lost.
 
 Asyncronous is most widely used in such situation. However, multiple threads can also solve the above problem for python since it does not lose data, it is just a matter of time.
 
 ## python same module being imported in different files
+
 The imported module is set as a global variable, and only will be imported **once**
+
 ```python
 # middleware.py
 from task import TaskManager
@@ -69,6 +75,7 @@ func()
 ```
 
 ## thread with queue
+
 ```python
 from queue import Queue
 from threading import Thread

@@ -1,14 +1,16 @@
 # Table of contents
+
 - [Table of contents](#table-of-contents)
-	- [usage](#usage)
-	- [setup mysql](#setup-mysql)
-		- [linux docker](#linux-docker)
-		- [docker-compose](#docker-compose)
-		- [load sample data(migrate)](#load-sample-datamigrate)
-	- [new user](#new-user)
-	- [foreign key](#foreign-key)
+ 	- [usage](#usage)
+ 	- [setup mysql](#setup-mysql)
+  		- [linux docker](#linux-docker)
+  		- [docker-compose](#docker-compose)
+  		- [load sample data(migrate)](#load-sample-datamigrate)
+ 	- [new user](#new-user)
+ 	- [foreign key](#foreign-key)
 
 ## usage
+
 ```sh
 SHOW DATABASES;
 USE TEST;
@@ -16,7 +18,9 @@ SHOW TABLES;
 ```
 
 ## setup mysql
+
 ### linux docker
+
 ```sh
 # download mysql docker image
 sudo docker pull mysql:latest
@@ -35,23 +39,25 @@ SHOW DATABASES;
 ```
 
 ### docker-compose
+
 ```yaml
 version: '3'
 services:
-	database: 
-		image: mysql:latest
-		container_name: mysql
-		environment:
-			MYSQL_ROOT_PASSWORD: temp1234
-		ports:
-			- "3306:3306"
-		volumes:
-			- mysql_volume: /var/lib/mysql
+ database: 
+  image: mysql:latest
+  container_name: mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: temp1234
+  ports:
+   - "3306:3306"
+  volumes:
+   - mysql_volume: /var/lib/mysql
 volumes:
-	mysql_compose_volume: 
+ mysql_compose_volume: 
 ```
 
 ### load sample data(migrate)
+
 ```sh
 # mariaDB/bin
 # backup database
@@ -66,6 +72,7 @@ mysql -u root -p gwm < gwm_backup.sql
 ```
 
 ## new user
+
 ```sh
 # create user for all hostnames
 CREATE USER 'username'@'%' IDENTIFIED BY 'password';
@@ -78,19 +85,20 @@ DROP USER 'usernmae'@'hostname';
 ```
 
 ## foreign key
+
 ```sql
 -- create a simple customers table
 CREATE TABLE customers (
-	customer_id INT AUTO_INCREMENT PRIMARY KEY,
-	customer_name VARCHAR(100)
+ customer_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_name VARCHAR(100)
 );
 
 -- create orders table which will contain a foreign key
 CREATE TABLE orders (
-	order_id INT AUTO_INCREMENT PRIMARY KEY,
-	customer_id INT,
-	amount DOUBLE,
-	FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+ order_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ amount DOUBLE,
+ FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 -- insert data into tables
@@ -110,4 +118,5 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `amount`) VALUES
 SELECT * FROM orders
 JOIN customers USING(customer_id)
 ```
+
 ![foreign key](assets/foreignkey.png)

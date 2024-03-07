@@ -1,4 +1,5 @@
 # Table of contents
+
 - [Table of contents](#table-of-contents)
   - [array vs tuple](#array-vs-tuple)
   - [bundler](#bundler)
@@ -44,27 +45,33 @@
   - [virtual DOM](#virtual-dom)
 
 ## array vs tuple
+
 A tuple is a typed array with a pre-defined length and types for each index
 
 ## bundler
+
 What bundlers do?
+
 1. a bundler is able to compress all your code.
 2. bundler will minify all the code. The way minification works is longer variables are replaced with shorter ones to save space. For example options would be replaced with o.
 3. make your code as small as possible.
 4. dead-code elimination - if you have a function that is never used, it will detect that and remove that.
 
 Bundler options:
+
 1. parcel
 2. pika
 3. webpack
 4. vite
 
 ## cheatsheet
+
 ```javascript
 array.indexOf(newItem) === -1 ? array.push(newItem) : console.log("this item already exists")
 ```
 
 ## async and await
+
 ```javascript
 function fetchdata() {
 fetch("google.com").then(console.log(res))
@@ -80,12 +87,15 @@ console.log(res)
 ```
 
 ## browser
+
 ![browser](assets/architecture.png)
 
 ## class
+
 ![class](assets/class.png)
 
 ## closure (anonymous/lambda function)
+>
 > A closure is an inner function that has access to the outer (enclosing) function's variables.
 
 ```javascript
@@ -101,6 +111,7 @@ var get_func_inner = foo(5);
 console.log(get_func_inner(4));
 console.log(get_func_inner(3));
 ```
+
 ```javascript
 // closure just refer to the variable not stored
 const add = (function () {
@@ -140,6 +151,7 @@ console.log(get_arr[3]());
 ```
 
 ## colon vs equal
+
 ```javascript
 // This creats an object, which is a data structure
 {
@@ -152,23 +164,30 @@ let product = {}
 ```
 
 ## create element
+
 ![create element](assets/createelement.png)
 
 ## constructor function
+
 ![constructor function](assets/constructorfunction.png)
 
 ## deep copy
+
 1. spread operator (...object)
 2. object assign Object.assign({}, object)
+
 > However, both of the two methods are only work for "top level" values. Child objects which are nested inside the original object are referenced when using the spread operator or object assign function. This means if the child object values are changing, they are changing in all copies as well.
 
 3. json parser
+
 ```javascript
 JSON.parse(JSON.stringify(animals))
 ```
+
 > This method is not perfect, it may occur some unexpected errors.
 
 4. recursive function
+
 ```javascript
 var toString = Object.prototype.toString;
 function deepCopy(obj) {
@@ -218,8 +237,11 @@ snippet.log(JSON.stringify(a));
 var b = deepCopy(a);
 snippet.log(JSON.stringify(b));
 ```
+
 5. lodash
+
 > This is the best way to deal with this problem.
+
 ```javascript
 const _ = require('lodash');
 // ES6
@@ -235,9 +257,11 @@ console.log(moreAnimals);
 ```
 
 ## destructuring
+>
 > The destructuring assignment syntax is a JavaScript expression that makes it possible to **unpack values from arrays, or properties from objects, into distinct variables.**
 
 ## engine v8(google js engine)
+
 ![javascript engine](assets/js_engine.png)
 
 ```javascript
@@ -245,19 +269,23 @@ console.log(moreAnimals);
 // works the same as
 ({ data }) => {console.log(data)}
 ```
+
 ![destructuring1](assets/destructuring1.png)
 
 ![destructuring2](assets/destructuring2.png)
 
 ## event loop
+
 ![event loop](assets/event_loop.png)
 
 ## filter
+
 ```javascript
 this.tasks = this.tasks.filter((task) => task.id !== id);
 ```
 
 ## download json file
+
 ```javascript
 // new feature in HTML5
 // <a href="file.pdf" download="resume.pdf">Download PDF</a> 
@@ -299,6 +327,7 @@ const handleDownload = async (filename: string) => {
 ```
 
 ## for loop
+>
 > forEach is not promise-aware (you can't return values in a forEach loop). It cannot support async and await since it does not return any value. You cannot use await in forEach.
 
 ```javascript
@@ -313,10 +342,12 @@ function greet(persons) {
 ```
 
 ## functions vs methods
+
 `functions`: Functions that are declared with the function keyword are called hoisted.
 JavaScript will take all functions with the function keyword and hoist them up, up, up and says "you're a function, you belong at the top of the file". That means anywhere you call the function, it will be available to you.
 
 `arrow functions`: arrow functions are also anonymous functions
+
 - They have a few benefits
   - concise syntax and tend to be shorter. allow for writing one line functions
   - do not have their own scope in reference to the this keyword (we will cover the this keyword in a future video)
@@ -328,6 +359,7 @@ Take console.log(), log is a method inside console object
 `callback functions`: callback function is a function that gets passed into another function and then it is called by the browser at a later point in time.
 
 ## getter and setter
+
 ```javascript
 class Person {
     constructor(name) {
@@ -347,9 +379,11 @@ class Person {
 ```
 
 ## high order functions
+
 ![high order functions](assets/highorderfunctions.png)
 
-## import 
+## import
+
 ```javascript
 // import in {} means it is not a default export 
 export const A = 3;
@@ -363,6 +397,7 @@ import B from …
 ```
 
 ## improve javascript performance
+
 - reduce application size with webpack
 - **use cache in the browser**
 - remove unused javascript
@@ -372,6 +407,7 @@ import B from …
 - avoid unnecessary access to DOM
 
 ## imutable
+>
 > It is better to keep data imutable in js, in which case, 'this' will not be misleaded when called back.
 
 ![imutable](assets/imutable.png)
@@ -380,12 +416,15 @@ A good way to deal with this problem is called **persistent data structure, whic
 JS library like *mori and immuable js* can be used to achieve this.
 
 ## if statement in oneline
+
 ```javascript
 if (error) console.log(error)
 ```
 
 ## let vs var vs const
+
 `Var`
+
 ```javascript
     var greeter = "hey hi";
     var times = 4;
@@ -396,9 +435,11 @@ if (error) console.log(error)
     
     console.log(greeter) // "say Hello instead"
 ```
+
 `let is block scoped`
 > A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block.
 So a variable declared in a block with let is only available for use within that block.
+
 ```javascript
    let greeting = "say Hi";
    let times = 4;
@@ -411,10 +452,13 @@ So a variable declared in a block with let is only available for use within that
 ```
 
 ## map
+>
 > A Map object can iterate its elements in insertion order - a for..of loop will return an array of [key, value] for each iteration.
 
 ## map vs filter vs reduce
+
 ![map vs filter vs reduce](assets/map_filter_reduce.png)
+
 ```javascript
 // reduce
 const numbers = [175, 50, 25];
@@ -427,10 +471,13 @@ function myFunc(total, num) {
 ```
 
 ## map vs foreach
+
 ![map vs foreach](assets/map_foreach.png)
 
 ## primitive value
+>
 > Some languages, such as C, have the concept of pass-by-reference and pass-by-value. JavaScript sort of has this concept too, though, it’s inferred based on the type of data being passed around. If you ever pass a value into a function, reassigning that value will not modify the value in the calling location. However, if you modify a non-primitive value, the modified value will also be modified where it has been called from.
+
 ```javascript
 function primitiveMutator(val) {
   val = val + 1;
@@ -446,7 +493,9 @@ let obj = { prop: 1 };
 objectMutator(obj);
 console.log(obj.prop); // 2
 ```
+
 > Primitive values (except for the mystical NaN value) will always be exactly equal to another primitive with an equivalent value. However, constructing equivalent non-primitive values will not result in values which are exactly equal.
+
 ```javascript
 const obj1 = { name: "Intrinsic" };
 const obj2 = { name: "Intrinsic" };
@@ -454,7 +503,9 @@ console.log(obj1 === obj2); // false
 // Though, their .name properties ARE primitives:
 console.log(obj1.name === obj2.name); // true
 ```
-> Objects play an elemental role in the JavaScript language. They’re used everywhere. They’re often used as collections of key/value pairs. However, this is a big limitation of using them in this manner: Until symbols existed, object keys could only be strings. If we ever attempt to use a non-string value as a key for an object, the value will be coerced to a string. 
+
+> Objects play an elemental role in the JavaScript language. They’re used everywhere. They’re often used as collections of key/value pairs. However, this is a big limitation of using them in this manner: Until symbols existed, object keys could only be strings. If we ever attempt to use a non-string value as a key for an object, the value will be coerced to a string.
+
 ```javascript
 const obj = {};
 obj.foo = 'foo';
@@ -467,12 +518,15 @@ console.log(obj);
 ```
 
 ## propagation
+
 ![propagation](assets/propagation.png)
 
 ## promise
+
 ![promise1](assets/promise1.png)
 ![promise2](assets/promise2.png)
 ![promise3](assets/promise3.png)
+
 ```javascript
 function makePizza(toppings, ready) {
     return new Promise(function (resolve, reject) {
@@ -487,6 +541,7 @@ function makePizza(toppings, ready) {
 ```
 
 ## prototype
+
 ```javascript
 // Instead of putting functions on every single instance (this.eat), we can put them on what is referred to as the prototype (Pizza.prototype.eat).
 // why prototype?
@@ -528,6 +583,7 @@ class Pizza {
     }
 }
 ```
+
 ```javascript
 // If you set both prototype variable and class variable, the instance size will be `medium`
 this.size = 'Medium'
@@ -536,7 +592,9 @@ Pizza.prototype.size = 'Large'
 ```
 
 ## self-invoking function
+>
 > A self-invoking expression is invoked (started) automatically, without being called.
+
 ```javascript
 (function () {
   let x = "Hello!!";  // I will invoke myself
@@ -544,6 +602,7 @@ Pizza.prototype.size = 'Large'
 ```
 
 ## setTimeout
+
 ```javascript
 // setTimeout takes 3 arguments: callback, time, params
 setTimeout(function, miiliseconds, param1, param2)
@@ -551,7 +610,9 @@ setTimeout(function, miiliseconds, param1, param2)
 ```
 
 ## spread operator
+
 It allows us the privilege to obtain a list of parameters from an array. Can be used to copy and concate.
+
 ```javascript
 this.tasks.push(task)
 // ==
@@ -559,13 +620,17 @@ this.task = [...this.task, task]
 ```
 
 ## symbol
+>
 > A symbol is a primitive which cannot be recreated. In this case a symbols is similar to an object as creating multiple instances will result in values which are not exactly equal. But, a symbol is also a primitive in that it cannot be mutated.
+
 ```javascript
 const s1 = Symbol();
 const s2 = Symbol();
 console.log(s1 === s2); // false
 ```
+
 > When instantiating a symbol there is an optional first argument where you can choose to provide it with a string. This value is intended to be used for debugging code, it otherwise doesn’t really affect the symbol itself.
+
 ```javascript
 const s1 = Symbol('debug');
 const str = 'debug';
@@ -574,7 +639,9 @@ console.log(s1 === str); // false
 console.log(s1 === s2); // false
 console.log(s1); // Symbol(debug)
 ```
+
 1. `Symbols as Object Properties`: Symbols have another important use. They can be used as keys in objects!
+
 ```javascript
 const obj = {};
 const sym = Symbol();
@@ -585,12 +652,15 @@ console.log(sym in obj); // true
 console.log(obj[sym]); // foo
 console.log(Object.keys(obj)); // ['bar']
 ```
+
 2. `Preventing Property Name Collisions`: They are useful in situations where disparate libraries want to add properties to objects without the risk of having name collisions.
 
 ## textContent vs innerText vs innerHTML
+
 - textContent ignores styles
-- innerText only shows text 
+- innerText only shows text
 - innerHTML including everything inside
+
 ```html
 <!-- example -->
 <h1>hello<span style="display:none">123</span></h1>
@@ -600,6 +670,7 @@ console.log(Object.keys(obj)); // ['bar']
 ```
 
 ## third party modules
+
 ```javascript
 // 1. waait: sleep for sometime
 import wait from waait
@@ -647,11 +718,13 @@ if (err) {
 ```
 
 ## this
+
 `The only reason you would do an arrow function is because you don't want to access this.`
 ![this](assets/this.png)
-> That will not work in an arrow function because they take the parent scope of this. 
+> That will not work in an arrow function because they take the parent scope of this.
 
 ## typeof
+
 ```javascript
 // examples
 typeof "John"                 // Returns "string"
@@ -667,9 +740,11 @@ typeof null                   // Returns "object"
 ```
 
 ## upload a file
+
 [upload file](https://betterprogramming.pub/a-complete-guide-of-file-uploading-in-javascript-2c29c61336f5)
 
 ![upload file](assets/uploadfile.png)
+
 ```javascript
 // You can use html5 file type like this:
 
@@ -680,7 +755,9 @@ var myUploadedFile = document.getElementById("myFile").files[0];
 ```
 
 ## virtual DOM
+
 What is virtual DOM?
+
 ```javascript
 // *Use Javascript to describe a html element.*
 <div class="a" id="b">content</div>
@@ -695,5 +772,7 @@ What is virtual DOM?
   children:[]
 }
 ```
+
 Why virtual DOM?
+
 1. Real DOM is very performance intense. So using Javascript compuation efficency as a workaround.

@@ -3,7 +3,7 @@
 - [Table of contents](#table-of-contents)
   - [Reference](#reference)
   - [compiled vs interpreted](#compiled-vs-interpreted)
-  - [\*](#)
+  - [asterisk](#asterisk)
   - [argparse](#argparse)
   - [array vs list](#array-vs-list)
   - [assert](#assert)
@@ -80,18 +80,22 @@
   - [yield](#yield)
 
 ## Reference
+
 [complexity](https://iq.opengenus.org/why-o1-time-does-not-exist/)
 
 ## compiled vs interpreted
+>
 > Compiled programming languages are more performant but are harder to port to different CPU architectures and operating systems. Interpreted programming languages are more portable, but their performance is much worse than that of compiled languages. These are the two extremes of the spectrum.
 
 > Then there are programming languages such as Python that do **a mix of both compilation and interpretation**. *Specifically, Python is first compiled into an intermediate bytecode, which is then interpreted by CPython. This makes the code perform better than code written in a purely interpreted programming language, and it maintains the portability advantage.*
 
-## *
+## asterisk
+
 ```python
 # print all items of a list in one line
 print(*sorted(l), sep='\n')
 ```
+
 ```python
 # Unpacking a function using positional argument. (same theory)
 arr = [1, 'monday', 'tuesday', 'wednesday']
@@ -104,6 +108,7 @@ print(*arr)
 ```
 
 ## argparse
+
 ```python
 import argparse
 parser = argparse.ArgumentParser()
@@ -135,15 +140,18 @@ else:
 ```
 
 ## array vs list
+
 `Arrays` are great for **numerical operations**
 
 `lists` cannot directly handle math operations. For example, you can divide each element of an array by the same number with just one line of code. If you try the same with a list, you'll get an error.
+
 ```python
 array = np.array([3, 6, 9, 12])
 division = array/3
 ```
 
 ## assert
+>
 > The assert statement exists in almost every programming language. It helps detect problems early in your program, where the cause is clear, rather than later when some other operation fails.
 
 > In Python, the assert statement is used to continue the execute if the given condition evaluates to True. If the assert condition evaluates to False, then it raises the AssertionError exception with the specified error message.
@@ -174,7 +182,9 @@ if not condition:
 ```
 
 ## asyncrounous
+
 ![concurrency vs parallelism](assets/concurrency_vs_parallelism.png)
+
 ```python
 import asyncio
 from time import sleep
@@ -196,7 +206,9 @@ async def main():
     
 asyncio.run(main())
 ```
+
 By contrast, asyncio event loops uses only a single thread, and it is guaranteed that unless you await, nothing else will get in your way when you are executing.
+
 ```python
 async def main():
     ac.go(count('counter a:'))
@@ -209,11 +221,14 @@ async def main():
 ```
 
 ## automating windows application using COM
+
 [COM](https://pbpython.com/windows-com.html)
+
 1. win32com.client.Dispatch()
 2. win32com.client.gencache.EnsureDispatch()
 
 ## call
+
 ```python
 class Product:
     def __init__(self):
@@ -241,6 +256,7 @@ a()
 ```
 
 ## call method by name
+
 ```python
 class Foo:
     name = 'maple'
@@ -261,7 +277,9 @@ print(call_property(f, 'name')) # prints maple
 ```
 
 ## class
+
 1. singleton
+
 ```python
 # you can use singleton decorator to avoid multiple instances, or import the instance
 def Singleton(cls):
@@ -280,7 +298,9 @@ person = Person()
 # ===============================================
 import person
 ```
+
 2. global variable
+
 ```python
 # for a class without init, it is like a class of toolkits and can be initialized many times, so no singleton needed.
 # for this senario, classmethod is useful
@@ -297,6 +317,7 @@ class Person:
 ```
 
 ## classmethod & staticmethod
+
 ```python
 class BookCase:
 
@@ -312,13 +333,15 @@ class BookCase:
 
         return cls(list_of_books)
 ```
+
 > When you need a utility function that doesn’t access any properties of a class, but makes sense that it belongs to the class, we use static functions.
 
-> Class methods are for when you need to have methods that aren't specific to any particular instance, but still involve the class in some way. 
+> Class methods are for when you need to have methods that aren't specific to any particular instance, but still involve the class in some way.
 
 > You can use class methods for any methods that are not bound to a specific instance but the class. In practice, you often use class methods for methods that **create an instance of the class.**
 
 1. factory method (create an instance)
+
 ```python
 class Supermarket:    
     def __init__(self, product, best_before):
@@ -334,7 +357,9 @@ class Supermarket:
 >>> obj.best_before
 '2022-05-18'
 ```
+
 2. Correct instance creation in inheritance (can be inheritance)
+
 ```python
 class Supermarket:
     product_price = {"Milk": 1}
@@ -359,6 +384,7 @@ isinstance(grocery2, GroceryStore)
 ```
 
 ## class variable scope
+
 ```python
 class TestB:
     varNum = 0
@@ -372,6 +398,7 @@ print(TestB.varNum)  # print 0
 ```
 
 ## cli
+
 ```sh
 python.exe -c "from <pythonscript> import <function>; function()"
 
@@ -380,6 +407,7 @@ py -3.7
 ```
 
 ## compile pyd
+
 ```python
 # Method 1:
 #!/usr/bin/env pythonfromsetuptools importsetup,Extension
@@ -393,14 +421,17 @@ except ImportError:
     ext_modules =Nonesetup(ext_modules=ext_modules
 )
 ```
+
 ```sh
 python setup.py build_ext --inplace
 ```
+
 ```sh
 # Method 2
 Cython logger.py
 Combatlink.bat logger
 ```
+
 ```bat
 "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.31.31103\bin\HostX86\x64\cl.exe" /c /nologo /Ox /W3 /GL /DNDEBUG /MD -IC:\Users\ZIU7WX\Desktop\work\venv_work\include -IC:\software\python\python3.8.10\include -IC:\software\python\python3.8.10\include "-IC:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.31.31103\include" "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" "-IC:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" "-IC:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\shared" "-IC:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\um" "-IC:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\winrt" "-IC:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\cppwinrt" /TcC:\Users\ZIU7WX\Desktop\work\tools\RQM\%1.c /FoC:\Users\ZIU7WX\Desktop\work\tools\RQM\%1.obj
 
@@ -408,9 +439,11 @@ Combatlink.bat logger
 ```
 
 ## complexity
+
 [complexity](#reference)
 
 ## context manager
+
 ```python
 with open("x.txt") as f:
     data = f.read()
@@ -424,14 +457,17 @@ with closing(urlopen('http://www.python.org')) as page:
     for line in page:
         print(line)
 ```
-Some types know how to be used in a *with* statement. File objects, like what you get back from *open*, are an example of such a type. 
+
+Some types know how to be used in a *with* statement. File objects, like what you get back from *open*, are an example of such a type.
 
 But some types don't know how to be used in a *with* statement. The *closing* function is designed to wrap such types—as long as they have a *close* method, it will call their *close* method when you exit the *with* statement.
 
 ## copy
+
 A shallow copy doesn't create a copy of nested objects, instead it just copies the reference of nested objects. `(Not recursive)`
 
 For example, [[1, 2], [1, 3]]. If you want to copy all, deepcopy is needed. Otherwise only outside list is copyed.
+
 ```python
 a = []
 b = a
@@ -448,6 +484,7 @@ print(a)
 ```
 
 ## cython
+>
 > The Python language specification is used in a number of implementations such as CPython (written in C), Jython (written in Java), IronPython (written for .NET), and PyPy (written in Python).
 
 > CPython is the original implementation of Python and is by far the most popular and most maintained. When people refer to Python, they more often than not mean CPython. You’re probably using CPython right now!
@@ -455,10 +492,12 @@ print(a)
 > `The python.exe binary is the compilation binary of Cpython.`
 
 ## deque
+>
 > Deque (Doubly Ended Queue) in Python is implemented using the module “collections“. Deque is preferred over a list in the cases where we need quicker append and pop operations from both the ends of the container, as deque provides an O(1) time complexity for append and pop operations as compared to list which provides O(n) time complexity.
 > Queue.Queue and collections.deque serve different purposes. Queue.Queue is intended for allowing different threads to communicate using queued messages/data, whereas collections.deque is simply intended as a datastructure. That's why Queue.Queue has methods like put_nowait(), get_nowait(), and join(), whereas collections.deque doesn't. Queue.Queue isn't intended to be used as a collection, which is why it lacks the likes of the in operator.
 
 > It boils down to this: if you have multiple threads and you want them to be able to communicate without the need for locks, you're looking for Queue.Queue; if you just want a queue or a double-ended queue as a datastructure, use collections.deque.
+
 ```python
 # Python code to demonstrate working of 
 # append(), appendleft(), pop(), and popleft()
@@ -503,26 +542,27 @@ print (de)
 ```
 
 ## decorator
+
 decorators: return a function as a value
 [decorator](https://www.freecodecamp.org/news/python-property-decorator/)
 > The main objective of any decorator is to modify your class methods or attributes in such a way so that the user of your class no need to make any change in their code.
 
 ```python
 def announce(f):
-	def wrapper():
-		print("Start function…")
-		f()
-		print("End function…")
+ def wrapper():
+  print("Start function…")
+  f()
+  print("End function…")
     return wrapper
 
 def hello(func):
-	def inner():
-		print("Hello ")
-		func()
-	return inner
+ def inner():
+  print("Hello ")
+  func()
+ return inner
 
 def name():
-	print("Alice")
+ print("Alice")
 
 obj = hello(name)
 obj()
@@ -533,6 +573,7 @@ def name():
 ```
 
 ## decorator variable
+
 ```python
 # Define the exclude_if decorator
 def exclude_if(*patterns):
@@ -556,35 +597,43 @@ def list_files(directory_path):
 ```
 
 ## dictionary
+
 `setdefault()`:returns the value of a key (if the key is in dictionary). Else, it inserts a key with the default value to the dictionary.
 
-`get()`:returns the value of a key (if the key and value exist)> Else, it gets a default value. 
+`get()`:returns the value of a key (if the key and value exist)> Else, it gets a default value.
 
 ## distribute
+
 1. pyinstaller
+
 ```sh
 pip install pyinstaller
 pyinstaller main.py -n webcamapp
 ```
+
 2. nuitka
+
 ```sh
 pip install -U nuitka
 python -m nuitka --follow-imports .\main.py
 ```
 
 ## dlls
+
 ```sh
 # commands to check dependent dlls
 dumpbin /dependents MyLibrary.cp37-win_amd64.pyd
 ```
 
 ## dunder variable
+
 Python uses dunder variables for two general purposes:
 
 - To convey information (often a form of metadata) to Python programmers
 - To empower Python programmers to convey information to the Python interpreter
 
-For example: Python stores docstrings in a __doc__ attribute:
+For example: Python stores docstrings in a **doc** attribute:
+
 ```python
 import math
 math.__doc__
@@ -592,6 +641,7 @@ math.__doc__
 math.sqrt.__doc__
 >>> 'Return the square root of x.'
 ```
+
 ```
 Classes use these dunder attributes:
 
@@ -601,9 +651,12 @@ __module__: stores the name of the module they were defined in within
 __bases__: stores their base classes (see inheritance)
 __mro__: stores their method resolution order
 ```
+
 ## exceptions
+
 ![exception1](assets/exception1.png)
 ![exception2](assets/exception2.png)
+
 ```python
 # customized exceptions
 class WriteCoordinateError(Exception):
@@ -625,6 +678,7 @@ is an unconditional time. If, during the wait, the other thread has triggered a 
 The event, therefore, is inherently more responsive than the latter.
 
 ## function parameter
+
 ```python
 # 1.positional argument
 def vehicle(name, model):
@@ -686,6 +740,7 @@ print(profile)
 ```
 
 ## file locking
+>
 > File locking is a mechanism that restricts access to a computer file, or to a region of a file, by allowing only one user or process to modify or delete it at a specific time and to prevent reading of the file while it's being modified or deleted.
 
 > Systems implement locking to prevent the classic interceding update scenario, which is a typical example of a race condition, by enforcing the serialization of update processes to any given file. The following example illustrates the interceding update problem:
@@ -695,6 +750,7 @@ print(profile)
 - Process A changes the account balance in its copy of the customer record and writes the record back to the file.
 - Process B, which still has the original stale value for the account balance in its copy of the customer record, updates the account balance and writes the customer record back to the file.
 - Process B has now written its stale account-balance value to the file, causing the changes made by process A to be lost.
+
 ```python
 class Starter:
     def __init__(self):
@@ -721,26 +777,34 @@ class Starter:
 ```
 
 ## for loop in square brackets
+
 ```python
 new_list = [ NEW_VALUE for item in YOUR_LIST ]
 ```
 
 ## garbage collection
+
 1. reference counting reaches to 0
+
 > When the reference count of an object reaches 0, reference counting garbage collection algorithm cleans up the object immediately.
+
 2. generational garbage collection
+
 > If you have a cycle, reference count doesn’t reach zero, you wait for the generational garbage collection algorithm to run and clean the object.
 
 ## get hostname
+
 ```python
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 ```
 
 ## generator
+
 There are several reasons that make generators a powerful implementation.
 
 1. easy to implement(less code)
+
 ```python
 def PowTwoGen(max=0):
     n = 0
@@ -752,6 +816,7 @@ res = PowTwoGen(3)
 for i in res:
     print(i)
 ```
+
 2. memory efficient
 
 A normal function to return a sequence will create the entire sequence in memory before returning the result. This is an overkill, if the number of items in the sequence is very large.
@@ -761,6 +826,7 @@ Generator implementation of such sequences is memory friendly and is preferred s
 3. represent infinite stream
 
 Generators are excellent mediums to represent an infinite stream of data. Infinite streams cannot be stored in memory, and since generators produce only one item at a time, they can represent an infinite stream of data.
+
 ```python
 def all_even():
     n = 0
@@ -774,9 +840,11 @@ print(next(res))
 print(next(res))
 print(next(res))
 ```
+
 4. pipelining generators
 
 Multiple generators can be used to pipeline a series of operations.
+
 ```python
 def fibonacci_numbers(nums):
     x, y = 0, 1
@@ -794,6 +862,7 @@ print(sum(square(fibonacci_numbers(10))))
 ```
 
 ## GIL
+
 [GIL](https://realpython.com/python-gil/)
 
 > The Python Global Interpreter Lock or GIL, in simple words, is a mutex (or a lock) that allows only one thread to hold the control of the Python interpreter.
@@ -805,10 +874,13 @@ I/O-bound programs are the ones that spend time waiting for Input/Output which c
 To recap the above, concurrency encompasses both multiprocessing (ideal for CPU-bound tasks) and threading (suited for IO-bound tasks). Multiprocessing is a form of parallelism, with parallelism being a specific type (subset) of concurrency. The Python standard library has offered longstanding support for both of these through its multiprocessing, threading, and concurrent.futures packages.
 
 Effect:
+
 1. The first effect of the GIL is well-known: multiple Python threads cannot run in parallel. Thus, a multi-threaded program is not faster than its single-threaded equivalent even on a multi-core machine. (Then Why multi-threads? For requests problem, multi-threads can save waiting time. As a result, python multi-thread and aysnc I/O will have the same speed.)
+
 > Although Python threads cannot help us speed up CPU-intensive code, they are useful when we want to perform multiple I/O-bound tasks simultaneously. Consider a server that listens for incoming connections and, when it receives a connection, runs a handler function in a separate thread. The handler function talks to the client by reading from and writing to the client's socket. When reading from the socket, the thread just hangs until the client sends something.
 
 ## inserted function
+
 ```python
 # 1. dir()
 # returns all properties and methods of the specified object, without the values
@@ -826,7 +898,9 @@ Print(Name.title())
 ```
 
 ## keyword-only argument
+
 ![arguments](assets/arguments.png)
+
 ```python
 def func(p1, *, kw):
     print(p1, kw)
@@ -835,6 +909,7 @@ func("hello", kw = "world")
 ```
 
 ## kwargs
+
 ```python
 shoppinglist = {'icecream':5, 'apple':1}
 def func(*args, **kwargs):
@@ -848,11 +923,13 @@ func(icream=5, apple=1)
 ```
 
 ## logging
+
 ```python
 logging.basicConfig(level=logging.DEBUG, filename=os.path.join(self.dstfolder, 'multithread_dl_2.log'), format='%(asctime)s - %(message)s',datefmt='%d-%b-%y %H:%M:%S', filemode='a')
 ```
 
 ## loguru
+
 ```python
 from loguru import logger
 
@@ -876,9 +953,11 @@ print(container)
 ```
 
 ## I/O
+
 ![I/O](assets/I_O.png)
 
 ## inheritance
+
 ```python
 # Python code to demonstrate how parent constructors
 # are called.
@@ -902,21 +981,25 @@ class Employee( Person ):
         # or
         # super.__init__(name, idnumber)
 ```
-`If you forget to invoke the __init__() of the parent class then its instance variables would not be available to the child class. `
 
-`super().__init__(firstname, lastname) in the init method of the student class call's the base class person's init method and pass parameters. `
+`If you forget to invoke the __init__() of the parent class then its instance variables would not be available to the child class.`
 
-`In the same way, super().fullname() calls person.fullname() method.` 
+`super().__init__(firstname, lastname) in the init method of the student class call's the base class person's init method and pass parameters.`
+
+`In the same way, super().fullname() calls person.fullname() method.`
 
 `The super().fullname() can be called as super(student, self).fullname()`
 
 ## json dumps/loads
+>
 > json.dumps() function will convert a subset of Python objects into a json string. Not all objects are convertible and you may need to create a dictionary of data you wish to expose before serializing to JSON.
 
 > json.loads() method can be used to parse a valid JSON string and convert it into a Python Dictionary. It is mainly used for deserializing native string, byte, or byte array which consists of JSON data into Python Dictionary.
 
 ## lambda function
+
 `multiple inputs, single output`
+
 ```python
 # Simple function can be explained in one line, multiples input only one output
 Y = lambda a,b: a+b
@@ -929,6 +1012,7 @@ def f(a, b):
 ```
 
 ## map, filter, reduce
+
 ```python
 def square(number):
     return number ** 2
@@ -965,6 +1049,7 @@ print(reduce(addNumbers, inputList))
 ```
 
 ## module info
+
 ```python
 import pandas as pd
 
@@ -975,11 +1060,13 @@ pd.__doc__
 ```
 
 ## multithreading vs multiprocess
-> Threading allows parallelism of code and Python language has two ways to achieve its 1st is via multiprocessing module and 2nd is via multithreading module. Multithreading is well suited to **speed up I/O bound tasks like making a web request, or database operations, or reading/writing to a file**. 
+>
+> Threading allows parallelism of code and Python language has two ways to achieve its 1st is via multiprocessing module and 2nd is via multithreading module. Multithreading is well suited to **speed up I/O bound tasks like making a web request, or database operations, or reading/writing to a file**.
 
 > In contrast to this **CPU intensive tasks like mathematical computational tasks** are benefited the most using multiprocessing. This happens due to GIL (Global Interpreter Lock).
 
 ## news vs init
+
 `New actually creates something (an object), while init just initialize.
 Because new returns an object while init does not return anything.`
 
@@ -987,12 +1074,14 @@ Because new returns an object while init does not return anything.`
 ![news vs list2](assets/news_init_2.png)
 
 ## python location
+
 ```sh
 where python
 where pip
 ```
 
 ## property vs instance method
+
 ```python
 import math
 
@@ -1017,6 +1106,7 @@ class Circle:
     def diameter(self, value):
         self.radius = value / 2
 ```
+
 ```python
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -1035,15 +1125,18 @@ class Product(models.Model):
 ```
 
 ## version check
+
 ```sh
 python --version
 ```
+
 ```python
 import sys
 sys.version
 ```
 
 ## pip
+
 ```sh
 pip list (--version)
 pip freeze > requirement.txt
@@ -1052,6 +1145,7 @@ pip show pandas
 ```
 
 ## path
+
 ```python
 # use pathlib or os.path to specify the file relative to the location of __file__
 import pathlib
@@ -1067,9 +1161,11 @@ filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test.txt')
 ```
 
 ## python flag -m
+>
 > The m flag is, at its simplest, a means to execute python scripts from the command line by using modulenames rather than filenames
 
 ## process
+
 ```python
 # Shutdown the current process and its children process
 def kill(proc_pid):
@@ -1085,6 +1181,7 @@ except subprocess.TimeoutExpired:
 ```
 
 ## pydantic
+
 ```python
 # continuing the above example...
 
@@ -1125,6 +1222,7 @@ except ValidationError as e:
 ```
 
 ## pyinstaller
+
 ```sh
 # convert python script to executable file
 pyinstaller --onefile -w 'filename.py'
@@ -1134,9 +1232,11 @@ python get-pip.py
 ```
 
 ## py2exe
+
 ```sh
 python setup.py py2exe
 ```
+
 ```python
 # setup.py
 from distutils.core import setup
@@ -1168,47 +1268,55 @@ setup(
 ```
 
 ## queue
+>
 > Like stack, queue is a linear data structure that stores items in First In First Out (FIFO) manner. With a queue the least recently added item is removed first. A good example of queue is any queue of consumers for a resource where the consumer that came first is served first.
 
 ![queue](assets/queue.png)
 
 Queue in Python can be implemented by the following ways:
+
 - list
 - collections.deque
 - queue.Queue
 
 ## regrex
+
 ```sh
-# Pattern	Description
-^	    Begin at the start of the line.
-(\w+)	Match one or more word characters. This is the first capturing group.
-\s	    Match a white-space character.
-(\d+)	Match one or more decimal digits. This is the second capturing group.
-\r?	    Match zero or one carriage return character.
-$	    End at the end of the line.
+# Pattern Description
+^     Begin at the start of the line.
+(\w+) Match one or more word characters. This is the first capturing group.
+\s     Match a white-space character.
+(\d+) Match one or more decimal digits. This is the second capturing group.
+\r?     Match zero or one carriage return character.
+$     End at the end of the line.
 
 st = '04 Start LBA      2312 End LBA      4103 Size        7168 KB Name       hyp_a Type 89a6a6e1-8d0c-c64c-b4e8-55a4320fbd8a\r\n'
 pattern = '(\d+) Size.*_a'
 ```
 
-## relative import 
+## relative import
+>
 > It's important to note that relative imports are only allowed within packages
 
 1. Using Relative Imports Within Packages:
 
 When you have a package, such as my_package, you can use relative imports to import modules within that package from other modules within the same package. For example, if you're in module1.py and want to import module2.py, you can do:
+
 ```python
 # Inside module1.py
 from . import module2
 ```
+
 Here, the dot (.) signifies that you are importing a module from the same package (my_package).
 
 2. Running Modules as Part of a Package:
 
 When you run a Python module as part of a package, Python treats it differently compared to running it as a standalone script. To run module1.py as part of the my_package, you would navigate to the directory containing main.py (which is outside the package) and execute:
+
 ```python
 python -m my_package.module1
 ```
+
 This tells Python to run module1.py as part of the my_package package. When running modules in this way, relative imports work as expected because Python understands the package structure.
 
 However, if you try to run module1.py directly as a script from outside the package (e.g., python module1.py), relative imports may not work correctly, and you might encounter errors.
@@ -1216,6 +1324,7 @@ However, if you try to run module1.py directly as a script from outside the pack
 To summarize, using relative imports within packages and running modules as part of a package ensures that the package structure is properly recognized, and relative imports function as intended. It's a best practice for organizing and structuring your Python code when working with packages and modules.
 
 3. Running scripts directly:
+
 ```python
 from pathlib import Path
 FILE=Path(__file__).resolve()
@@ -1224,21 +1333,26 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT=Path(os.path.relpath(ROOT, Path.cwd()))  
 ```
+
 **把main函数放在根目录，内部的函数relative import是支持的。**
 
 ![relative import](assets/relativeimport.png)
 
 ## requests
+>
 > 阻塞：程序会等待一个结果出现（不出现就一直等待）然后才执行其他的代码, requests模块是阻塞的
+
 ```python
 # json.dumps is used along with application.json
 requests.patch(url, data=json.dumps(data), headers={"Content-Type": 'application/json'})
 ```
 
 ## serial
+
 ```sh
 python -m serial.tools.list_ports
 ```
+
 ```python
 # get a list of available serial ports to use
 from serial.tools import list_ports
@@ -1246,6 +1360,7 @@ list_ports.comports()
 ```
 
 ## serialization
+
 [a-gentle-introduction-to-serialization-for-python](https://machinelearningmastery.com/a-gentle-introduction-to-serialization-for-python/)
 > WHAT is (de)serialization and WHY do we need it?
 
@@ -1253,11 +1368,11 @@ We create plenty of objects in Python every day, and these objects will eventual
 
 There are different formats for the serialization of data, such as JSON, XML, HDF5, and Python’s pickle, for different purposes. JSON, for instance, returns a human-readable string form, while Python’s pickle library can return a byte array.
 
-
 ## singleton class
+>
 > In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
 
-> The primary purpose of a Singleton class is to restrict the limit of the number of object creation to only one. 
+> The primary purpose of a Singleton class is to restrict the limit of the number of object creation to only one.
 
 > This often ensures that there is access control to resources, for example, socket or database connection.
 
@@ -1288,6 +1403,7 @@ print(p2.name)
 ```
 
 ## socket
+
 ```python
 # aim: communicate between applications/machines, not for IPC
 import socket
@@ -1302,6 +1418,7 @@ print(c.recv(1024).decode())
 ```
 
 ## subprocess
+
 ```python
 # put err and out in the same pipe
 # stderr=subprocess.STDOUT, stdout=subprocess.PIPE
@@ -1330,6 +1447,7 @@ process.stdout.readlines()
 ```
 
 ## ternary operator
+
 The ternary operator in Python is simply a shorter way of writing an if and if…else statement.
 
 ```python
@@ -1343,8 +1461,11 @@ print(min)
 ```
 
 ## thread
+
 [Python Threading: The Complete Guide](https://superfastpython.com/threading-in-python/#Run_a_Function_in_a_Thread)
+
 1. run a function in thread
+
 ```python
 import threading 
 
@@ -1353,10 +1474,12 @@ T1.start()
 T1.join() #other threads wait until t1 finishes
 
 def fun(args, event):
-	if event.set():
+ if event.set():
 print("start thread")
 ```
+
 2. extend the thread class
+
 ```python
 # two ways to rewrite a thread class
 # 1. send default target function 
@@ -1414,6 +1537,7 @@ If, for example, you want to concurrently download a bunch of pages to concatena
 ```
 
 ## tkinter
+
 ```python
 # Object-oriented frames:
 import tkinter as tk
@@ -1479,14 +1603,18 @@ if __name__ == '__main__':
 ```
 
 ## try/except/finally
+>
 > Python provides a keyword finally, which is always executed after try and except blocks. The finally block always executes after normal termination of try block or after try block terminates due to some exception. **Even if you return in the except block still the finally block will execute**.
 
 ## type hint
+
 ```python
 def first(l: Sequence[T]) -> T:   # Generic function
     return l[0]
 ```
+
 - hint self class
+
 ```python
 from __future__ import annotations
 # The behaviour enabled by from __future__ import annotations might become the default in future versions of Python, and was going to be made the default in Python 3.10
@@ -1502,19 +1630,21 @@ class Position:
        ...
 ```
 
-
 ## tuple vs list
-> A list has a variable size while a tuple has a fixed size. 
+>
+> A list has a variable size while a tuple has a fixed size.
 
 > So, we use a list when we want to contain similar items, but use a tuple when we know what information goes into it.
 
 ## underscore
+
 [property](https://realpython.com/python-property/)
 > Note: Python doesn’t have the notion of access modifiers, such as private, protected, and public, to restrict access to attributes and methods. In Python, the distinction is between public and non-public class members.
 
 If you want to signal that a given attribute or method is non-public, then you have to use the well-known Python convention of prefixing the name with an underscore (_). That’s the reason behind the naming of the attributes ._x and ._y.
 
 Note that this is just a convention. It doesn’t stop you and other programmers from accessing the attributes using dot notation, as in obj._attr. However, it’s bad practice to violate this convention.
+
 ```python
 # 1.use in interpreter
 # Store the results of above expression
@@ -1527,7 +1657,7 @@ Print(a,b)
 # 3.use in the loop
 # As a variable
 for _ in range(5):
-	print(_)
+ print(_)
 # 0 1 2 3 4
 
 # 4.sperate digits of numbers
@@ -1566,6 +1696,7 @@ print(obj2._SecondClass__c)
 ```
 
 ## virtual environment
+
 ```sh
 python -m venv tutorial-env
 Bash:Tutorial-env/scripts/activate
@@ -1576,6 +1707,7 @@ Cmd:Tutorial-env/scripts/activate.bat
 ```
 
 ## walrus operator
+
 ```python
 def some_func():
         # Assume some expensive computation here
@@ -1597,9 +1729,11 @@ if a := some_func():
 ```
 
 ## yield
+
 [what does the yield keyword do?](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python?rq=1)
 > Why Use Generators?
-Usually, you can write code that doesn't use generators but implements the same logic. One option is to use the temporary list 'trick' I mentioned before. That will not work in all cases, for e.g. if you have infinite loops, or it may make inefficient use of memory when you have a really long list. The other approach is to implement a new iterable class SomethingIter that keeps the state in instance members and performs the next logical step in it's next() (or __next__() in Python 3) method. Depending on the logic, the code inside the next() method may end up looking very complex and be prone to bugs. Here generators provide a clean and easy solution.
+Usually, you can write code that doesn't use generators but implements the same logic. One option is to use the temporary list 'trick' I mentioned before. That will not work in all cases, for e.g. if you have infinite loops, or it may make inefficient use of memory when you have a really long list. The other approach is to implement a new iterable class SomethingIter that keeps the state in instance members and performs the next logical step in it's next() (or **next**() in Python 3) method. Depending on the logic, the code inside the next() method may end up looking very complex and be prone to bugs. Here generators provide a clean and easy solution.
+
 ```python
 A list can be used multiple times, while a generator can only be used once.
 

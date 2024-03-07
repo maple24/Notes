@@ -1,7 +1,15 @@
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+  - [Reference](#reference)
+  - [how reactjs works](#how-reactjs-works)
+
 ## Reference
+
 [How reactjs works](https://medium.com/@sweetpalma/gooact-react-in-160-lines-of-javascript-44e0742ad60f)
 
 ## how reactjs works
+
 1. Elements: convert JSX to VDOM
 2. Rendering: transform VDOM to actual DOM
 3. Patching: a process of reconciliation of existing DOM with a freshly built VDOM tree
@@ -10,6 +18,7 @@
    - Locate nodes that were added, removed or changed in any other way.
    - Patch them.
 4. Components: components are like functions that return HTML elements
+
 ```javascript
 // example function to convert javascript element into AST(vnode), in reactJs it is `React.createElement`
 function h(nodeName, attributes, ...args) {

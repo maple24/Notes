@@ -1,11 +1,14 @@
 # TBD
+
 - websocket proxy on nginx and vite.config.js
 - websocket server on python backend
 
 ## Securing WebSocket Endpoints Against Cross-Site Attacks
+
 [Securing WebSocket Endpoints Against Cross-Site Attacks](https://dev.solita.fi/2018/11/07/securing-websocket-endpoints.html)
 
 ## Python server example
+
 ```python
 import asyncio
 import websockets
@@ -23,6 +26,7 @@ asyncio.run(main())
 ```
 
 ## JS client example
+
 ```sh
 # Websocket class is built-in, do not import 
 let client = new WebSocket('ws://localhost:8765')
@@ -38,6 +42,7 @@ client.onmessage = (event) => {
 ```
 
 ## VueJs example
+
 ```javascript
 <script setup>
   import client from './api/websocket';
@@ -65,6 +70,7 @@ websocketOnMessage(e) {
 ```
 
 ## proxy
+
 ```javascript
 // two ways to config websocket at frontend
 // 1. ws:true

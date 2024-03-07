@@ -1,4 +1,10 @@
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+  - [compare](#compare)
+
 ## compare
+
 ```sh
 # compare values
 *** Variables ***
