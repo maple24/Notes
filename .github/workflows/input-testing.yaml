@@ -1,0 +1,79 @@
+name: Map release validation
+
+env:
+  TEMP_FOLDER: /tmp/map_release_validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Select a mode for validations."
+        type: "choice"
+        default: "release"
+        required: true
+        options: ["release", "development"]
+
+      map_options:
+        description: "Map Configuration Options"
+        type: "object"
+        properties:
+          dump_camera_views:
+            description: "Dump camera views."
+            type: "boolean"
+            default: false
+            required: true
+
+          map_request_ticket_number:
+            description: "Ticket number of the map request."
+            type: "string"
+            default: ""
+
+          map_mdm_sha:
+            description: "MDM SHA of the map to be tested."
+            type: "string"
+            default: ""
+
+          should_tag_release:
+            description: "Tag the release with 'released' if validation succeeds."
+            type: "boolean"
+            default: false
+            required: true
+
+          map_region:
+            description: "Select the map region to be tested."
+            type: "choice"
+            default: "IngolstadtFunctionRoute"
+            options: ["IngolstadtFunctionRoute", "FeuerbachFunctionBenchmarkRoute"]
+
+      recording_options:
+        description: "Recording Configuration Options"
+        type: "object"
+        properties:
+          predefined_recording_set:
+            description: "Select a set of 'default' recordings for recompute."
+            type: "choice"
+            default: "INGOLSTADT"
+            options: ["INGOLSTADT", "FEUERBACH", "NONE"]
+
+          additional_recordings:
+            description: "Define additional recordings for recompute."
+            type: "string"
+            default: ""
+
+            
+jobs:
+  Explore-GitHub-Actions:
+    name: demo
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."

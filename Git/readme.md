@@ -4,11 +4,14 @@
   - [multiple ssh keys](#multiple-ssh-keys)
   - [delete file](#delete-file)
   - [diff](#diff)
+  - [fast-forward rule](#fast-forward-rule)
+  - [force-with-lease](#force-with-lease)
   - [gitignore](#gitignore)
   - [github web editor](#github-web-editor)
   - [log](#log)
   - [merge](#merge)
   - [push](#push)
+  - [patch](#patch)
   - [rebase](#rebase)
   - [remote](#remote)
   - [rename remote branch](#rename-remote-branch)
@@ -18,6 +21,24 @@
   - [stash](#stash)
   - [undo reset](#undo-reset)
   - [upstream](#upstream)
+  - [git branch -a](#git-branch--a)
+  - [vanilla workflow](#vanilla-workflow)
+  - [how to undo git mistakes](#how-to-undo-git-mistakes)
+    - [discard changes in local files](#discard-changes-in-local-files)
+    - [discard all local changes](#discard-all-local-changes)
+    - [restore deleted file](#restore-deleted-file)
+    - [discard chunks/lines in a file](#discard-chunkslines-in-a-file)
+    - [fix last commit(only the very last commit)](#fix-last-commitonly-the-very-last-commit)
+    - [revert a commit in the middle](#revert-a-commit-in-the-middle)
+    - [reset to an old revision](#reset-to-an-old-revision)
+    - [reset a file to an old revision](#reset-a-file-to-an-old-revision)
+    - [recover deleted commits (after reset)/recover a deleted branch](#recover-deleted-commits-after-resetrecover-a-deleted-branch)
+    - [move a commit to a new branch](#move-a-commit-to-a-new-branch)
+    - [move a commit to a different branch(without creating a new branch)](#move-a-commit-to-a-different-branchwithout-creating-a-new-branch)
+    - [edit old commit message(only the very last commit can use ammend)](#edit-old-commit-messageonly-the-very-last-commit-can-use-ammend)
+    - [delete old commits(not used often)](#delete-old-commitsnot-used-often)
+    - [squash multiple commits into one](#squash-multiple-commits-into-one)
+    - [add a change to an old commit(very practical)](#add-a-change-to-an-old-commitvery-practical)
 
 ## add more emails
 The only identity to differ from admin or guest is email address. Say you are pushing codes from company and home, your company email is your default commit account, one way to recognize it as yourself is to add emails to git account.
@@ -63,6 +84,22 @@ git diff file_name
 # lists out the changes between the staged area and last commit
 git diff --staged
 ```
+
+## fast-forward rule
+> When pushing to the remote repository, git will reject the push if the remote one is not an ancestor of the local one. That is called the "fast-forward rule".
+All of the following cases break the fast-forward rule and are therefore rejected by an ordinary push:
+
+- You rebased your branch onto master.
+- You reordered the commits.
+- You changed the commit messages.
+- You squashed the commits into one.
+
+## force-with-lease
+[reference](https://blog.developer.atlassian.com/force-with-lease/)
+
+--force overwrites a remote branch with your local branch.
+
+--force-with-lease effectively only allows you to force-push if no-one else has pushed changes up to the remote in the interim.
 
 ## gitignore
 ```sh
@@ -119,6 +156,9 @@ git merge feature main
 ```sh
 git push <remote> <local_branch>:<remote_name>
 ```
+
+## patch
+> Before Git pull requests existed, developers created Git patches to share their code with team members and project collaborators. Git patches are text files that contain code and Git commit metadata. Creating a Git patch is, in essence, copying and packaging up your work to send to someone else. 
 
 ## rebase
 ![git rebase1](assets/gitrebase1.png)
@@ -212,8 +252,22 @@ git stash pop stash@{n}
 
 ## undo reset
 ```sh
-git reflog
-git reset 'HEAD@{1}'
+# To keep the changes from the commit you want to undo
+git reset --soft HEAD^
+
+# To destroy the changes from the commit you want to undo
+git reset --hard HEAD^
+
+# You can also say
+git reset --soft HEAD~2
+# to go back 2 commits.
+
+# or go to any commit hash
+git reset --soft asdf
+
+# if you are on Windows you will need to put HEAD or commit hash in quotes.
+git reset --soft "HEAD^"
+git reset --soft "asdf"
 ```
 
 ## upstream
@@ -231,4 +285,144 @@ cat .git/config
 
 # unset upstream
 git branch --unset-upstream [<branchname>]
+```
+
+## git branch -a
+```
+$ git branch -a
+
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+```
+The remotes/origin/HEAD is the branch currently checked out in the origin repository, which means if you clone that repository, by default that branch will be checked out first.
+
+The origin/main is a remote branch (which is a local copy of the branch named main on the remote named origin)
+
+The remotes/origin/main, usually referred to as origin/main, is the location of a branch called main on the remote called origin the last time you did a git command. If they're related, main will have origin/main as its upstream.
+
+## vanilla workflow
+```sh
+# remote name is origin
+
+# fetch feature branch from remote
+git fetch origin feature-branch-0
+# check out master branch to merge
+git checkout master
+# check out different between local master branch and remote master branch
+git diff master..origin/master
+# merge feature branch to master
+git merge origin/feature-branch-0
+
+# create new branch based on master
+git checkout -b feature-branch-1
+# in case someone else made changes, sync your code before pull request
+git fetch origin master
+git rebase origin/master
+# commit changes
+git add .
+git commit -m ""
+
+# After setting up the tracking branch, git push can be invoked without any parameters
+# push feature branch to remote
+git push -u origin feature-branch-1
+```
+git push -u origin feature-branch-1
+```
+
+## get back to old commits and get back to present
+```sh
+# Suppose your current branch is master and the old commit is a1b2c3, then you can change all the files in your working tree back to the old commit with:
+git checkout a1b2c3
+
+# and return to master with:
+git checkout master
+```
+
+## how to undo git mistakes
+[reference video](https://www.youtube.com/watch?v=lX9hsdsAeTk&ab_channel=freeCodeCamp.org)
+1. work with uncommitted files
+### discard changes in local files
+```sh
+git diff <filename> # see changes in a file
+git restore <filesname> # discard uncommitted local changes, (be aware it cannot be undone)
+```
+### discard all local changes
+```sh
+git restore .
+```
+### restore deleted file
+```sh
+git restore <filename>
+```
+### discard chunks/lines in a file
+```sh
+git restore -p <filename> # enter interactive mode, y/n
+```
+2. work with committed files
+### fix last commit(only the very last commit)
+```sh
+git commit --amend -m "new commit message" # nerver do that on a commit which has been pushed to remote repo
+```
+### revert a commit in the middle
+```sh
+# just revert this one particular commit
+git revert <commit hash> # git revert creates a new commit
+```
+### reset to an old revision
+```sh
+# reset all commits after this commit
+git reset --hard <commit hash> # no local changes saved
+--soft: uncommit changes, changes are left staged (index).
+--mixed (default): uncommit + unstage changes, changes are left in working tree.
+--hard: uncommit + unstage + delete changes, nothing left.
+```
+### reset a file to an old revision
+```sh
+git restore --source <commit hash> <filename>
+```
+3. reflog
+> a journal that logs every movement of the HEAD pointer
+### recover deleted commits (after reset)/recover a deleted branch
+```sh
+git reflog # get commit hash which you want to recover
+git branch <new branch> <commit hash> # a good practice to create a new branch when recovering
+```
+### move a commit to a new branch
+```sh
+git branch <new branch> <old branch> # create a new branch based on that old branch
+git reset --hard HEAD~ # reset commit on old branch
+```
+### move a commit to a different branch(without creating a new branch)
+```sh
+git reflog # get commit hash
+git checkout <target branch>
+git cherry-pick <commit hash> # cherry pick that commit to a different branch
+git checkout <source branch>
+git reset --hard HEAD~ # reset commit on old branch
+```
+4. rebase
+### edit old commit message(only the very last commit can use ammend)
+```sh
+git rebase -i HEAD~3
+# then use reword option
+```
+### delete old commits(not used often)
+```sh
+# then use drop option
+```
+### squash multiple commits into one
+direction: lower commits squashed to uppper
+```sh
+# then use squash option
+```
+### add a change to an old commit(very practical)
+if you create new commit to fix up the previous one, the history is going to be long and unreadable
+```sh
+git add <filename>
+git commit --fixup <commit hash>
+# then use fixup option, fixup will not keep commit message compared to squash
+# or 
+# this will automatically use the fixup option
+git rebase -i --autosquash HEAD~4
 ```
