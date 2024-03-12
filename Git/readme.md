@@ -47,7 +47,7 @@ The only identity to differ from admin or guest is email address. Say you are pu
 
 ## multiple ssh keys
 
-```
+```sh
 Host 10.173.248.175
 HostName 10.173.248.175
 Port 222
