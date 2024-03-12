@@ -51,12 +51,8 @@ Notice here **maple-office** and **maple-work** are the username of my github ac
 
 After entering the command the terminal will ask for passphrase, leave it empty and proceed.
 
-![Passphrase Image](https://raw.githubusercontent.com/maplearity/github-essentials/bc3dafc37b36f5fb4ebcffcba63a7689a36fc7ff/screenshots/passphrase.png)
-
 > Now after adding keys , in your .ssh folder, a public key and a private will get generated.
 > The public key will have an extention **.pub** and private key will be there without any extention both having same name which you have passed after **-f** option in the above command. (in my case **github-maple-office** and **github-rahu-personal**)
-
-![Added Key Image](https://raw.githubusercontent.com/maplearity/github-essentials/master/screenshots/ssh_keys_added.png)
 
 ## Step 2
 
