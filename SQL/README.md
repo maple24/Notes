@@ -1,13 +1,13 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
- 	- [usage](#usage)
- 	- [setup mysql](#setup-mysql)
-  		- [linux docker](#linux-docker)
-  		- [docker-compose](#docker-compose)
-  		- [load sample data(migrate)](#load-sample-datamigrate)
- 	- [new user](#new-user)
- 	- [foreign key](#foreign-key)
+  - [usage](#usage)
+  - [setup mysql](#setup-mysql)
+    - [linux docker](#linux-docker)
+    - [docker-compose](#docker-compose)
+    - [load sample data(migrate)](#load-sample-datamigrate)
+  - [new user](#new-user)
+  - [foreign key](#foreign-key)
 
 ## usage
 
