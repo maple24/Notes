@@ -12,11 +12,8 @@
 ## what is redis
 >
 > Redis is an in memory data structure store used as a database, cache and message broker.
-
 > It is a simple key value database store with faster execution time, along with a ttl- (Time to live) functionality.
-
 > Redis supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes with radius queries.
-
 > It stores everything in primary memory.
 
 Database, everything stored in key/value pair rather sql table.
@@ -27,7 +24,7 @@ Runs in RAM, super quick, but if your system crashes, data are gone. So it is mo
 `memurai`: Redis™* for Windows alternative, In-Memory Datastore
 ![memurai](assets/memurai.png)
 
-```
+```sh
 memurai-cli
 ```
 
