@@ -16,6 +16,8 @@ You can open any GitHub repository in github.dev in either of the following ways
 
 [Kafka vs Redis – What’s the Difference ?](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
 
+[How to manage multiple github accounts?](Git/HowTOWorkWithMultipleAccounts.md)
+
 ## Table of Contents
 
 - [CSS](CSS)

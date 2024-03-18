@@ -2,9 +2,15 @@
 
 Let suppose I have two github accounts, **<https://github.com/maple-office>** and **<https://github.com>/maple-personal**. Now i want to setup my mac to easily talk to both the github accounts.
 
-> NOTE: This logic can be extended to more than two accounts also.
+To work with github, there are generally two ways: HTTPS and SSH.
 
-The setup can be done in 5 easy steps:
+In case you would like to use HTTPS for multiple accounts, you have to remove credentials once you switch your accounts.
+
+![windows credential manager](assets/windows_credential.png)
+
+To use SSH keys, The setup can be done in 5 easy steps.
+
+> NOTE: This logic can be extended to more than two accounts also.
 
 ## Reference
 
