@@ -10,11 +10,9 @@ You can open any GitHub repository in github.dev in either of the following ways
 - To open the repository in the same browser tab, press . while browsing any repository or pull request on GitHub.
 - To open the repository in a new browser tab, press >.
 
-## Reference
+## Useful Links
 
-[Architectural messaging patterns: an illustrated guide](https://www.redhat.com/architect/architectural-messaging-patterns)
-
-[Kafka vs Redis – What’s the Difference ?](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
+[A beginner’s guide to writing documentation](https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/)
 
 [How to manage multiple github accounts?](Git/HowTOWorkWithMultipleAccounts.md)
 

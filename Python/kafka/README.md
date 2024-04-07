@@ -1,11 +1,16 @@
 # Understanding
+
 假如不使用kafka就是直接分发任务到代理端，那么假设代理端目前有任务没执行完，这时任务分发就要等待了。
 有kafka的话任务就可以等代理端自己去取，前端/后端只负责把任务布置下去存在kafka内，也就是producer，等代理端自行consumer。
 
 另外，kafka相比于django channel的区别是，kafka是会存储数据到本地的，因此通讯的时效性相比于redis会差一些，但是好处是如果连接断开，数据不会丢失。
 因此选择kafka还是redis取决于数据的可靠性还是时效性。
 
-# Reference
+## Reference
+
+[Architectural messaging patterns: an illustrated guide](https://www.redhat.com/architect/architectural-messaging-patterns)
+
+[Kafka vs Redis – What’s the Difference ?](https://cloudinfrastructureservices.co.uk/kafka-vs-redis-whats-the-difference/)
 
 [Kafka Python client](https://github.com/dpkp/kafka-python)
 
@@ -33,12 +38,11 @@
 
 `4. Guarantee **order of data**. That is, if a message, say m1, is received by the cluster at time t1 and another message, say m2, is received by the cluster at later time t1 + 5 sec, then a consumer reading the messages will read m1 before m2.`
 
-`5. Provide **at-least once** delivery of data. This means every message sent to the Apache Kafka cluster is guaranteed to be received by a consumer at least once. This means that at the consumer there may be duplication of data. The most common reason for this is that the message sent by producer getting lost due to network failures. `
+`5. Provide **at-least once** delivery of data. This means every message sent to the Apache Kafka cluster is guaranteed to be received by a consumer at least once. This means that at the consumer there may be duplication of data. The most common reason for this is that the message sent by producer getting lost due to network failures.`
 
 `6. Has support for running apps on the Kafka cluster using connector and framework to process messages called Streams API.`
 
 `7. In Apache Kafka cluster you have **Topics** which are ordered queues of messages.`
-
 
 ### Common use cases
 
