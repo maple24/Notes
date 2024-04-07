@@ -16,6 +16,8 @@ You can open any GitHub repository in github.dev in either of the following ways
 
 [How to manage multiple github accounts?](Git/HowTOWorkWithMultipleAccounts.md)
 
+[The Hitchhiker’s Guide to Python!](https://docs.python-guide.org/)
+
 ## Table of Contents
 
 - [CSS](CSS)
